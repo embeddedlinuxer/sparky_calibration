@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Package>
+   <DisplayName>Phase Dynamics</DisplayName>
+   <Description>Phase Dynamics Software Installer</Description>
+   <Version>1.0.0</Version>
+   <ReleaseDate>2020-04-03</ReleaseDate>
+   <Name>com.vendor.product</Name>
+   <Licenses>
+       <License name="License Agreement" file="license.txt" />
+   </Licenses>
+   <DownloadableArchives>test.7z</DownloadableArchives>
+   <UpdateText>This changed compared to the last release</UpdateText>
+   <Default>false</Default>
+   <ForcedInstallation>false</ForcedInstallation>
+   <Essential>false</Essential>
+</Package>

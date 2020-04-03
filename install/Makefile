@@ -1,0 +1,1 @@
+G:/Qt/tools/QtInstallerFramework/3.2/bin/binarycreator.exe --offline-only -c G:/tools/sparky/install/config/config.xml -p G:/tools/sparky/install/packages -t G:/Qt/tools/QtInstallerFramework/3.2/bin/installerbase.exe setup.exe

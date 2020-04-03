@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Phase Dynamics</Name>
+    <Version>1.0.0</Version>
+    <Title>Unified System Support Tool Installer</Title>
+    <Publisher>Phase Dynamics</Publisher>
+    <StartMenuDir>Super App</StartMenuDir>
+    <TargetDir>@HomeDir@/Phase Dynamics</TargetDir>
+</Installer>
