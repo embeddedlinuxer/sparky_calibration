@@ -2160,7 +2160,9 @@ loadCsvFile()
             // fill the actual value
             for (int j = 0; j < valueList[6].toInt(); j++)
             {
-                QString cellData = valueList[7+j];
+                QString cellData = valueList[7+j];;
+                if (valueList[3].contains("int")) cellData = cellData.mid(0, cellData.indexOf("."));
+
                 ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, j+4, new QTableWidgetItem(cellData));
             }
 
