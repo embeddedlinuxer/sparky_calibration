@@ -2185,9 +2185,6 @@ void
 MainWindow::
 onEquationButtonPressed()
 {
-    ui->tableWidget->clearContents();
-    ui->tableWidget->setRowCount(0);
-
     if (ui->radioButton_188->isChecked())
     {
         if( m_pollTimer->isActive() )
@@ -2222,6 +2219,9 @@ onEquationButtonPressed()
                 m_pollTimer->start( 1000 );
                 ui->sendBtn->setText( tr("Loading") );
             }
+        
+            ui->tableWidget->clearContents();
+            ui->tableWidget->setRowCount(0);
 
             onDownloadEquation();
         }
