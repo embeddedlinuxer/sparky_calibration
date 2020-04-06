@@ -1923,7 +1923,7 @@ sendCalibrationRequest(int dataType, modbus_t * serialModbus, int func, int addr
         }
         else
         {
-            bool b_hex = is16Bit && ui->checkBoxHexData->checkState() == Qt::Checked;
+            //bool b_hex = is16Bit && ui->checkBoxHexData->checkState() == Qt::Checked;
             QString qs_num;
             QString qs_output = "0x";
             bool ok = false;
@@ -1934,36 +1934,37 @@ sendCalibrationRequest(int dataType, modbus_t * serialModbus, int func, int addr
                 int data = is16Bit ? dest16[i] : dest[i];
                 QString qs_tmp;
 
-                QTableWidgetItem * dtItem = new QTableWidgetItem( funcType );
-                QTableWidgetItem * addrItem = new QTableWidgetItem(QString::number( ui->startAddr->value()+i ) );
-                qs_num.sprintf( b_hex ? "0x%04x" : "%d", data);
+                //QTableWidgetItem * dtItem = new QTableWidgetItem( funcType );
+                //QTableWidgetItem * addrItem = new QTableWidgetItem(QString::number( ui->startAddr->value()+i ) );
+                //qs_num.sprintf( b_hex ? "0x%04x" : "%d", data);
                 qs_num.sprintf("%d", data);
                 qs_tmp.sprintf("%04x", data);
                 qs_output.append(qs_tmp);
 
-                QTableWidgetItem * dataItem = new QTableWidgetItem( qs_num );
-                dtItem->setFlags( dtItem->flags() & ~Qt::ItemIsEditable );
-                addrItem->setFlags( addrItem->flags() & ~Qt::ItemIsEditable );
-                dataItem->setFlags( dataItem->flags() & ~Qt::ItemIsEditable );
-                ui->regTable->setItem( i, DataTypeColumn, dtItem );
-                ui->regTable->setItem( i, AddrColumn, addrItem );
-                ui->regTable->setItem( i, DataColumn, dataItem );
+                //QTableWidgetItem * dataItem = new QTableWidgetItem( qs_num );
+                //dtItem->setFlags( dtItem->flags() & ~Qt::ItemIsEditable );
+                //addrItem->setFlags( addrItem->flags() & ~Qt::ItemIsEditable );
+                //dataItem->setFlags( dataItem->flags() & ~Qt::ItemIsEditable );
+                //ui->regTable->setItem( i, DataTypeColumn, dtItem );
+                //ui->regTable->setItem( i, AddrColumn, addrItem );
+                //ui->regTable->setItem( i, DataColumn, dataItem );
+
                 if (ui->radioButton_182->isChecked()) ui->lineEdit_111->setText(QString::number(data));
                 else if (ui->radioButton_183->isChecked())
                 {
                     (data) ? ui->radioButton_184->setChecked(true) : ui->radioButton_185->setChecked(true);
                 }
                 if (dataType == FLOAT_R) // FLOAT_READ
-                {// float
+                {
                     QByteArray array = QByteArray::fromHex(qs_output.toLatin1());
                     const float d = toFloat(array);
                     return QString::number(d,'f',6);
                 }
-                else if (dataType == INT_R)
+                else if (dataType == INT_R)  // INT_READ
                 {
                     return QString::number(data);
                 }
-                else if (dataType == COIL_R)
+                else if (dataType == COIL_R)  // COIL_READ
                 {
                     return (data) ? "1" : "0";
                 }
