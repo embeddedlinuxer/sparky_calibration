@@ -247,6 +247,7 @@ Makefile: ../Sparky/sparky.pro ../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/q
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/qt_config.prf \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/toolchain.prf \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/default_pre.prf \
@@ -277,7 +278,6 @@ Makefile: ../Sparky/sparky.pro ../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/q
 		../../../Qt/5.14.2/mingw73_32/lib/Qt5Gui.prl \
 		../../../Qt/5.14.2/mingw73_32/lib/Qt5Core.prl \
 		../../../Qt/5.14.2/mingw73_32/lib/qtmain.prl \
-		.qmake.stash \
 		../../../Qt/5.14.2/mingw73_32/mkspecs/features/build_pass.prf \
 		../Sparky/data/sparky.qrc
 	$(QMAKE) -o Makefile ..\Sparky\sparky.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -458,6 +458,7 @@ Makefile: ../Sparky/sparky.pro ../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/q
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/qt_config.prf:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/toolchain.prf:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/default_pre.prf:
@@ -488,7 +489,6 @@ Makefile: ../Sparky/sparky.pro ../../../Qt/5.14.2/mingw73_32/mkspecs/win32-g++/q
 ../../../Qt/5.14.2/mingw73_32/lib/Qt5Gui.prl:
 ../../../Qt/5.14.2/mingw73_32/lib/Qt5Core.prl:
 ../../../Qt/5.14.2/mingw73_32/lib/qtmain.prl:
-.qmake.stash:
 ../../../Qt/5.14.2/mingw73_32/mkspecs/features/build_pass.prf:
 ../Sparky/data/sparky.qrc:
 qmake: FORCE

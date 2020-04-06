@@ -43,7 +43,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -140,7 +140,7 @@
         </rect>
        </property>
        <property name="minimum">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="maximum">
         <number>256</number>
@@ -1307,7 +1307,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1349,7 +1349,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1397,7 +1397,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1507,7 +1507,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1566,7 +1566,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1625,7 +1625,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -1638,7 +1638,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -1651,7 +1651,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -1673,7 +1673,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -1695,29 +1695,6 @@
          <string>S T A R T</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_146">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
-       <widget class="QLCDNumber" name="lcdNumber_8">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -1727,7 +1704,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1769,7 +1746,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1811,7 +1788,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1859,7 +1836,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1918,7 +1895,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1973,21 +1950,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_9">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_78">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -1996,24 +1963,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_147">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_3">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2026,7 +1980,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2107,7 +2061,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -2138,7 +2092,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2180,7 +2134,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2222,7 +2176,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2270,7 +2224,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2329,7 +2283,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2384,21 +2338,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_10">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_80">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -2407,24 +2351,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_148">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_5">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2437,7 +2368,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2518,7 +2449,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -2570,7 +2501,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2612,7 +2543,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2660,7 +2591,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2702,7 +2633,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2761,7 +2692,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2816,21 +2747,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_11">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_81">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -2839,24 +2760,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_149">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_7">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2869,7 +2777,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2950,7 +2858,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -2981,7 +2889,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3023,7 +2931,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3065,7 +2973,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3113,7 +3021,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3172,7 +3080,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3227,21 +3135,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_12">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_82">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -3250,24 +3148,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_150">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_9">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3280,7 +3165,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3361,7 +3246,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -3392,7 +3277,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3434,7 +3319,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3476,7 +3361,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3524,7 +3409,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3583,7 +3468,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3638,21 +3523,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_13">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_83">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -3661,24 +3536,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_151">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_11">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3691,7 +3553,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3772,7 +3634,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -4038,7 +3900,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4080,7 +3942,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4128,7 +3990,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4170,7 +4032,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4229,7 +4091,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4284,21 +4146,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_14">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_84">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -4307,24 +4159,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_152">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_13">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4337,7 +4176,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4418,7 +4257,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -4449,7 +4288,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4491,7 +4330,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4533,7 +4372,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4581,7 +4420,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4640,7 +4479,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4695,21 +4534,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_15">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_85">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -4718,24 +4547,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_153">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_15">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4748,7 +4564,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4829,7 +4645,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -4860,7 +4676,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4902,7 +4718,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4944,7 +4760,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4992,7 +4808,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5051,7 +4867,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5106,21 +4922,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_16">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_86">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -5129,24 +4935,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_154">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_17">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5159,7 +4952,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5240,7 +5033,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -5506,7 +5299,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5548,7 +5341,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5596,7 +5389,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5638,7 +5431,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5697,7 +5490,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5752,21 +5545,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_17">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_87">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -5775,24 +5558,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_155">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_19">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5805,7 +5575,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5886,7 +5656,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -5917,7 +5687,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5959,7 +5729,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6001,7 +5771,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6049,7 +5819,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6108,7 +5878,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6163,21 +5933,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_18">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_88">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -6186,24 +5946,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_156">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_21">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6216,7 +5963,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6297,7 +6044,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -6328,7 +6075,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6370,7 +6117,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6412,7 +6159,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6460,7 +6207,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6519,7 +6266,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6574,21 +6321,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_19">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_89">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -6597,24 +6334,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_157">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_23">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6627,7 +6351,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6708,7 +6432,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -6974,7 +6698,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7016,7 +6740,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7064,7 +6788,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7106,7 +6830,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7165,7 +6889,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7220,21 +6944,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_20">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_90">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -7243,24 +6957,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_158">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_25">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7273,7 +6974,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7354,7 +7055,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -7385,7 +7086,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7427,7 +7128,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7469,7 +7170,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7517,7 +7218,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7576,7 +7277,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7631,21 +7332,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_21">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_91">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -7654,24 +7345,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_159">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_27">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7684,7 +7362,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7765,7 +7443,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -7796,7 +7474,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7838,7 +7516,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7880,7 +7558,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7928,7 +7606,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7987,7 +7665,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8042,21 +7720,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_22">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_92">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -8065,24 +7733,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_160">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_29">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8095,7 +7750,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8176,7 +7831,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -8442,7 +8097,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8484,7 +8139,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8532,7 +8187,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8574,7 +8229,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8633,7 +8288,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8688,21 +8343,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_23">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_93">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -8711,24 +8356,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_161">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_31">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8741,7 +8373,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8822,7 +8454,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -8853,7 +8485,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8895,7 +8527,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8937,7 +8569,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8985,7 +8617,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9044,7 +8676,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9099,21 +8731,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_24">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_138">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -9122,24 +8744,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_162">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_33">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9152,7 +8761,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9233,7 +8842,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -9264,7 +8873,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>120</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -9306,7 +8915,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>70</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -9348,7 +8957,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>170</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -9396,7 +9005,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9455,7 +9064,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>220</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9510,21 +9119,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLCDNumber" name="lcdNumber_25">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>320</y>
-          <width>181</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_142">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>320</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -9533,24 +9132,11 @@
          <string>Volume (ML) :</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_163">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Slave ID :</string>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_35">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>290</y>
+          <y>30</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9563,7 +9149,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>260</y>
+          <y>320</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9644,7 +9230,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>290</y>
+          <y>30</y>
           <width>91</width>
           <height>16</height>
          </rect>

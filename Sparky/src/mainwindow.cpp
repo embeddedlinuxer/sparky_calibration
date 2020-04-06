@@ -64,7 +64,6 @@ MainWindow::MainWindow( QWidget * _parent ) :
     initializeToolbarIcons();
     initializeGauges();
     initializeTabIcons();
-    initializeValues();
     updateRegisterView();
     updateRequestPreview();
     enableHexView();
@@ -1924,7 +1923,7 @@ sendCalibrationRequest(int dataType, modbus_t * serialModbus, int func, int addr
         }
         else
         {
-            //bool b_hex = is16Bit && ui->checkBoxHexData->checkState() == Qt::Checked;
+            bool b_hex = is16Bit && ui->checkBoxHexData->checkState() == Qt::Checked;
             QString qs_num;
             QString qs_output = "0x";
             bool ok = false;
@@ -1935,13 +1934,13 @@ sendCalibrationRequest(int dataType, modbus_t * serialModbus, int func, int addr
                 int data = is16Bit ? dest16[i] : dest[i];
                 QString qs_tmp;
 
-                //QTableWidgetItem * dtItem = new QTableWidgetItem( funcType );
-                //QTableWidgetItem * addrItem = new QTableWidgetItem(QString::number( ui->startAddr->value()+i ) );
-                //qs_num.sprintf( b_hex ? "0x%04x" : "%d", data);
+                QTableWidgetItem * dtItem = new QTableWidgetItem( funcType );
+                QTableWidgetItem * addrItem = new QTableWidgetItem(QString::number( ui->startAddr->value()+i ) );
+                qs_num.sprintf( b_hex ? "0x%04x" : "%d", data);
                 qs_num.sprintf("%d", data);
                 qs_tmp.sprintf("%04x", data);
                 qs_output.append(qs_tmp);
-                /*
+
                 QTableWidgetItem * dataItem = new QTableWidgetItem( qs_num );
                 dtItem->setFlags( dtItem->flags() & ~Qt::ItemIsEditable );
                 addrItem->setFlags( addrItem->flags() & ~Qt::ItemIsEditable );
@@ -1953,7 +1952,7 @@ sendCalibrationRequest(int dataType, modbus_t * serialModbus, int func, int addr
                 else if (ui->radioButton_183->isChecked())
                 {
                     (data) ? ui->radioButton_184->setChecked(true) : ui->radioButton_185->setChecked(true);
-                } */
+                }
                 if (dataType == FLOAT_R) // FLOAT_READ
                 {// float
                     QByteArray array = QByteArray::fromHex(qs_output.toLatin1());
@@ -3230,17 +3229,14 @@ onLoopTabChanged(int index)
     {
         if (ui->tabWidget_3->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_8->value());
             (ui->radioButton_2->isChecked()) ? updateRegisters(RAZ,0) : updateRegisters(EEA,0);
         }
         else if (ui->tabWidget_3->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_9->value());
             (ui->radioButton_10->isChecked()) ? updateRegisters(RAZ,1) : updateRegisters(EEA,1);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_10->value());
             (ui->radioButton_16->isChecked()) ? updateRegisters(RAZ,2) : updateRegisters(EEA,2);
         }
     } 
@@ -3248,17 +3244,14 @@ onLoopTabChanged(int index)
     {
         if (ui->tabWidget_4->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_11->value());
             (ui->radioButton_20->isChecked()) ? updateRegisters(RAZ,3) : updateRegisters(EEA,3);
         }
         else if (ui->tabWidget_4->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_12->value());
             (ui->radioButton_28->isChecked()) ? updateRegisters(RAZ,4) : updateRegisters(EEA,4);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_13->value());
             (ui->radioButton_34->isChecked()) ? updateRegisters(RAZ,5) : updateRegisters(EEA,5);
         }
     }
@@ -3266,17 +3259,14 @@ onLoopTabChanged(int index)
     {
         if (ui->tabWidget_5->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_14->value());
             (ui->radioButton_38->isChecked()) ? updateRegisters(RAZ,6) : updateRegisters(EEA,6);
         }
         else if (ui->tabWidget_5->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_15->value());
             (ui->radioButton_46->isChecked()) ? updateRegisters(RAZ,7) : updateRegisters(EEA,7);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_16->value());
             (ui->radioButton_52->isChecked()) ? updateRegisters(RAZ,8) : updateRegisters(EEA,8);
         }
     }
@@ -3285,17 +3275,14 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_6->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_17->value());
             (ui->radioButton_56->isChecked()) ? updateRegisters(RAZ,9) : updateRegisters(EEA,9);
         }
         else if (ui->tabWidget_6->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_18->value());
             (ui->radioButton_64->isChecked()) ? updateRegisters(RAZ,10) : updateRegisters(EEA,10);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_19->value());
             (ui->radioButton_70->isChecked()) ? updateRegisters(RAZ,11) : updateRegisters(EEA,11);
         }
     }
@@ -3304,17 +3291,14 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_7->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_20->value());
             (ui->radioButton_74->isChecked()) ? updateRegisters(RAZ,12) : updateRegisters(EEA,12);
         }
         else if (ui->tabWidget_7->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_21->value());
             (ui->radioButton_82->isChecked()) ? updateRegisters(RAZ,13) : updateRegisters(EEA,13);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_22->value());
             (ui->radioButton_88->isChecked()) ? updateRegisters(RAZ,14) : updateRegisters(EEA,14);
         }
     }
@@ -3323,17 +3307,14 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_8->currentIndex() == 0)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_23->value());
             (ui->radioButton_92->isChecked()) ? updateRegisters(RAZ,15) : updateRegisters(EEA,15);
         }
         else if (ui->tabWidget_8->currentIndex() == 1)
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_24->value());
             (ui->radioButton_100->isChecked()) ? updateRegisters(RAZ,16) : updateRegisters(EEA,16);
         }
         else
         {
-            ui->slaveID->setValue((int)ui->lcdNumber_25->value());
             (ui->radioButton_106->isChecked()) ? updateRegisters(RAZ,17) : updateRegisters(EEA,17);
         }
     }
@@ -3360,37 +3341,11 @@ initializeTabIcons()
     for (int i = 0; i < 6; i++) ui->tabWidget_2->setTabIcon(i,icon);
 }
 
-void 
-MainWindow::
-initializeValues()
-{
-    ui->lcdNumber_8->display(1);
-    ui->lcdNumber_9->display(12);
-    ui->lcdNumber_10->display(13);
-    ui->lcdNumber_11->display(1);
-    ui->lcdNumber_12->display(22);
-    ui->lcdNumber_13->display(23);
-    ui->lcdNumber_14->display(31);
-    ui->lcdNumber_15->display(32);
-    ui->lcdNumber_16->display(33);
-    ui->lcdNumber_17->display(41);
-    ui->lcdNumber_18->display(42);
-    ui->lcdNumber_19->display(43);
-    ui->lcdNumber_20->display(51);
-    ui->lcdNumber_21->display(52);
-    ui->lcdNumber_22->display(53);
-    ui->lcdNumber_23->display(61);
-    ui->lcdNumber_24->display(62);
-    ui->lcdNumber_25->display(63);
-
-    ui->numCoils->setValue(2);
-}
 
 void
 MainWindow::
 updateChartTitle()
 {
-
          if ((ui->tabWidget_2->currentIndex() == 0) && (ui->tabWidget_3->currentIndex() == 0)) chart->setTitle("Pipe 1 at Loop 1");
     else if ((ui->tabWidget_2->currentIndex() == 0) && (ui->tabWidget_3->currentIndex() == 1)) chart->setTitle("Pipe 2 at Loop 1");
     else if ((ui->tabWidget_2->currentIndex() == 0) && (ui->tabWidget_3->currentIndex() == 2)) chart->setTitle("Pipe 3 at Loop 1");
@@ -3441,7 +3396,7 @@ MainWindow::
 calibration_1_1()
 {
     static bool isCalibration = false;
-    ui->pushButton_4->setText(tr("P A U S E"));   
+    ui->pushButton_4->setText(tr("P A U S E"));
     setupCalibrationRequest();
 }
 

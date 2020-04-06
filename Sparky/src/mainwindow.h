@@ -97,20 +97,13 @@ public:
     void connectProfiler();
     void connectToolbar();
     void initializeGauges();
-    void initializeValues();
     void setupModbusPorts();
     void updateTabIcon(int, bool);
     void updateChartTitle();
     void initializeTabIcons();
     float toFloat(QByteArray arr);
-
-    // modbus monitor
     void initializeModbusMonitor();
-
-    // select function code
     void onFunctionCodeChanges();
-
-    // send calibartion modbus request
     QString sendCalibrationRequest(int, modbus_t *, int, int, int, int, uint8_t *, uint16_t *, bool, bool, QString);
 
 private slots:
