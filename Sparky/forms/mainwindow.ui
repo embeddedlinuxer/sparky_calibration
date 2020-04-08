@@ -1668,6 +1668,9 @@
         <property name="inputMask">
          <string/>
         </property>
+        <property name="text">
+         <string>8742</string>
+        </property>
         <property name="clearButtonEnabled">
          <bool>true</bool>
         </property>

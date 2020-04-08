@@ -141,7 +141,10 @@ int modbus_flush(modbus_t *ctx)
 static unsigned int compute_response_length_from_request(modbus_t *ctx, uint8_t *req)
 {
     int length;
-    const int offset = ctx->backend->header_length;
+    //const int offset = ctx->backend->header_length; // DKOH
+    int offset;
+    if (req[0] == 0xFA) offset = ctx->backend->header_length + 4;
+    else offset = ctx->backend->header_length;
 
     switch (req[offset]) {
     case MODBUS_FC_READ_COILS:
@@ -455,9 +458,7 @@ int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
             switch (step) {
             case _STEP_FUNCTION:
                 /* Function code position */
-                length_to_read = compute_meta_length_after_function(
-                    msg[ctx->backend->header_length],
-                    msg_type);
+                length_to_read = compute_meta_length_after_function( msg[ctx->backend->header_length], msg_type );
                 if (length_to_read != 0) {
                     step = _STEP_META;
                     break;
@@ -525,8 +526,7 @@ int modbus_receive_confirmation(modbus_t *ctx, uint8_t *rsp)
     return _modbus_receive_msg(ctx, rsp, MSG_CONFIRMATION);
 }
 
-static int check_confirmation(modbus_t *ctx, uint8_t *req,
-                              uint8_t *rsp, int rsp_length)
+static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp_length)
 {
     int rc;
     int rsp_length_computed;
@@ -537,10 +537,10 @@ static int check_confirmation(modbus_t *ctx, uint8_t *req,
 	int s_crc = 0; /* TODO */
     if (ctx->monitor_add_item) {
         ctx->monitor_add_item(ctx, 1,
-                req[offset - 1],  /* slave */
-                function,  /* func */
-                ( req[offset + 1] << 8 ) + req[offset + 2], /* addr */
-                ( req[offset + 3] << 8 ) + req[offset + 4], /* nb */
+                req[offset - 1],  /* slave */ // DKOH 
+                (req[offset - 1] == 0xFA) ? req[offset + 4] : function,  /* func */
+                (req[offset - 1] == 0xFA) ? ( req[offset + 1 + 4] << 8 ) + req[offset + 2 + 4] : ( req[offset + 1] << 8 ) + req[offset + 2], /* addr */
+                (req[offset - 1] == 0xFA) ? ( req[offset + 3 + 4] << 8 ) + req[offset + 4 + 4] : ( req[offset + 3] << 8 ) + req[offset + 4], /* nb */
                 s_crc, s_crc );
     }
 	/* END QMODBUS MODIFICATION */
@@ -1283,9 +1283,11 @@ static int read_registers(modbus_t *ctx, int function, int addr, int nb,
         return -1;
     }
 
+    // will twesk the msg if extended slave id is active
     req_length = ctx->backend->build_request_basis(ctx, function, addr, nb, req);
 
     rc = send_msg(ctx, req, req_length);
+
     if (rc > 0) {
         int offset;
         int i;

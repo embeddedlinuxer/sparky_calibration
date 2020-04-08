@@ -16,12 +16,12 @@
 #include "qextserialenumerator.h"
 
 #define SLAVE_CALIBRATION   0xFA
-#define FUNC_READ_FLOAT     3
-#define FUNC_READ_INT       3
-#define FUNC_READ_COIL      0
-#define FUNC_WRITE_FLOAT    7
-#define FUNC_WRITE_INT      5
-#define FUNC_WRITE_COIL     4
+#define FUNC_READ_FLOAT     0x04
+#define FUNC_READ_INT       0x04 
+#define FUNC_READ_COIL      0x01 
+#define FUNC_WRITE_FLOAT    0x10
+#define FUNC_WRITE_INT      0x06
+#define FUNC_WRITE_COIL     0x05
 #define BYTE_READ_FLOAT     2
 #define BYTE_READ_INT       1
 #define BYTE_READ_COIL      1
@@ -1635,7 +1635,7 @@ setupCalibrationRequest( void )
             if (ui->lineEdit_2->text().isEmpty()) return;
 
             const int slave = ui->lineEdit_2->text().toInt();
-            const int addr = 5;
+            const int addr = ui->startAddr->value()-1;
             uint8_t dest[1024];
             uint16_t * dest16 = (uint16_t *) dest;
             memset( dest, 0, 1024 );

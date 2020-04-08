@@ -118,12 +118,9 @@ static int _modbus_set_slave(modbus_t *ctx, int slave)
 }
 
 /* Builds a RTU request header */
-static int _modbus_rtu_build_request_basis(modbus_t *ctx, int function,
-                                           int addr, int nb,
-                                           uint8_t *req)
+static int _modbus_rtu_build_request_basis(modbus_t *ctx, int function, int addr, int nb, uint8_t *req)
 {
-    //assert(ctx->slave != -1);
-    if (ctx->slave > 99) // EXTENDED ADDRESS FOR CALIBRATION
+    if (ctx->slave > 99) // DKOH : extended slaveid
     {
         req[0] = 0xFA;
         req[1] = (ctx->slave>>24) & 0xFF;
@@ -136,9 +133,10 @@ static int _modbus_rtu_build_request_basis(modbus_t *ctx, int function,
         req[8] = nb >> 8;
         req[9] = nb & 0x00ff;
 
-        //return _MODBUS_RTU_EXTENDED_LENGTH;
+        return _MODBUS_RTU_EXTENDED_LENGTH;
     }
-    else {
+    else 
+    {
         req[0] = ctx->slave;
         req[1] = function;
         req[2] = addr >> 8;
@@ -148,8 +146,6 @@ static int _modbus_rtu_build_request_basis(modbus_t *ctx, int function,
 
         return _MODBUS_RTU_PRESET_REQ_LENGTH;
     }
-
-    return _MODBUS_RTU_PRESET_REQ_LENGTH;
 }
 
 /* Builds a RTU response header */
