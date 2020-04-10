@@ -141,10 +141,7 @@ int modbus_flush(modbus_t *ctx)
 static unsigned int compute_response_length_from_request(modbus_t *ctx, uint8_t *req)
 {
     int length;
-    //const int offset = ctx->backend->header_length; // DKOH
-    int offset;
-    if (req[0] == 0xFA) offset = ctx->backend->header_length + 4;
-    else offset = ctx->backend->header_length;
+    const int offset = ctx->backend->header_length; 
 
     switch (req[offset]) {
     case MODBUS_FC_READ_COILS:
@@ -530,15 +527,16 @@ static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp
 {
     int rc;
     int rsp_length_computed;
-    const int offset = ctx->backend->header_length;
-    const int function = rsp[offset];
+    int offset = ctx->backend->header_length;
+    int function;
+    (rsp[0] == 0xFA) ? (function = rsp[offset+4]) : (function = rsp[offset]); // DKOH
 
 	/* BEGIN QMODBUS MODIFICATION */
 	int s_crc = 0; /* TODO */
     if (ctx->monitor_add_item) {
         ctx->monitor_add_item(ctx, 1,
                 req[offset - 1],  /* slave */ // DKOH 
-                (req[offset - 1] == 0xFA) ? req[offset + 4] : function,  /* func */
+                (req[offset - 1] == 0xFA) ? req[offset + 4] : req[offset],  /* func */
                 (req[offset - 1] == 0xFA) ? ( req[offset + 1 + 4] << 8 ) + req[offset + 2 + 4] : ( req[offset + 1] << 8 ) + req[offset + 2], /* addr */
                 (req[offset - 1] == 0xFA) ? ( req[offset + 3 + 4] << 8 ) + req[offset + 4 + 4] : ( req[offset + 3] << 8 ) + req[offset + 4], /* nb */
                 s_crc, s_crc );
