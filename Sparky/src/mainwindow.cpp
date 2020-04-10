@@ -1606,6 +1606,7 @@ connectModbusMonitor()
     connect( ui->numCoils, SIGNAL( valueChanged( int ) ),this, SLOT( updateRegisterView() ) );
     connect( ui->startAddr, SIGNAL( valueChanged( int ) ),this, SLOT( updateRegisterView() ) );
     connect( ui->sendBtn, SIGNAL(pressed()),this, SLOT( onSendButtonPress() ) );
+    connect( ui->groupBox_105, SIGNAL( togggled(bool)), this, SLOT( onEquationTableChecked(bool)));
 }
 
 
@@ -1615,6 +1616,14 @@ connectToolbar()
 {
     connect(ui->actionSave, SIGNAL(triggered()),this,SLOT(saveCsvFile()));
     connect(ui->actionOpen, SIGNAL(triggered()),this,SLOT(loadCsvFile()));
+}
+
+
+void
+MainWindow::
+onEquationTableChecked(bool isTable)
+{
+    if (!isTable) ui->tableWidget->setRowCount(0);
 }
 
 

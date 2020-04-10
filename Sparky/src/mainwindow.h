@@ -178,6 +178,7 @@ private slots:
     void onDownloadButtonChecked(bool);
     void saveCsvFile();
     void setupCalibrationRequest();
+    void onEquationTableChecked(bool);
 
     // radio buttons
     void onRadioButtonPressed();
