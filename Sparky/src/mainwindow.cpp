@@ -1606,7 +1606,7 @@ connectModbusMonitor()
     connect( ui->numCoils, SIGNAL( valueChanged( int ) ),this, SLOT( updateRegisterView() ) );
     connect( ui->startAddr, SIGNAL( valueChanged( int ) ),this, SLOT( updateRegisterView() ) );
     connect( ui->sendBtn, SIGNAL(pressed()),this, SLOT( onSendButtonPress() ) );
-    connect( ui->groupBox_105, SIGNAL( togggled(bool)), this, SLOT( onEquationTableChecked(bool)));
+    connect( ui->groupBox_105, SIGNAL( toggled(bool)), this, SLOT( onEquationTableChecked(bool)));
 }
 
 
