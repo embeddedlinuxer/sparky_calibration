@@ -82,8 +82,8 @@ public:
     void releaseSerialModbus_5();
     void releaseSerialModbus_6();
 
-    void busMonitorAddItem( bool isRequest,uint8_t slave,uint8_t func,uint16_t addr,uint16_t nb,uint16_t expectedCRC,uint16_t actualCRC );
-    static void stBusMonitorAddItem( modbus_t * modbus,uint8_t isOut, uint8_t slave, uint8_t func, uint16_t addr,uint16_t nb, uint16_t expectedCRC, uint16_t actualCRC );
+    void busMonitorAddItem( bool isRequest,uint16_t slave,uint8_t func,uint16_t addr,uint16_t nb,uint16_t expectedCRC,uint16_t actualCRC );
+    static void stBusMonitorAddItem( modbus_t * modbus,uint8_t isOut, uint16_t slave, uint8_t func, uint16_t addr,uint16_t nb, uint16_t expectedCRC, uint16_t actualCRC );
     static void stBusMonitorRawData( modbus_t * modbus, uint8_t * data,uint8_t dataLen, uint8_t addNewline );
     void busMonitorRawData( uint8_t * data, uint8_t dataLen, bool addNewline );
     void connectRadioButtons();

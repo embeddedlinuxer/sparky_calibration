@@ -350,7 +350,7 @@ static int _modbus_rtu_receive(modbus_t *ctx, uint8_t *req)
     return rc;
 }
 
-static ssize_t _modbus_rtu_recv(modbus_t *ctx, uint8_t *rsp, int rsp_length)
+static ssize_t _modbus_rtu_recv(modbus_t *ctx, uint16_t *rsp, int rsp_length)
 {
 #if defined(_WIN32)
     return win32_ser_read(&((modbus_rtu_t *)ctx->backend_data)->w_ser, rsp, rsp_length);
@@ -388,6 +388,7 @@ static int _modbus_rtu_check_integrity(modbus_t *ctx, uint8_t *msg,
     uint16_t crc_calculated;
     uint16_t crc_received;
     int slave = msg[0];
+    if (msg[0] == 0xFA) slave = (msg[1]<<8) + (msg[2]<<8) + (msg[3]<<8) + (msg[4]); // DKOH
 
     /* Filter on the Modbus unit identifier (slave) in RTU mode to avoid useless
      * CRC computing. */
@@ -400,6 +401,7 @@ static int _modbus_rtu_check_integrity(modbus_t *ctx, uint8_t *msg,
     }
 
     crc_calculated = crc16(msg, msg_length - 2);
+    if (msg[0] == 0xFA) crc_calculated = crc16(msg, msg_length - (2+4));
     crc_received = (msg[msg_length - 2] << 8) | msg[msg_length - 1];
 
 	ctx->last_crc_expected = crc_calculated;

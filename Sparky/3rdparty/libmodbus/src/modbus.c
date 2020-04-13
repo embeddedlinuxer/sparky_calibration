@@ -141,7 +141,8 @@ int modbus_flush(modbus_t *ctx)
 static unsigned int compute_response_length_from_request(modbus_t *ctx, uint8_t *req)
 {
     int length;
-    const int offset = ctx->backend->header_length; 
+    int offset = ctx->backend->header_length;
+    if (req[0] == 0xFA) offset += 4; // DKOH
 
     switch (req[offset]) {
     case MODBUS_FC_READ_COILS:
@@ -303,10 +304,10 @@ static uint8_t compute_meta_length_after_function(int function,
 }
 
 /* Computes the length to read after the meta information (address, count, etc) */
-static int compute_data_length_after_meta(modbus_t *ctx, uint8_t *msg,
-                                          msg_type_t msg_type)
+static int compute_data_length_after_meta(modbus_t *ctx, uint8_t *msg,msg_type_t msg_type)
 {
     int function = msg[ctx->backend->header_length];
+    if (ctx->slave > 99) function = msg[ctx->backend->header_length + 4]; // DKOH
     int length;
 
     if (msg_type == MSG_INDICATION) {
@@ -327,6 +328,7 @@ static int compute_data_length_after_meta(modbus_t *ctx, uint8_t *msg,
             function == MODBUS_FC_REPORT_SLAVE_ID ||
             function == MODBUS_FC_WRITE_AND_READ_REGISTERS) {
             length = msg[ctx->backend->header_length + 1];
+            if (ctx->slave > 99) length = msg[ctx->backend->header_length + 1 + 4]; // DKOH
         } else {
             length = 0;
         }
@@ -378,6 +380,7 @@ int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
      * information. */
     step = _STEP_FUNCTION;
     length_to_read = ctx->backend->header_length + 1;
+    if (ctx->slave > 99) length_to_read = ctx->backend->header_length + 1 + 4; //DKOH
 
 #if 0
     if (msg_type == MSG_INDICATION) {
@@ -437,7 +440,7 @@ int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
         if (ctx->monitor_raw_data) {
 		    ctx->monitor_raw_data(ctx, msg + msg_length, rc, ( step == _STEP_DATA && length_to_read-rc == 0 ) ? 1 : 0 );
         }
-                /* -- END QMODBUS MODIFICATION -- */
+        /* -- END QMODBUS MODIFICATION -- */
 
         /* Display the hex code of each character received */
         if (ctx->debug) {
@@ -455,14 +458,13 @@ int _modbus_receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
             switch (step) {
             case _STEP_FUNCTION:
                 /* Function code position */
-                length_to_read = compute_meta_length_after_function( msg[ctx->backend->header_length], msg_type );
+                length_to_read = compute_meta_length_after_function( (ctx->slave > 99) ? msg[ctx->backend->header_length + 4] : msg[ctx->backend->header_length], msg_type ); // DKOH
                 if (length_to_read != 0) {
                     step = _STEP_META;
                     break;
                 } /* else switches straight to the next step */
             case _STEP_META:
-                length_to_read = compute_data_length_after_meta(
-                    ctx, msg, msg_type);
+                length_to_read = compute_data_length_after_meta(ctx, msg, msg_type);
                 if ((msg_length + length_to_read) > (int)ctx->backend->max_adu_length) {
                     errno = EMBBADDATA;
                     _error_print(ctx, "too many data");
@@ -528,17 +530,18 @@ static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp
     int rc;
     int rsp_length_computed;
     int offset = ctx->backend->header_length;
-    int function;
-    (rsp[0] == 0xFA) ? (function = rsp[offset+4]) : (function = rsp[offset]); // DKOH
+    if (req[offset - 1] == 0xFA) offset+=4; // DKOH
+    int function = rsp[offset];
 
 	/* BEGIN QMODBUS MODIFICATION */
 	int s_crc = 0; /* TODO */
     if (ctx->monitor_add_item) {
         ctx->monitor_add_item(ctx, 1,
-                req[offset - 1],  /* slave */ // DKOH 
-                (req[offset - 1] == 0xFA) ? req[offset + 4] : req[offset],  /* func */
-                (req[offset - 1] == 0xFA) ? ( req[offset + 1 + 4] << 8 ) + req[offset + 2 + 4] : ( req[offset + 1] << 8 ) + req[offset + 2], /* addr */
-                (req[offset - 1] == 0xFA) ? ( req[offset + 3 + 4] << 8 ) + req[offset + 4 + 4] : ( req[offset + 3] << 8 ) + req[offset + 4], /* nb */
+                //req[offset - 1],  /* slave */ // DKOH 
+                (req[0] == 0xFA) ? (req[1] << 8) + (req[2]<< 8) + (req[3]<< 8) + (req[4]) : req[offset - 1], // DKOH
+                req[offset],  /* func */
+                ( req[offset + 1] << 8 ) + req[offset + 2], /* addr */
+                ( req[offset + 3] << 8 ) + req[offset + 4], /* nb */
                 s_crc, s_crc );
     }
 	/* END QMODBUS MODIFICATION */
@@ -578,9 +581,7 @@ static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp
     }
 
     /* Check length */
-    if ((rsp_length == rsp_length_computed ||
-         rsp_length_computed == MSG_LENGTH_UNDEFINED) &&
-        function < 0x80) {
+    if ((rsp_length == rsp_length_computed || rsp_length_computed == MSG_LENGTH_UNDEFINED) && function < 0x80) {
         int req_nb_value;
         int rsp_nb_value;
 		int num_items = 1;

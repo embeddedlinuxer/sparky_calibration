@@ -168,7 +168,7 @@ void MainWindow::onSendButtonPress( void )
 }
 
 void MainWindow::busMonitorAddItem( bool isRequest,
-					uint8_t slave,
+                    uint16_t slave,
 					uint8_t func,
 					uint16_t addr,
 					uint16_t nb,
@@ -242,7 +242,7 @@ void MainWindow::busMonitorRawData( uint8_t * data, uint8_t dataLen, bool addNew
 }
 
 // static
-void MainWindow::stBusMonitorAddItem( modbus_t * modbus, uint8_t isRequest, uint8_t slave, uint8_t func, uint16_t addr, uint16_t nb, uint16_t expectedCRC, uint16_t actualCRC )
+void MainWindow::stBusMonitorAddItem( modbus_t * modbus, uint8_t isRequest, uint16_t slave, uint8_t func, uint16_t addr, uint16_t nb, uint16_t expectedCRC, uint16_t actualCRC )
 {
     Q_UNUSED(modbus);
     globalMainWin->busMonitorAddItem( isRequest, slave, func, addr+1, nb, expectedCRC, actualCRC );
