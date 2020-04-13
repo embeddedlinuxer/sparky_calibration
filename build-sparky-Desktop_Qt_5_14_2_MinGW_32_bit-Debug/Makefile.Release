@@ -335,28 +335,6 @@ release/moc_mainwindow.cpp: ../Sparky/src/mainwindow.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-rtu.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-ascii.h \
 		ui_about.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/QIcon \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QApplication \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QDialog \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QHBoxLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLabel \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpacerItem \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QVBoxLayout \
 		../Sparky/src/qcgaugewidget.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QWidget \
 		../../../Qt/5.14.2/mingw73_32/include/QtGui/QPainter \
@@ -984,21 +962,6 @@ release/main.o: ../Sparky/src/main.cpp ../../../Qt/5.14.2/mingw73_32/include/QtW
 		../Sparky/3rdparty/libmodbus/src/modbus-rtu.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-ascii.h \
 		ui_about.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/QIcon \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QDialog \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QHBoxLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLabel \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpacerItem \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QVBoxLayout \
 		../Sparky/src/qcgaugewidget.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QWidget \
 		../../../Qt/5.14.2/mingw73_32/include/QtGui/QPainter \
@@ -1321,27 +1284,6 @@ release/mainwindow.o: ../Sparky/src/mainwindow.cpp ../../../Qt/5.14.2/mingw73_32
 		../Sparky/3rdparty/libmodbus/src/modbus-rtu.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-ascii.h \
 		ui_about.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/QIcon \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QApplication \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QDialog \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QHBoxLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLabel \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpacerItem \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QVBoxLayout \
 		../Sparky/src/qcgaugewidget.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QWidget \
 		../../../Qt/5.14.2/mingw73_32/include/QtGui/QPainter \
@@ -1349,53 +1291,10 @@ release/mainwindow.o: ../Sparky/src/mainwindow.cpp ../../../Qt/5.14.2/mingw73_32
 		../../../Qt/5.14.2/mingw73_32/include/QtCore/QtMath \
 		../../../Qt/5.14.2/mingw73_32/include/QtCore/qmath.h \
 		../Sparky/src/BatchProcessor.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QDialog \
 		../Sparky/3rdparty/libmodbus/src/modbus-private.h \
 		../Sparky/3rdparty/libmodbus/config.h \
 		ui_mainwindow.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QAction \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qaction.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QCheckBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qcheckbox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QComboBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qcombobox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QGridLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QGroupBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qgroupbox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QHeaderView \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLCDNumber \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlcdnumber.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLineEdit \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextcursor.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextformat.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QMenu \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qmenu.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QMenuBar \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qmenubar.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QPlainTextEdit \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qplaintextedit.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtextedit.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextdocument.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qabstracttextdocumentlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qglyphrun.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qrawfont.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qfontdatabase.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QRadioButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qradiobutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpinBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QStatusBar \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qstatusbar.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QTabWidget \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QTableWidget \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtablewidget.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtableview.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QTextEdit \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QToolBar \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtoolbar.h \
 		../Sparky/3rdparty/qextserialport/qextserialenumerator.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtCore/QString \
 		../Sparky/3rdparty/qextserialport/qextserialport_global.h
@@ -1527,54 +1426,7 @@ release/BatchProcessor.o: ../Sparky/src/BatchProcessor.cpp ../../../Qt/5.14.2/mi
 		../Sparky/3rdparty/libmodbus/src/modbus-ascii.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-private.h \
 		../Sparky/3rdparty/libmodbus/config.h \
-		ui_BatchProcessor.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/QVariant \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QApplication \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QComboBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qcombobox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qvalidator.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qregularexpression.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qicon.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qslider.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qstyle.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qframe.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QGridLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QHBoxLayout \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLabel \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QLineEdit \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextcursor.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextformat.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qpen.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtGui/qtextoption.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpacerItem \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QSpinBox \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QToolButton \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtoolbutton.h \
-		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QVBoxLayout
+		ui_BatchProcessor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\BatchProcessor.o ..\Sparky\src\BatchProcessor.cpp
 
 release/qextserialport.o: ../Sparky/3rdparty/qextserialport/qextserialport.cpp ../Sparky/3rdparty/qextserialport/qextserialport.h \

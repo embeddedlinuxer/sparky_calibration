@@ -656,7 +656,7 @@ static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp
 				break;
 		}
         if (ctx->monitor_add_item) {
-		    ctx->monitor_add_item(ctx, 0, rsp[offset-1], rsp[offset+0],
+            ctx->monitor_add_item(ctx, 0, (rsp[0] == 0xFA) ? (rsp[1] << 8) + (rsp[2]<< 8) + (rsp[3]<< 8) + (rsp[4]) : rsp[offset-1], rsp[offset+0],
 						   addr, num_items,
 							ctx->last_crc_expected,
 							ctx->last_crc_received
