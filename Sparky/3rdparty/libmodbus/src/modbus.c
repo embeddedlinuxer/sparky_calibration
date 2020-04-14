@@ -525,6 +525,7 @@ int modbus_receive_confirmation(modbus_t *ctx, uint8_t *rsp)
     return _modbus_receive_msg(ctx, rsp, MSG_CONFIRMATION);
 }
 
+
 static int check_confirmation(modbus_t *ctx, uint8_t *req, uint8_t *rsp, int rsp_length)
 {
     int rc;

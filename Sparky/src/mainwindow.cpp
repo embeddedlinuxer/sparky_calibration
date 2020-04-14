@@ -91,6 +91,9 @@ MainWindow::MainWindow( QWidget * _parent ) :
     connectCalibrationControls();
     connectProfiler();
     connectToolbar();
+
+    // clear connection at start
+    updateTabIcon(0, false);
 }
 
 
@@ -1641,51 +1644,67 @@ setupCalibrationRequest( void )
 
         if (ui->tabWidget_3->currentIndex() == 0) // P1
         {
-            if (ui->lineEdit_2->text().isEmpty()) return;
+            if (ui->lineEdit_2->text().isEmpty())
+            {
+                setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+                return;       
+            }
 
             const int slave = ui->lineEdit_2->text().toInt();
             const int addr = ui->startAddr->value()-1;
             uint8_t dest[1024];
             uint16_t * dest16 = (uint16_t *) dest;
-            memset( dest, 0, 1024 );
             int ret = -1;
             bool is16Bit = false;
             bool writeAccess = false;
-            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+            //const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_INT );
 
+            memset( dest, 0, 1024 );
             modbus_set_slave( m_serialModbus, slave );
             sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+            //sendCalibrationRequest(INT_R, m_serialModbus, FUNC_READ_INT, 201, BYTE_READ_INT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else if (ui->tabWidget_3->currentIndex() == 1)  // P2
         {
+            if (ui->lineEdit_3->text().isEmpty())
+            {
+                setStatusError( tr("Loop_1_Pipe_2 no serial number!") );
+                return;       
+            }
+
             const int slave = ui->lineEdit_3->text().toInt();
-            const int addr = 5;
+            const int addr = ui->startAddr->value()-1;
             uint8_t dest[1024];
             uint16_t * dest16 = (uint16_t *) dest;
-            memset( dest, 0, 1024 );
             int ret = -1;
             bool is16Bit = false;
             bool writeAccess = false;
             const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
             modbus_set_slave( m_serialModbus, slave );
             sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-
         }
         else {  // P3
+            if (ui->lineEdit_5->text().isEmpty())
+            {
+                setStatusError( tr("Loop_1_Pipe_3 no serial number!") );
+                return;       
+            }
+
             const int slave = ui->lineEdit_5->text().toInt();
-            const int addr = 5;
+            const int addr = ui->startAddr->value()-1;
             uint8_t dest[1024];
             uint16_t * dest16 = (uint16_t *) dest;
-            memset( dest, 0, 1024 );
             int ret = -1;
             bool is16Bit = false;
             bool writeAccess = false;
             const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
             modbus_set_slave( m_serialModbus, slave );
             sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-
         }       
     }
     else if (ui->tabWidget_2->currentIndex() == 1)
@@ -1698,98 +1717,212 @@ setupCalibrationRequest( void )
 
         if (ui->tabWidget_4->currentIndex() == 0) // P1
         {
+            if (ui->lineEdit_7->text().isEmpty())
+            {
+                setStatusError( tr("Loop_2_Pipe_1 no serial number!") );
+                return;       
+            }
 
+            const int slave = ui->lineEdit_7->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            memset( dest, 0, 1024 );
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            modbus_set_slave( m_serialModbus_2, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else if (ui->tabWidget_4->currentIndex() == 1) // P2
         {
+            if (ui->lineEdit_9->text().isEmpty())
+            {
+                setStatusError( tr("Loop_2_Pipe_2 no serial number!") );
+                return;       
+            }
 
+            const int slave = ui->lineEdit_9->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_2, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else { // P3
 
+            if (ui->lineEdit_11->text().isEmpty())
+            {
+                setStatusError( tr("Loop_2_Pipe_3 no serial number!") );
+                return;       
+            }
+
+            const int slave = ui->lineEdit_11->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_2, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
-
-        const int addr = ui->startAddr->value()-1;
-        int num = ui->numCoils->value();
-        uint8_t dest[1024];
-        uint16_t * dest16 = (uint16_t *) dest;
-
-        memset( dest, 0, 1024 );
-
-        int ret = -1;
-        bool is16Bit = false;
-        bool writeAccess = false;
-        const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
-
-        modbus_set_slave( m_serialModbus_2, SLAVE_CALIBRATION );
-        sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
     }
-    else if (ui->tabWidget_2->currentIndex() == 2)
+    else if (ui->tabWidget_2->currentIndex() == 2) // LOOP_3
     {
-        if (m_modbus_3 == NULL) // LOOP 3
+        if (m_modbus_3 == NULL) 
         {
             setStatusError( tr("Loop_3 not configured!") );
             return;
         }
-        if (ui->tabWidget_5->currentIndex() == 0)
-        {
 
+        if (ui->tabWidget_5->currentIndex() == 0) // LOOP_3_PIPE_1
+        {
+            if (ui->lineEdit_13->text().isEmpty())
+            {
+                setStatusError( tr("Loop_3_Pipe_1 no serial number!") );
+                return;       
+            }
+
+            const int slave = ui->lineEdit_13->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_3, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else if (ui->tabWidget_5->currentIndex() == 1)
         {
+            if (ui->lineEdit_15->text().isEmpty())
+            {
+                setStatusError( tr("Loop_3_Pipe_2 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_15->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_3, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else {
+            if (ui->lineEdit_17->text().isEmpty())
+            {
+                setStatusError( tr("Loop_3_Pipe_3 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_17->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_3, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
-
-        const int addr = ui->startAddr->value()-1;
-        int num = ui->numCoils->value();
-        uint8_t dest[1024];
-        uint16_t * dest16 = (uint16_t *) dest;
-
-        memset( dest, 0, 1024 );
-
-        int ret = -1;
-        bool is16Bit = false;
-        bool writeAccess = false;
-        const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
-
-        modbus_set_slave( m_serialModbus_3, SLAVE_CALIBRATION );
-        sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
+            
     }
-    else if (ui->tabWidget_2->currentIndex() == 3)
+    else if (ui->tabWidget_2->currentIndex() == 3) // LOOP_4
     {
-        if (m_modbus_4 == NULL) // LOOP 4
+        if (m_modbus_4 == NULL)
         {
             setStatusError( tr("Loop_4 not configured!") );
             return;
         }
-        if (ui->tabWidget_6->currentIndex() == 0)
+        if (ui->tabWidget_6->currentIndex() == 0) // LOOP_4_PIPE_1
         {
+            if (ui->lineEdit_19->text().isEmpty())
+            {
+                setStatusError( tr("Loop_4_Pipe_1 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_19->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_4, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
 
         }
         else if (ui->tabWidget_6->currentIndex() == 1)
         {
+            if (ui->lineEdit_21->text().isEmpty())
+            {
+                setStatusError( tr("Loop_4_Pipe_2 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_21->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_4, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
 
         }
         else {
+            if (ui->lineEdit_23->text().isEmpty())
+            {
+                setStatusError( tr("Loop_4_Pipe_3 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_23->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_4, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
-
-        const int addr = ui->startAddr->value()-1;
-        int num = ui->numCoils->value();
-        uint8_t dest[1024];
-        uint16_t * dest16 = (uint16_t *) dest;
-
-        memset( dest, 0, 1024 );
-
-        int ret = -1;
-        bool is16Bit = false;
-        bool writeAccess = false;
-        const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
-
-        modbus_set_slave( m_serialModbus_4, SLAVE_CALIBRATION );
-        sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
     }
     else if (ui->tabWidget_2->currentIndex() == 4)
     {
@@ -1800,30 +1933,66 @@ setupCalibrationRequest( void )
         }
         if (ui->tabWidget_7->currentIndex() == 0)
         {
+            if (ui->lineEdit_25->text().isEmpty())
+            {
+                setStatusError( tr("Loop_5_Pipe_1 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_25->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_5, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else if (ui->tabWidget_7->currentIndex() == 1)
         {
+            if (ui->lineEdit_27->text().isEmpty())
+            {
+                setStatusError( tr("Loop_5_Pipe_2 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_27->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_5, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else {
+            if (ui->lineEdit_29->text().isEmpty())
+            {
+                setStatusError( tr("Loop_5_Pipe_3 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_29->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_5, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
-
-        const int addr = ui->startAddr->value()-1;
-        int num = ui->numCoils->value();
-        uint8_t dest[1024];
-        uint16_t * dest16 = (uint16_t *) dest;
-
-        memset( dest, 0, 1024 );
-
-        int ret = -1;
-        bool is16Bit = false;
-        bool writeAccess = false;
-        const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
-
-        modbus_set_slave( m_serialModbus_5, SLAVE_CALIBRATION );
-        sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
     }
     else
     {
@@ -1835,30 +2004,66 @@ setupCalibrationRequest( void )
 
         if (ui->tabWidget_8->currentIndex() == 0) // P1
         {
+            if (ui->lineEdit_31->text().isEmpty())
+            {
+                setStatusError( tr("Loop_6_Pipe_1 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_31->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_6, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else if (ui->tabWidget_8->currentIndex() == 1) // P2
         {
+            if (ui->lineEdit_33->text().isEmpty())
+            {
+                setStatusError( tr("Loop_6_Pipe_2 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_33->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_6, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
         else { // P3
+            if (ui->lineEdit_35->text().isEmpty())
+            {
+                setStatusError( tr("Loop_6_Pipe_3 no serial number!") );
+                return;       
+            }
+            const int slave = ui->lineEdit_35->text().toInt();
+            const int addr = ui->startAddr->value()-1;
+            int num = ui->numCoils->value();
+            uint8_t dest[1024];
+            uint16_t * dest16 = (uint16_t *) dest;
+            int ret = -1;
+            bool is16Bit = false;
+            bool writeAccess = false;
+            const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 
+            memset( dest, 0, 1024 );
+            modbus_set_slave( m_serialModbus_6, slave );
+            sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
         }
-
-        const int addr = ui->startAddr->value()-1;
-        int num = ui->numCoils->value();
-        uint8_t dest[1024];
-        uint16_t * dest16 = (uint16_t *) dest;
-
-        memset( dest, 0, 1024 );
-
-        int ret = -1;
-        bool is16Bit = false;
-        bool writeAccess = false;
-        const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
-
-        modbus_set_slave( m_serialModbus_6, SLAVE_CALIBRATION );
-        sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, num, ret, dest, dest16, is16Bit, writeAccess, funcType);
     }
 }
 
