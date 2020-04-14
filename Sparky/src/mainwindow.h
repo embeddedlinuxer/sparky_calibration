@@ -142,10 +142,14 @@ private slots:
     void calibration_6_3();
 
     void initializeToolbarIcons(void);
-    void initializePressureGauge();
+    void initializeFrequencyGauge();
     void initializeTemperatureGauge();
     void initializeDensityGauge();
     void initializeRPGauge();
+    void updateFrequencyGauge();    
+    void updateTemperatureGauge();    
+    void updateDensityGauge();    
+    void updateRPGauge();
     void onLoopTabChanged(int);
     void clearMonitors( void );
     void updateRequestPreview( void );
@@ -159,10 +163,6 @@ private slots:
     void onCheckBoxChecked(bool);
     void resetStatus( void );
     void setStatusError(const QString &msg);    
-    void updatePressureGauge();    
-    void updateTemperatureGauge();    
-    void updateDensityGauge();    
-    void updateRPGauge();
     void onFloatButtonPressed(bool);
     void onIntegerButtonPressed(bool);
     void onCoilButtonPressed(bool);
@@ -177,7 +177,6 @@ private slots:
     void onProductBtnPressed();
     void onDownloadButtonChecked(bool);
     void saveCsvFile();
-    void setupCalibrationRequest();
     void onEquationTableChecked(bool);
 
     // radio buttons
@@ -294,8 +293,8 @@ private:
     //
     // gauge display
     //
-    QcGaugeWidget * m_pressureGauge;
-    QcNeedleItem * m_pressureNeedle;
+    QcGaugeWidget * m_frequencyGauge;
+    QcNeedleItem * m_frequencyNeedle;
     QcGaugeWidget * m_temperatureGauge;
     QcNeedleItem * m_temperatureNeedle;
     QcGaugeWidget * m_densityGauge;
