@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
            QSplashScreen splash(pixmap);
            splash.show();
 
-           splash.showMessage(QObject::tr("Checking for the latest update...\n\n\n\n\n\n"),Qt::AlignCenter | Qt::AlignBottom, Qt::black);  //This line represents the alignment of text, color and position
-           //I::sleep(3);
+           splash.showMessage(QObject::tr("Loading... please wait...\n\n\n\n\n\n"),Qt::AlignCenter | Qt::AlignBottom, Qt::black);  //This line represents the alignment of text, color and position
+           I::sleep(3);
            MainWindow w;
     
         //   QScrollArea* scroller = new QScrollArea;
