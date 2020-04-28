@@ -1808,7 +1808,7 @@ saveCsvFile()
     {
         QString dataStream;
 
-        for (int j=0; j < ui->tableWidget->item(i,3)->text().toInt()+4; j++)
+        for (int j=0; j < ui->tableWidget->item(i,6)->text().toInt()+7; j++)
         {
              dataStream.append(ui->tableWidget->item(i,j)->text()+",");
         }
@@ -1862,16 +1862,20 @@ loadCsvTemplate()
             ui->tableWidget->insertRow( ui->tableWidget->rowCount() );
 
             // insert columns
-            while (ui->tableWidget->columnCount() < valueList[6].toInt()+4)
+            while (ui->tableWidget->columnCount() < valueList[6].toInt()+7)
             {
                 ui->tableWidget->insertColumn(ui->tableWidget->columnCount());
             }
 
             // fill the data in the talbe cell
             ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(valueList[0])); // Name
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(valueList[2])); // Starting Address
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(valueList[3])); // Data Type
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 3, new QTableWidgetItem(valueList[6])); // Qty
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(valueList[1])); // Slave
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(valueList[2])); // Address
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 3, new QTableWidgetItem(valueList[3])); // Type
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 4, new QTableWidgetItem(valueList[4])); // Scale
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 5, new QTableWidgetItem(valueList[5])); // RW
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 6, new QTableWidgetItem(valueList[6])); // Qty
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 7, new QTableWidgetItem(valueList[7])); // Value
 
             // enable uploadEquationButton
             ui->startEquationBtn->setEnabled(1);
@@ -1879,10 +1883,13 @@ loadCsvTemplate()
     }
 
     // set column width
-    ui->tableWidget->setColumnWidth(0,120);
-    ui->tableWidget->setColumnWidth(1,60);
-    ui->tableWidget->setColumnWidth(2,50);
-    ui->tableWidget->setColumnWidth(3,40);
+    ui->tableWidget->setColumnWidth(0,120); // Name
+    ui->tableWidget->setColumnWidth(1,30);  // Slave
+    ui->tableWidget->setColumnWidth(2,50);  // Address
+    ui->tableWidget->setColumnWidth(3,40);  // Type
+    ui->tableWidget->setColumnWidth(4,30);  // Scale
+    ui->tableWidget->setColumnWidth(5,30);  // RW
+    ui->tableWidget->setColumnWidth(6,30);  // Qty
 
     // close file
     file.close();
@@ -1923,24 +1930,28 @@ loadCsvFile()
             ui->tableWidget->insertRow( ui->tableWidget->rowCount() );
 
             // insert columns
-            while (ui->tableWidget->columnCount() < valueList[6].toInt()+4)
+            while (ui->tableWidget->columnCount() < valueList[6].toInt()+7)
             {
                 ui->tableWidget->insertColumn(ui->tableWidget->columnCount());
             }
 
             // fill the data in the talbe cell
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(valueList[0])); // Register
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(valueList[2])); // Address
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(valueList[3])); // Type
-            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 3, new QTableWidgetItem(valueList[6])); // Qty
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(valueList[0])); // Name
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(valueList[1])); // Slave
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(valueList[2])); // Address
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 3, new QTableWidgetItem(valueList[3])); // Type
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 4, new QTableWidgetItem(valueList[4])); // Scale
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 5, new QTableWidgetItem(valueList[5])); // RW
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 6, new QTableWidgetItem(valueList[6])); // Qty
+            ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, 7, new QTableWidgetItem(valueList[7])); // Value
 
-            // fill the actual value
+            // fill the value list
             for (int j = 0; j < valueList[6].toInt(); j++)
             {
-                QString cellData = valueList[7+j];;
+                QString cellData = valueList[7+j];
                 if (valueList[3].contains("int")) cellData = cellData.mid(0, cellData.indexOf("."));
 
-                ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, j+4, new QTableWidgetItem(cellData));
+                ui->tableWidget->setItem( ui->tableWidget->rowCount()-1, j+7, new QTableWidgetItem(cellData));
             }
 
             // enable uploadEquationButton
@@ -1949,10 +1960,13 @@ loadCsvFile()
     }
 
     // set column width
-    ui->tableWidget->setColumnWidth(0,120);
-    ui->tableWidget->setColumnWidth(1,60);
-    ui->tableWidget->setColumnWidth(2,50);
-    ui->tableWidget->setColumnWidth(3,40);
+    ui->tableWidget->setColumnWidth(0,120); // Name
+    ui->tableWidget->setColumnWidth(1,30);  // Slave
+    ui->tableWidget->setColumnWidth(2,50);  // Address
+    ui->tableWidget->setColumnWidth(3,40);  // Type
+    ui->tableWidget->setColumnWidth(4,30);  // Scale
+    ui->tableWidget->setColumnWidth(5,30);  // RW
+    ui->tableWidget->setColumnWidth(6,30);  // Qty
 
     // close file
     file.close();
@@ -2040,23 +2054,23 @@ onDownloadEquation()
 
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
-         int regAddr = ui->tableWidget->item(i,1)->text().toInt();
+         int regAddr = ui->tableWidget->item(i,2)->text().toInt();
 
-         if (ui->tableWidget->item(i,2)->text().contains("float"))
+         if (ui->tableWidget->item(i,3)->text().contains("float"))
          {
              ui->numCoils->setValue(2);                  // 2 bytes
              ui->radioButton_181->setChecked(TRUE);      // float type
              ui->functionCode->setCurrentIndex(3);       // function code
-             for (int x=0; x < ui->tableWidget->item(i,3)->text().toInt(); x++)
+             for (int x=0; x < ui->tableWidget->item(i,6)->text().toInt(); x++)
              {
                  ui->startAddr->setValue(regAddr);       // set address
                  onSendButtonPress();                    // send
                  QThread::sleep(1);
                  regAddr = regAddr+2;                    // update reg address
-                 ui->tableWidget->setItem( i, x+4, new QTableWidgetItem(ui->lineEdit_109->text()));
+                 ui->tableWidget->setItem( i, x+7, new QTableWidgetItem(ui->lineEdit_109->text()));
              }
          }
-         else if (ui->tableWidget->item(i,2)->text().contains("int"))
+         else if (ui->tableWidget->item(i,3)->text().contains("int"))
          {
              ui->numCoils->setValue(1);                  // 1 byte
              ui->radioButton_182->setChecked(TRUE);      // int type
@@ -2064,7 +2078,7 @@ onDownloadEquation()
              ui->startAddr->setValue(regAddr);           // address
              onSendButtonPress();                        // send
              QThread::sleep(1);
-             ui->tableWidget->setItem( i, 4, new QTableWidgetItem(ui->lineEdit_111->text()));
+             ui->tableWidget->setItem( i, 7, new QTableWidgetItem(ui->lineEdit_111->text()));
          }
          else
          {
@@ -2101,23 +2115,23 @@ onUploadEquation()
 
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
    {
-        int regAddr = ui->tableWidget->item(i,1)->text().toInt();
+        int regAddr = ui->tableWidget->item(i,2)->text().toInt();
 
-        if (ui->tableWidget->item(i,2)->text().contains("float"))
+        if (ui->tableWidget->item(i,3)->text().contains("float"))
         {
             ui->numCoils->setValue(2);                  // 2 bytes
             ui->radioButton_181->setChecked(TRUE);      // float type
             ui->functionCode->setCurrentIndex(7);       // function code
-            for (int x=0; x < ui->tableWidget->item(i,3)->text().toInt(); x++)
+            for (int x=0; x < ui->tableWidget->item(i,6)->text().toInt(); x++)
             {
                 ui->startAddr->setValue(regAddr);       // set address
-                ui->lineEdit_109->setText(ui->tableWidget->item(i,4+x)->text()); // set value
+                ui->lineEdit_109->setText(ui->tableWidget->item(i,7+x)->text()); // set value
                 onSendButtonPress();                    // send
-                regAddr = regAddr+2;                    // update reg address
+                regAddr += 2;                           // update reg address
                 QThread::sleep(1);
             }
         }
-        else if (ui->tableWidget->item(i,2)->text().contains("int"))
+        else if (ui->tableWidget->item(i,3)->text().contains("int"))
         {
             ui->numCoils->setValue(1);                  // 1 byte
             ui->radioButton_182->setChecked(TRUE);      // int type
