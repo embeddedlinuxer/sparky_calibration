@@ -2136,7 +2136,7 @@ onUploadEquation()
             ui->numCoils->setValue(1);                  // 1 byte
             ui->radioButton_182->setChecked(TRUE);      // int type
             ui->functionCode->setCurrentIndex(5);       // function code
-            ui->lineEdit_111->setText(ui->tableWidget->item(i,4)->text()); // set value
+            ui->lineEdit_111->setText(ui->tableWidget->item(i,7)->text()); // set value
             ui->startAddr->setValue(regAddr);           // address
             onSendButtonPress();                        // send
             QThread::sleep(1);
