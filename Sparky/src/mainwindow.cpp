@@ -1976,6 +1976,9 @@ void
 MainWindow::
 onEquationButtonPressed()
 {
+    ui->startEquationBtn->setEnabled(false);
+    ui->startEquationBtn->setText( tr("Loading") );
+
     if (ui->radioButton_188->isChecked())
     {
         if( m_pollTimer->isActive() )
@@ -2019,6 +2022,7 @@ onEquationButtonPressed()
     }
 
     ui->startEquationBtn->setText(tr("Start"));
+    ui->startEquationBtn->setEnabled(true);
 }
 
 
@@ -2093,13 +2097,50 @@ onDownloadEquation()
 }
 
 
+
 void
 MainWindow::
 onUploadEquation()
-{        
+{
+    bool isReinit = false;
+    QMessageBox msgBox;
+    msgBox.setText("You can reinitialize existing registers and coils.");
+    msgBox.setInformativeText("Do you want to reinitialize registers and coils?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+    switch (ret) {
+        case QMessageBox::Yes:
+            isReinit = true;
+            break;
+        case QMessageBox::No:
+            isReinit = false;
+            break;
+        case QMessageBox::Cancel:
+        default: return;
+    }
+        
+    static int sleepTime = 2;
     ui->slaveID->setValue(1);                           // set slave ID
     ui->radioButton_186->setChecked(true);              // write mode    
-    ui->startEquationBtn->setEnabled(false);
+
+    if (isReinit)
+    {
+        ui->numCoils->setValue(1);                      // set byte count 1
+        ui->radioButton_183->setChecked(TRUE);          // set type coil 
+        ui->functionCode->setCurrentIndex(4);           // set function type
+        ui->radioButton_185->setChecked(true);          // set coils unlocked 
+
+        ui->startAddr->setValue(25);                    // set address 25
+        onSendButtonPress();
+
+        QThread::sleep(sleepTime);
+
+        ui->startAddr->setValue(26);                    // set address 26
+        onSendButtonPress();
+
+        QThread::sleep(sleepTime*5);                    // need extra delay for system reset
+   }
 
     if (ui->checkBox->isChecked())                      // unlock coil 999
     {
@@ -2110,7 +2151,7 @@ onUploadEquation()
         ui->radioButton_184->setChecked(true);          // set value
 
         onSendButtonPress();
-        QThread::sleep(1);
+        QThread::sleep(sleepTime);
     }
 
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
@@ -2128,7 +2169,7 @@ onUploadEquation()
                 ui->lineEdit_109->setText(ui->tableWidget->item(i,7+x)->text()); // set value
                 onSendButtonPress();                    // send
                 regAddr += 2;                           // update reg address
-                QThread::sleep(1);
+                QThread::sleep(sleepTime);
             }
         }
         else if (ui->tableWidget->item(i,3)->text().contains("int"))
@@ -2139,7 +2180,7 @@ onUploadEquation()
             ui->lineEdit_111->setText(ui->tableWidget->item(i,7)->text()); // set value
             ui->startAddr->setValue(regAddr);           // address
             onSendButtonPress();                        // send
-            QThread::sleep(1);
+            QThread::sleep(sleepTime);
         }
         else
         {
@@ -2149,7 +2190,7 @@ onUploadEquation()
             ui->startAddr->setValue(regAddr);           // address
             ui->radioButton_184->setChecked(true);
             onSendButtonPress();                        // send
-            QThread::sleep(1);
+            QThread::sleep(sleepTime);
         }
     }
 
@@ -2161,7 +2202,7 @@ onUploadEquation()
         ui->startAddr->setValue(9999);                  // address
         ui->radioButton_184->setChecked(true);          // set value
         onSendButtonPress();
-        QThread::sleep(1);
+        QThread::sleep(sleepTime);
     }
 }
 

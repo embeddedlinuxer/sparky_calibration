@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Sparky V0.0.3 - Phase Dynamics</string>
+   <string>Sparky V0.0.4 - Phase Dynamics</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../data/sparky.qrc">
@@ -711,7 +711,7 @@
     </widget>
     <widget class="QWidget" name="tab_29">
      <attribute name="title">
-      <string>CSV Configuration</string>
+      <string>System Configuration</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_105">
       <property name="geometry">

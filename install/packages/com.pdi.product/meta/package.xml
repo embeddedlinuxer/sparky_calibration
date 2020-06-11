@@ -2,8 +2,8 @@
 <Package>
    <DisplayName>Sparky</DisplayName>
    <Description>Phase Dynamics Software Installer</Description>
-   <Version>0.0.3</Version>
-   <ReleaseDate>2020-04-28</ReleaseDate>
+   <Version>0.0.4</Version>
+   <ReleaseDate>2020-06-11</ReleaseDate>
    <Name>com.vendor.product</Name>
    <Licenses>
        <License name="License Agreement" file="license.txt" />

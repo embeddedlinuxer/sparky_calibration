@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
            splash.show();
 
            splash.showMessage(QObject::tr("Loading... please wait...\n\n\n\n\n\n"),Qt::AlignCenter | Qt::AlignBottom, Qt::black);  //This line represents the alignment of text, color and position
-           I::sleep(3);
+           I::sleep(1);
            MainWindow w;
     
         //   QScrollArea* scroller = new QScrollArea;
