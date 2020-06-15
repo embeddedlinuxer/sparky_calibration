@@ -3,10 +3,12 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QScrollBar>
+#include <QTime>
 #include <QFileDialog>
 #include <QThread>
 #include <errno.h>
 #include <QListWidget>
+#include <QProgressDialog>
 #include "mainwindow.h"
 #include "BatchProcessor.h"
 #include "modbus.h"
@@ -59,7 +61,7 @@ MainWindow::MainWindow( QWidget * _parent ) :
 	m_poll(false)
 {
 	ui->setupUi(this);
-    
+
     updateRegisters(EEA,0); // L1-P1-EEA
     initializeToolbarIcons();
     initializeGauges();
@@ -100,6 +102,15 @@ MainWindow::MainWindow( QWidget * _parent ) :
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void
+MainWindow::
+delay(int sec = 2)
+{
+    QTime dieTime= QTime::currentTime().addSecs(sec);
+    while (QTime::currentTime() < dieTime)
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
 
@@ -2049,12 +2060,23 @@ void
 MainWindow::
 onDownloadEquation()
 {
+    int value = 0;
+    int rangeMax = 0;
+
     ui->slaveID->setValue(1);                           // set slave ID
     ui->radioButton_187->setChecked(true);              // read mode
     ui->startEquationBtn->setEnabled(false);
 
     // load empty equation file
     loadCsvTemplate();
+
+    /// get rangeMax of progressDialog
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++) rangeMax+=ui->tableWidget->item(i,6)->text().toInt();
+
+    QProgressDialog progress("Downloading...", "Abort", 0, rangeMax, this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.setAutoClose(true);
+    progress.setAutoReset(true);
 
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
@@ -2067,31 +2089,44 @@ onDownloadEquation()
              ui->functionCode->setCurrentIndex(3);       // function code
              for (int x=0; x < ui->tableWidget->item(i,6)->text().toInt(); x++)
              {
+                if (progress.wasCanceled()) return;
+                if (ui->tableWidget->item(i,6)->text().toInt() > 1) progress.setLabelText("Downloading \""+ui->tableWidget->item(i,0)->text()+"\" "+QString::number(x+1));
+                else progress.setLabelText("Downloading \""+ui->tableWidget->item(i,0)->text()+"\"");
+                progress.setValue(value++);
+
                  ui->startAddr->setValue(regAddr);       // set address
                  onSendButtonPress();                    // send
-                 QThread::sleep(1);
+                 delay();
                  regAddr = regAddr+2;                    // update reg address
                  ui->tableWidget->setItem( i, x+7, new QTableWidgetItem(ui->lineEdit_109->text()));
              }
          }
          else if (ui->tableWidget->item(i,3)->text().contains("int"))
          {
+            if (progress.wasCanceled()) return;
+            progress.setLabelText("Downloading \""+ui->tableWidget->item(i,0)->text()+"\"");
+            progress.setValue(value++);
+
              ui->numCoils->setValue(1);                  // 1 byte
              ui->radioButton_182->setChecked(TRUE);      // int type
              ui->functionCode->setCurrentIndex(3);       // function code
              ui->startAddr->setValue(regAddr);           // address
              onSendButtonPress();                        // send
-             QThread::sleep(1);
+             delay();
              ui->tableWidget->setItem( i, 7, new QTableWidgetItem(ui->lineEdit_111->text()));
          }
          else
          {
+            if (progress.wasCanceled()) return;
+            progress.setLabelText("Downloading \""+ui->tableWidget->item(i,0)->text()+"\"");
+            progress.setValue(value++);
+
              ui->numCoils->setValue(1);                  // 1 byte
              ui->radioButton_183->setChecked(TRUE);      // coil type
              ui->functionCode->setCurrentIndex(0);       // function code
              ui->startAddr->setValue(regAddr);           // address
              onSendButtonPress();                        // send
-             QThread::sleep(1);
+             delay();
          }
      }
 }
@@ -2102,8 +2137,14 @@ void
 MainWindow::
 onUploadEquation()
 {
+    int value = 0;
+    int rangeMax = 0;
     bool isReinit = false;
     QMessageBox msgBox;
+
+    /// get rangeMax of progressDialog
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++) rangeMax+=ui->tableWidget->item(i,6)->text().toInt();
+    
     msgBox.setText("You can reinitialize existing registers and coils.");
     msgBox.setInformativeText("Do you want to reinitialize registers and coils?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
@@ -2120,9 +2161,13 @@ onUploadEquation()
         default: return;
     }
         
-    static int sleepTime = 2;
     ui->slaveID->setValue(1);                           // set slave ID
     ui->radioButton_186->setChecked(true);              // write mode    
+
+    QProgressDialog progress("Uploading...", "Abort", 0, rangeMax, this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.setAutoClose(true);
+    progress.setAutoReset(true);
 
     if (isReinit)
     {
@@ -2132,14 +2177,17 @@ onUploadEquation()
         ui->radioButton_185->setChecked(true);          // set coils unlocked 
 
         ui->startAddr->setValue(25);                    // set address 25
+        if (progress.wasCanceled()) return;
+        progress.setLabelText("Reinitializing registers....");
+        progress.setValue(0);
         onSendButtonPress();
-
-        QThread::sleep(sleepTime);
+        delay();
 
         ui->startAddr->setValue(26);                    // set address 26
+        if (progress.wasCanceled()) return;
+        progress.setValue(0);
         onSendButtonPress();
-
-        QThread::sleep(sleepTime*5);                    // need extra delay for system reset
+        delay();
    }
 
     if (ui->checkBox->isChecked())                      // unlock coil 999
@@ -2150,10 +2198,13 @@ onUploadEquation()
         ui->startAddr->setValue(999);                   // address
         ui->radioButton_184->setChecked(true);          // set value
 
+        if (progress.wasCanceled()) return;
+        progress.setValue(0);
+        progress.setLabelText("Unlocking factory registers....");
         onSendButtonPress();
-        QThread::sleep(sleepTime);
+        delay();
     }
-
+    
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
    {
         int regAddr = ui->tableWidget->item(i,2)->text().toInt();
@@ -2167,9 +2218,13 @@ onUploadEquation()
             {
                 ui->startAddr->setValue(regAddr);       // set address
                 ui->lineEdit_109->setText(ui->tableWidget->item(i,7+x)->text()); // set value
+                if (progress.wasCanceled()) return;
+                if (ui->tableWidget->item(i,6)->text().toInt() > 1) progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\" "+QString::number(x+1));
+                else progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
+                progress.setValue(value++);
                 onSendButtonPress();                    // send
                 regAddr += 2;                           // update reg address
-                QThread::sleep(sleepTime);
+                delay();
             }
         }
         else if (ui->tableWidget->item(i,3)->text().contains("int"))
@@ -2179,8 +2234,11 @@ onUploadEquation()
             ui->functionCode->setCurrentIndex(5);       // function code
             ui->lineEdit_111->setText(ui->tableWidget->item(i,7)->text()); // set value
             ui->startAddr->setValue(regAddr);           // address
+            if (progress.wasCanceled()) return;
+            progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
+            progress.setValue(value++);
             onSendButtonPress();                        // send
-            QThread::sleep(sleepTime);
+            delay();
         }
         else
         {
@@ -2189,8 +2247,11 @@ onUploadEquation()
             ui->functionCode->setCurrentIndex(4);       // function code
             ui->startAddr->setValue(regAddr);           // address
             ui->radioButton_184->setChecked(true);
+            if (progress.wasCanceled()) return;
+            progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
+            progress.setValue(value++);
             onSendButtonPress();                        // send
-            QThread::sleep(sleepTime);
+            delay();
         }
     }
 
@@ -2201,8 +2262,10 @@ onUploadEquation()
         ui->functionCode->setCurrentIndex(4);           // function code
         ui->startAddr->setValue(9999);                  // address
         ui->radioButton_184->setChecked(true);          // set value
+        if (progress.wasCanceled()) return;
+        progress.setLabelText("Copying factory default...");
         onSendButtonPress();
-        QThread::sleep(sleepTime);
+        delay();
     }
 }
 

@@ -8,6 +8,7 @@
 #include <QtCharts/QSplineSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QCategoryAxis>
+#include <QProgressDialog>
 #include "modbus.h"
 #include "ui_about.h"
 #include "modbus-rtu.h"
@@ -46,6 +47,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow( QWidget * parent = 0 );
     ~MainWindow();
+
+    void delay(int);
 
     modbus_t * m_serialModbus;
     modbus_t * m_serialModbus_2;
@@ -265,7 +268,7 @@ private:
     void keyReleaseEvent(QKeyEvent* event);
 
     Ui::MainWindowClass * ui;
-    
+   
     modbus_t * m_modbus;
     modbus_t * m_modbus_2;
     modbus_t * m_modbus_3;

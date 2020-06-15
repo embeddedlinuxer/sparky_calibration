@@ -334,6 +334,9 @@ release/moc_mainwindow.cpp: ../Sparky/src/mainwindow.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/qvalueaxis.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/QCategoryAxis \
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/qcategoryaxis.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QProgressDialog \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qprogressdialog.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
 		../Sparky/3rdparty/libmodbus/src/modbus.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-version.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-tcp.h \
@@ -961,6 +964,9 @@ release/main.o: ../Sparky/src/main.cpp ../../../Qt/5.14.2/mingw73_32/include/QtW
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/qvalueaxis.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/QCategoryAxis \
 		../../../Qt/5.14.2/mingw73_32/include/QtCharts/qcategoryaxis.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QProgressDialog \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qprogressdialog.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
 		../Sparky/3rdparty/libmodbus/src/modbus.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-version.h \
 		../Sparky/3rdparty/libmodbus/src/modbus-tcp.h \
@@ -1210,6 +1216,8 @@ release/mainwindow.o: ../Sparky/src/mainwindow.cpp ../../../Qt/5.14.2/mingw73_32
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QScrollBar \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qscrollbar.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtCore/QTime \
+		../../../Qt/5.14.2/mingw73_32/include/QtCore/qdatetime.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QFileDialog \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qfiledialog.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtCore/qdir.h \
@@ -1235,6 +1243,8 @@ release/mainwindow.o: ../Sparky/src/mainwindow.cpp ../../../Qt/5.14.2/mingw73_32
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtabbar.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QProgressDialog \
+		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qprogressdialog.h \
 		../Sparky/src/mainwindow.h \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
 		../../../Qt/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
