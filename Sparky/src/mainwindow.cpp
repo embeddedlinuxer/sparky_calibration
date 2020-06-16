@@ -2044,13 +2044,11 @@ onDownloadButtonChecked(bool isChecked)
     if (isChecked)
     {
         ui->checkBox->setChecked(false);
-        ui->checkBox_2->setChecked(false);
         ui->startEquationBtn->setEnabled(true);
 
     }
     else {
         ui->checkBox->setChecked(true);
-        ui->checkBox_2->setChecked(true);
         ui->startEquationBtn->setEnabled(true);
     }
 }
@@ -2169,6 +2167,19 @@ onUploadEquation()
     progress.setAutoClose(true);
     progress.setAutoReset(true);
 
+    /// unlock fct regs & coils
+    ui->numCoils->setValue(1);                      // 1 byte
+    ui->radioButton_183->setChecked(TRUE);          // coil type
+    ui->functionCode->setCurrentIndex(4);           // function type
+    ui->startAddr->setValue(999);                   // address
+    ui->radioButton_184->setChecked(true);          // set value
+
+    if (progress.wasCanceled()) return;
+    progress.setValue(0);
+    progress.setLabelText("Unlocking factory registers....");
+    onSendButtonPress();
+    delay();
+
     if (isReinit)
     {
         ui->numCoils->setValue(1);                      // set byte count 1
@@ -2187,24 +2198,9 @@ onUploadEquation()
         if (progress.wasCanceled()) return;
         progress.setValue(0);
         onSendButtonPress();
-        delay();
+        delay(8);                                       // need extra time to restart
    }
 
-    if (ui->checkBox->isChecked())                      // unlock coil 999
-    {
-        ui->numCoils->setValue(1);                      // 1 byte
-        ui->radioButton_183->setChecked(TRUE);          // coil type
-        ui->functionCode->setCurrentIndex(4);           // function type
-        ui->startAddr->setValue(999);                   // address
-        ui->radioButton_184->setChecked(true);          // set value
-
-        if (progress.wasCanceled()) return;
-        progress.setValue(0);
-        progress.setLabelText("Unlocking factory registers....");
-        onSendButtonPress();
-        delay();
-    }
-    
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
    {
         int regAddr = ui->tableWidget->item(i,2)->text().toInt();
@@ -2255,15 +2251,18 @@ onUploadEquation()
         }
     }
 
-    if (ui->checkBox_2->isChecked())                    // unlock coil 9999
+    if (ui->checkBox->isChecked())                    // unlock coil 9999
     {
         ui->numCoils->setValue(1);                      // 1 byte
         ui->radioButton_183->setChecked(TRUE);          // coil type
         ui->functionCode->setCurrentIndex(4);           // function code
-        ui->startAddr->setValue(9999);                  // address
         ui->radioButton_184->setChecked(true);          // set value
-        if (progress.wasCanceled()) return;
-        progress.setLabelText("Copying factory default...");
+
+        ui->startAddr->setValue(999);                   // address 999
+        onSendButtonPress();
+        delay();
+
+        ui->startAddr->setValue(9999);                  // address 99999
         onSendButtonPress();
         delay();
     }

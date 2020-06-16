@@ -788,9 +788,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>600</x>
+        <x>590</x>
         <y>27</y>
-        <width>91</width>
+        <width>101</width>
         <height>32</height>
        </rect>
       </property>
@@ -801,7 +801,7 @@
      <widget class="QGroupBox" name="groupBox_104">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>150</x>
         <y>20</y>
         <width>151</width>
         <height>41</height>
@@ -849,14 +849,14 @@
      <widget class="QGroupBox" name="groupBox_109">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>320</x>
         <y>20</y>
-        <width>281</width>
+        <width>251</width>
         <height>41</height>
        </rect>
       </property>
       <property name="title">
-       <string>Factory Default Registers</string>
+       <string>Factory Default Registers and Coils</string>
       </property>
       <property name="checkable">
        <bool>false</bool>
@@ -864,33 +864,17 @@
       <property name="checked">
        <bool>false</bool>
       </property>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>16</y>
-         <width>131</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Write Factory Default</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
       <widget class="QCheckBox" name="checkBox">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>16</y>
-         <width>131</width>
+         <width>231</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
-        <string>Unlock Factory Default</string>
+        <string>Update Factory Default Registers and Coils</string>
        </property>
        <property name="checked">
         <bool>true</bool>
