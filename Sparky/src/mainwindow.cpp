@@ -106,7 +106,7 @@ MainWindow::~MainWindow()
 
 void
 MainWindow::
-delay(int sec = 2)
+delay(int sec = 3)
 {
     QTime dieTime= QTime::currentTime().addSecs(sec);
     while (QTime::currentTime() < dieTime)
@@ -2167,7 +2167,7 @@ onUploadEquation()
     progress.setAutoClose(true);
     progress.setAutoReset(true);
 
-    /// unlock fct regs & coils
+    /// unlock fct default regs & coils
     ui->numCoils->setValue(1);                      // 1 byte
     ui->radioButton_183->setChecked(TRUE);          // coil type
     ui->functionCode->setCurrentIndex(4);           // function type
@@ -2198,13 +2198,12 @@ onUploadEquation()
         if (progress.wasCanceled()) return;
         progress.setValue(0);
         onSendButtonPress();
-        delay(8);                                       // need extra time to restart
+        delay(10);                                       // need extra time to restart
    }
 
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
    {
         int regAddr = ui->tableWidget->item(i,2)->text().toInt();
-
         if (ui->tableWidget->item(i,3)->text().contains("float"))
         {
             ui->numCoils->setValue(2);                  // 2 bytes
@@ -2212,11 +2211,12 @@ onUploadEquation()
             ui->functionCode->setCurrentIndex(7);       // function code
             for (int x=0; x < ui->tableWidget->item(i,6)->text().toInt(); x++)
             {
+                QString val = ui->tableWidget->item(i,7+x)->text();
                 ui->startAddr->setValue(regAddr);       // set address
-                ui->lineEdit_109->setText(ui->tableWidget->item(i,7+x)->text()); // set value
+                ui->lineEdit_109->setText(val);         // set value
                 if (progress.wasCanceled()) return;
-                if (ui->tableWidget->item(i,6)->text().toInt() > 1) progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\" "+QString::number(x+1));
-                else progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
+                if (ui->tableWidget->item(i,6)->text().toInt() > 1) progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"["+QString::number(x+1)+"]"+"\""+","+" \""+val+"\"");
+                else progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\""+","+" \""+val+"\"");
                 progress.setValue(value++);
                 onSendButtonPress();                    // send
                 regAddr += 2;                           // update reg address
@@ -2225,13 +2225,14 @@ onUploadEquation()
         }
         else if (ui->tableWidget->item(i,3)->text().contains("int"))
         {
+            QString val = ui->tableWidget->item(i,7)->text();
             ui->numCoils->setValue(1);                  // 1 byte
             ui->radioButton_182->setChecked(TRUE);      // int type
             ui->functionCode->setCurrentIndex(5);       // function code
-            ui->lineEdit_111->setText(ui->tableWidget->item(i,7)->text()); // set value
+            ui->lineEdit_111->setText(val);             // set value
             ui->startAddr->setValue(regAddr);           // address
             if (progress.wasCanceled()) return;
-            progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
+            progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\""+","+" \""+val+"\"");
             progress.setValue(value++);
             onSendButtonPress();                        // send
             delay();
@@ -2242,9 +2243,17 @@ onUploadEquation()
             ui->radioButton_183->setChecked(TRUE);      // coil type
             ui->functionCode->setCurrentIndex(4);       // function code
             ui->startAddr->setValue(regAddr);           // address
-            ui->radioButton_184->setChecked(true);
+            if (ui->tableWidget->item(i,7)->text().toInt() == 1)
+            {
+                ui->radioButton_184->setChecked(true);  // TRUE
+                progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\""+","+" \"1\"");
+            }
+            else 
+            {
+                ui->radioButton_185->setChecked(true);  // FALSE
+                progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\""+","+" \"0\"");
+            }
             if (progress.wasCanceled()) return;
-            progress.setLabelText("Uploading \""+ui->tableWidget->item(i,0)->text()+"\"");
             progress.setValue(value++);
             onSendButtonPress();                        // send
             delay();
