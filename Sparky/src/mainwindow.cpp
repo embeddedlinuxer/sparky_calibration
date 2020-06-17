@@ -106,7 +106,7 @@ MainWindow::~MainWindow()
 
 void
 MainWindow::
-delay(int sec = 3)
+delay(int sec = 2)
 {
     QTime dieTime= QTime::currentTime().addSecs(sec);
     while (QTime::currentTime() < dieTime)
@@ -2167,13 +2167,12 @@ onUploadEquation()
     progress.setAutoClose(true);
     progress.setAutoReset(true);
 
-    /// unlock fct default regs & coils
+    /// unlock fct default regs & coils (999)
     ui->numCoils->setValue(1);                      // 1 byte
     ui->radioButton_183->setChecked(TRUE);          // coil type
     ui->functionCode->setCurrentIndex(4);           // function type
     ui->startAddr->setValue(999);                   // address
     ui->radioButton_184->setChecked(true);          // set value
-
     if (progress.wasCanceled()) return;
     progress.setValue(0);
     progress.setLabelText("Unlocking factory registers....");
@@ -2198,7 +2197,19 @@ onUploadEquation()
         if (progress.wasCanceled()) return;
         progress.setValue(0);
         onSendButtonPress();
-        delay(10);                                       // need extra time to restart
+        delay(8);                                       // need extra time to restart
+
+        /// unlock fct default regs & coils (999)
+        ui->numCoils->setValue(1);                      // 1 byte
+        ui->radioButton_183->setChecked(TRUE);          // coil type
+        ui->functionCode->setCurrentIndex(4);           // function type
+        ui->startAddr->setValue(999);                   // address
+        ui->radioButton_184->setChecked(true);          // set value
+        if (progress.wasCanceled()) return;
+        progress.setValue(0);
+        progress.setLabelText("Unlocking factory registers....");
+        onSendButtonPress();
+        delay();
    }
 
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
