@@ -101,6 +101,13 @@ MainWindow::MainWindow( QWidget * _parent ) :
 
 MainWindow::~MainWindow()
 {
+    releaseSerialModbus();
+    releaseSerialModbus_2();
+    releaseSerialModbus_3();
+    releaseSerialModbus_4();
+    releaseSerialModbus_5();
+    releaseSerialModbus_6();
+
 	delete ui;
 }
 
@@ -2278,10 +2285,12 @@ onUploadEquation()
         ui->functionCode->setCurrentIndex(4);           // function code
         ui->radioButton_184->setChecked(true);          // set value
 
+        /// unlock factory default registers
         ui->startAddr->setValue(999);                   // address 999
         onSendButtonPress();
         delay();
 
+        /// update factory default registers
         ui->startAddr->setValue(9999);                  // address 99999
         onSendButtonPress();
         delay();
