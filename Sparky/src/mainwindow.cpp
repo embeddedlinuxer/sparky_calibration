@@ -2050,12 +2050,9 @@ onDownloadButtonChecked(bool isChecked)
 {
     if (isChecked)
     {
-        ui->checkBox->setChecked(false);
         ui->startEquationBtn->setEnabled(true);
-
     }
     else {
-        ui->checkBox->setChecked(true);
         ui->startEquationBtn->setEnabled(true);
     }
 }
@@ -2278,23 +2275,66 @@ onUploadEquation()
         }
     }
 
-    if (ui->checkBox->isChecked())                    // unlock coil 9999
-    {
-        ui->numCoils->setValue(1);                      // 1 byte
-        ui->radioButton_183->setChecked(TRUE);          // coil type
-        ui->functionCode->setCurrentIndex(4);           // function code
-        ui->radioButton_184->setChecked(true);          // set value
+    /// update factory default values
+    ui->numCoils->setValue(1);                      // 1 byte
+    ui->radioButton_183->setChecked(TRUE);          // coil type
+    ui->functionCode->setCurrentIndex(4);           // function code
+    ui->radioButton_184->setChecked(true);          // set value
 
-        /// unlock factory default registers
-        ui->startAddr->setValue(999);                   // address 999
-        onSendButtonPress();
-        delay();
+    /// unlock factory default registers
+    ui->startAddr->setValue(999);                   // address 999
+    onSendButtonPress();
+    delay();
 
-        /// update factory default registers
-        ui->startAddr->setValue(9999);                  // address 99999
-        onSendButtonPress();
-        delay();
-    }
+    /// update factory default registers
+    ui->startAddr->setValue(9999);                  // address 99999
+    onSendButtonPress();
+    delay();
+}
+
+void
+MainWindow::
+onUnlockFactoryDefaultBtnPressed()
+{
+    ui->numCoils->setValue(1);                      // 1 byte
+    ui->radioButton_183->setChecked(TRUE);          // coil type
+    ui->functionCode->setCurrentIndex(4);           // function code
+    ui->radioButton_184->setChecked(true);          // set value
+
+    /// unlock factory default registers
+    ui->startAddr->setValue(999);                   // address 999
+    onSendButtonPress();
+    delay();
+}
+
+void
+MainWindow::
+onLockFactoryDefaultBtnPressed()
+{
+    ui->numCoils->setValue(1);                      // 1 byte
+    ui->radioButton_183->setChecked(TRUE);          // coil type
+    ui->functionCode->setCurrentIndex(4);           // function code
+    ui->radioButton_185->setChecked(true);          // set value
+
+    /// unlock factory default registers
+    ui->startAddr->setValue(999);                   // address 999
+    onSendButtonPress();
+    delay();
+}
+
+void
+MainWindow::
+onUpdateFactoryDefaultPressed()
+{
+    ui->numCoils->setValue(1);                      // 1 byte
+    ui->radioButton_183->setChecked(TRUE);          // coil type
+    ui->functionCode->setCurrentIndex(4);           // function code
+    ui->radioButton_184->setChecked(true);          // set value
+
+    /// update factory default registers
+    ui->startAddr->setValue(9999);                  // address 99999
+    onSendButtonPress();
+    delay();
 }
 
 
@@ -2302,6 +2342,9 @@ void
 MainWindow::
 connectProfiler()
 {
+    connect(ui->radioButton_192, SIGNAL(pressed()), this, SLOT(onUnlockFactoryDefaultBtnPressed()));
+    connect(ui->radioButton_193, SIGNAL(pressed()), this, SLOT(onLockFactoryDefaultBtnPressed()));
+    connect(ui->pushButton_2, SIGNAL(pressed()), this, SLOT(onUpdateFactoryDefaultPressed()));
     connect(ui->startEquationBtn, SIGNAL(pressed()), this, SLOT(onEquationButtonPressed()));
     connect(ui->radioButton_189, SIGNAL(toggled(bool)), this, SLOT(onDownloadButtonChecked(bool)));
 }

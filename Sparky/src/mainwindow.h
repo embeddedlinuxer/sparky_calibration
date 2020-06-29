@@ -181,6 +181,9 @@ private slots:
     void onDownloadButtonChecked(bool);
     void saveCsvFile();
     void onEquationTableChecked(bool);
+    void onUnlockFactoryDefaultBtnPressed();
+    void onLockFactoryDefaultBtnPressed();
+    void onUpdateFactoryDefaultPressed();
 
     // radio buttons
     void onRadioButtonPressed();
