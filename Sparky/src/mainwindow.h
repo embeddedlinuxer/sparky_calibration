@@ -396,6 +396,8 @@ private:
     int REG_AI_TRIMHI[MAX_PIPE];
     int REG_AI_MEASURE[MAX_PIPE];
     int REG_AI_TRIMMED[MAX_PIPE];
+
+	bool isModbusTransmissionFailed;
 };
 
 #endif // MAINWINDOW_H

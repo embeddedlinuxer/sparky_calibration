@@ -58,7 +58,8 @@ MainWindow::MainWindow( QWidget * _parent ) :
     m_serialModbus_4( NULL ),
     m_serialModbus_5( NULL ),
     m_serialModbus_6( NULL ),
-	m_poll(false)
+	m_poll(false),
+	isModbusTransmissionFailed(false)
 {
 	ui->setupUi(this);
 
@@ -485,6 +486,8 @@ void MainWindow::sendModbusRequest( void )
 
 	if( ret == num  )
 	{
+		isModbusTransmissionFailed = false;
+
 		if( writeAccess )
 		{
 			m_statusText->setText(tr( "Values successfully sent" ) );
@@ -568,6 +571,8 @@ void MainWindow::sendModbusRequest( void )
 
 		if( err.size() > 0 )
 			setStatusError( err );
+
+		isModbusTransmissionFailed = true;
 	}
 }
 
@@ -2143,6 +2148,7 @@ onUploadEquation()
     int rangeMax = 0;
     bool isReinit = false;
     QMessageBox msgBox;
+	isModbusTransmissionFailed = false;
 
     /// get rangeMax of progressDialog
     for (int i = 0; i < ui->tableWidget->rowCount(); i++) rangeMax+=ui->tableWidget->item(i,6)->text().toInt();
@@ -2182,6 +2188,22 @@ onUploadEquation()
     progress.setLabelText("Unlocking factory registers....");
     onSendButtonPress();
     delay();
+	if (isModbusTransmissionFailed) 
+	{
+		isModbusTransmissionFailed = false;
+		msgBox.setText("Modbus Transmission Failed.");
+    	msgBox.setInformativeText("Do you want to continue with next item?");
+    	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    	msgBox.setDefaultButton(QMessageBox::No);
+    	int ret = msgBox.exec();
+    	switch (ret) {
+        	case QMessageBox::Yes:
+            	break;
+        	case QMessageBox::No:
+        	default: return;
+    	}
+
+	}
 
     if (isReinit)
     {
@@ -2196,13 +2218,41 @@ onUploadEquation()
         progress.setValue(0);
         onSendButtonPress();
         delay();
+		if (isModbusTransmissionFailed) 
+		{
+			isModbusTransmissionFailed = false;
+			msgBox.setText("Modbus Transmission Failed.");
+    		msgBox.setInformativeText("Do you want to continue with next item?");
+    		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    		msgBox.setDefaultButton(QMessageBox::No);
+    		int ret = msgBox.exec();
+    		switch (ret) {
+        		case QMessageBox::Yes: break;
+        		case QMessageBox::No:
+        		default: return;
+    		}
 
+		}
         ui->startAddr->setValue(26);                    // set address 26
         if (progress.wasCanceled()) return;
         progress.setValue(0);
         onSendButtonPress();
         delay(8);                                       // need extra time to restart
+		if (isModbusTransmissionFailed) 
+		{
+			isModbusTransmissionFailed = false;
+			msgBox.setText("Modbus Transmission Failed.");
+    		msgBox.setInformativeText("Do you want to continue with next item?");
+    		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    		msgBox.setDefaultButton(QMessageBox::No);
+    		int ret = msgBox.exec();
+    		switch (ret) {
+        		case QMessageBox::Yes: break;
+        		case QMessageBox::No:
+        		default: return;
+    		}
 
+		}	
         /// unlock fct default regs & coils (999)
         ui->numCoils->setValue(1);                      // 1 byte
         ui->radioButton_183->setChecked(TRUE);          // coil type
@@ -2214,6 +2264,20 @@ onUploadEquation()
         progress.setLabelText("Unlocking factory registers....");
         onSendButtonPress();
         delay();
+		if (isModbusTransmissionFailed) 
+		{
+			isModbusTransmissionFailed = false;
+			msgBox.setText("Modbus Transmission Failed.");
+    		msgBox.setInformativeText("Do you want to continue with next item?");
+    		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    		msgBox.setDefaultButton(QMessageBox::No);
+    		int ret = msgBox.exec();
+    		switch (ret) {
+        		case QMessageBox::Yes: break;
+        		case QMessageBox::No:
+        		default: return;
+    		}
+		}
    }
 
    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
@@ -2236,6 +2300,21 @@ onUploadEquation()
                 onSendButtonPress();                    // send
                 regAddr += 2;                           // update reg address
                 delay();
+				if (isModbusTransmissionFailed) 
+				{
+					isModbusTransmissionFailed = false;
+					if (ui->tableWidget->item(i,6)->text().toInt() > 1) msgBox.setText("Modbus Transmission Failed: "+ui->tableWidget->item(i,0)->text()+"["+QString::number(x+1)+"]");
+					else msgBox.setText("Modbus Transmission Failed: "+ui->tableWidget->item(i,0)->text());
+    				msgBox.setInformativeText("Do you want to continue with next item?");
+    				msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    				msgBox.setDefaultButton(QMessageBox::No);
+    				int ret = msgBox.exec();
+    				switch (ret) {
+        				case QMessageBox::Yes: break;
+        				case QMessageBox::No:
+        				default: return;
+    				}
+				}
             }
         }
         else if (ui->tableWidget->item(i,3)->text().contains("int"))
@@ -2251,6 +2330,20 @@ onUploadEquation()
             progress.setValue(value++);
             onSendButtonPress();                        // send
             delay();
+			if (isModbusTransmissionFailed) 
+			{
+				isModbusTransmissionFailed = false;
+				msgBox.setText("Modbus Transmission Failed: "+ui->tableWidget->item(i,0)->text());
+    			msgBox.setInformativeText("Do you want to continue with next item?");
+    			msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    			msgBox.setDefaultButton(QMessageBox::No);
+    			int ret = msgBox.exec();
+    			switch (ret) {
+        			case QMessageBox::Yes: break;
+        			case QMessageBox::No:
+        			default: return;
+    			}
+			}
         }
         else
         {
@@ -2272,6 +2365,20 @@ onUploadEquation()
             progress.setValue(value++);
             onSendButtonPress();                        // send
             delay();
+			if (isModbusTransmissionFailed) 
+			{
+				isModbusTransmissionFailed = false;
+				msgBox.setText("Modbus Transmission Failed: "+ui->tableWidget->item(i,0)->text());
+    			msgBox.setInformativeText("Do you want to continue with next item?");
+    			msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    			msgBox.setDefaultButton(QMessageBox::No);
+    			int ret = msgBox.exec();
+    			switch (ret) {
+        			case QMessageBox::Yes: break;
+        			case QMessageBox::No:
+        			default: return;
+    			}
+			}
         }
     }
 
