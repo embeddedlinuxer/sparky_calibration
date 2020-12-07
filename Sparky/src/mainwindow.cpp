@@ -902,22 +902,375 @@ updateRPGauge()
 {}
 
 
+/// L1P1
 void
 MainWindow::
 onRadioButtonPressed()
 {
+    // analyzer
     ui->groupBox_6->setEnabled(TRUE);
-    onRadioButton_3Pressed();
+    ui->groupBox_125->setEnabled(TRUE);
 }
 
 void
 MainWindow::
 onRadioButton_2Pressed()
 {
-    ui->radioButton_3->setChecked(TRUE);
+    // razor
+    ui->radioButton_195->setChecked(TRUE); // midcut
+    ui->radioButton_109->setChecked(TRUE); // 1 oscillator
     ui->groupBox_6->setEnabled(FALSE);
-    onRadioButton_4Pressed();
+    ui->groupBox_125->setEnabled(FALSE);
 }
+
+
+/// L1P2
+void
+MainWindow::
+onRadioButton_9Pressed()
+{
+    ui->groupBox_11->setEnabled(TRUE);
+    ui->groupBox_126->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_10Pressed()
+{
+    ui->radioButton_197->setChecked(TRUE);
+    ui->radioButton_113->setChecked(TRUE);
+    ui->groupBox_11->setEnabled(FALSE);
+    ui->groupBox_126->setEnabled(FALSE);
+}
+
+
+/// L1P3
+void
+MainWindow::
+onRadioButton_15Pressed()
+{
+    ui->groupBox_111->setEnabled(TRUE);
+    ui->groupBox_127->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_16Pressed()
+{
+    ui->radioButton_203->setChecked(TRUE);
+    ui->radioButton_117->setChecked(TRUE);
+    ui->groupBox_111->setEnabled(FALSE);
+    ui->groupBox_127->setEnabled(FALSE);
+}
+
+
+/// L2P1
+void
+MainWindow::
+onRadioButton_19Pressed()
+{
+    ui->groupBox_21->setEnabled(TRUE);
+    ui->groupBox_128->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_20Pressed()
+{
+    ui->radioButton_205->setChecked(TRUE);
+    ui->radioButton_121->setChecked(TRUE);
+    ui->groupBox_21->setEnabled(FALSE);
+    ui->groupBox_128->setEnabled(FALSE);
+}
+
+
+/// L2P2
+void
+MainWindow::
+onRadioButton_27Pressed()
+{
+    ui->groupBox_22->setEnabled(TRUE);
+    ui->groupBox_129->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_28Pressed()
+{
+    ui->radioButton_207->setChecked(TRUE);
+    ui->radioButton_125->setChecked(TRUE);
+    ui->groupBox_22->setEnabled(FALSE);
+    ui->groupBox_129->setEnabled(FALSE);
+}
+
+
+/// L2P3
+void
+MainWindow::
+onRadioButton_33Pressed()
+{
+    ui->groupBox_25->setEnabled(TRUE);
+    ui->groupBox_130->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_34Pressed()
+{
+    ui->radioButton_209->setChecked(TRUE);
+    ui->radioButton_129->setChecked(TRUE);
+    ui->groupBox_25->setEnabled(FALSE);
+    ui->groupBox_130->setEnabled(FALSE);
+}
+
+
+/// L3P1
+void
+MainWindow::
+onRadioButton_37Pressed()
+{
+    ui->groupBox_31->setEnabled(TRUE);
+    ui->groupBox_131->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_38Pressed()
+{
+    ui->radioButton_211->setChecked(TRUE);
+    ui->radioButton_133->setChecked(TRUE);
+    ui->groupBox_31->setEnabled(FALSE);
+    ui->groupBox_131->setEnabled(TRUE);
+}
+
+
+/// L3P2
+void
+MainWindow::
+onRadioButton_45Pressed()
+{
+    ui->groupBox_32->setEnabled(TRUE);
+    ui->groupBox_132->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_46Pressed()
+{
+    ui->radioButton_213->setChecked(TRUE);
+    ui->radioButton_137->setChecked(TRUE);
+    ui->groupBox_32->setDisabled(TRUE);
+    ui->groupBox_132->setDisabled(TRUE);
+}
+
+
+/// L3P3
+void
+MainWindow::
+onRadioButton_51Pressed()
+{
+    ui->groupBox_35->setEnabled(TRUE);
+    ui->groupBox_133->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_52Pressed()
+{
+    ui->radioButton_215->setChecked(TRUE);
+    ui->radioButton_141->setChecked(TRUE);
+    ui->groupBox_35->setDisabled(TRUE);
+    ui->groupBox_133->setDisabled(TRUE);
+}
+
+
+/// L4P1
+void
+MainWindow::
+onRadioButton_55Pressed()
+{
+    ui->groupBox_41->setEnabled(TRUE);
+    ui->groupBox_134->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_56Pressed()
+{
+    ui->radioButton_217->setChecked(TRUE);
+    ui->radioButton_145->setChecked(TRUE);
+    ui->groupBox_41->setDisabled(TRUE);
+    ui->groupBox_134->setDisabled(TRUE);
+}
+
+
+/// L4P2
+void
+MainWindow::
+onRadioButton_63Pressed()
+{
+    ui->groupBox_42->setEnabled(TRUE);
+    ui->groupBox_135->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_64Pressed()
+{
+    ui->radioButton_219->setChecked(TRUE);
+    ui->radioButton_149->setChecked(TRUE);
+    ui->groupBox_42->setDisabled(TRUE);
+    ui->groupBox_135->setDisabled(TRUE);
+
+}
+
+
+/// L4P3
+void
+MainWindow::
+onRadioButton_69Pressed()
+{
+    ui->groupBox_45->setEnabled(TRUE);
+    ui->groupBox_136->setEnabled(TRUE);
+    onRadioButton_68Pressed();
+}
+
+void
+MainWindow::
+onRadioButton_70Pressed()
+{
+    ui->radioButton_221->setChecked(TRUE);
+    ui->radioButton_153->setChecked(TRUE);
+    ui->groupBox_45->setEnabled(FALSE);
+    ui->groupBox_136->setEnabled(FALSE);
+}
+
+
+/// L5P1
+void
+MainWindow::
+onRadioButton_73Pressed()
+{
+    ui->groupBox_51->setEnabled(TRUE);
+    ui->groupBox_137->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_74Pressed()
+{
+    ui->radioButton_223->setChecked(TRUE);
+    ui->radioButton_157->setChecked(TRUE);
+    ui->groupBox_51->setEnabled(FALSE);
+    ui->groupBox_137->setEnabled(FALSE);
+}
+
+
+/// L5P2
+void
+MainWindow::
+onRadioButton_81Pressed()
+{
+    ui->groupBox_52->setEnabled(TRUE);
+    ui->groupBox_138->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_82Pressed()
+{
+    ui->radioButton_225->setChecked(TRUE);
+    ui->radioButton_161->setChecked(TRUE);
+    ui->groupBox_52->setEnabled(FALSE);
+    ui->groupBox_138->setEnabled(FALSE);
+}
+
+
+/// L5P3
+void
+MainWindow::
+onRadioButton_87Pressed()
+{
+    ui->groupBox_55->setEnabled(TRUE);
+    ui->groupBox_139->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_88Pressed()
+{
+    ui->radioButton_227->setChecked(TRUE);
+    ui->radioButton_165->setChecked(TRUE);
+    ui->groupBox_55->setEnabled(FALSE);
+    ui->groupBox_139->setEnabled(FALSE);
+}
+
+
+/// L6P1
+void
+MainWindow::
+onRadioButton_91Pressed()
+{
+    ui->groupBox_61->setEnabled(TRUE);
+    ui->groupBox_140->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_92Pressed()
+{
+    ui->radioButton_229->setChecked(TRUE);
+    ui->radioButton_169->setChecked(TRUE);
+    ui->groupBox_61->setEnabled(FALSE);
+    ui->groupBox_140->setEnabled(FALSE);
+}
+
+
+/// L6P2
+void
+MainWindow::
+onRadioButton_99Pressed()
+{
+    ui->groupBox_62->setEnabled(TRUE);
+    ui->groupBox_141->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_100Pressed()
+{
+    ui->radioButton_231->setChecked(TRUE);
+    ui->radioButton_173->setChecked(TRUE);
+    ui->groupBox_62->setDisabled(TRUE);
+    ui->groupBox_141->setDisabled(TRUE);
+}
+
+
+/// L6P3
+void
+MainWindow::
+onRadioButton_105Pressed()
+{
+    ui->groupBox_112->setEnabled(TRUE);
+    ui->groupBox_142->setEnabled(TRUE);
+}
+
+void
+MainWindow::
+onRadioButton_106Pressed()
+{
+    ui->radioButton_237->setChecked(TRUE);
+    ui->radioButton_177->setChecked(TRUE);
+    ui->groupBox_112->setEnabled(FALSE);
+    ui->groupBox_142->setEnabled(FALSE);
+}
+
+
+///
+///
+/// CUTS
+///
+///
 
 void
 MainWindow::
@@ -949,26 +1302,10 @@ onRadioButton_8Pressed()
     ui->groupBox_126->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_9Pressed()
-{
-    ui->groupBox_11->setEnabled(TRUE);
-    onRadioButton_8Pressed();
-}
 
 void
 MainWindow::
-onRadioButton_10Pressed()
-{
-    ui->radioButton_8->setChecked(TRUE);
-    ui->groupBox_11->setEnabled(FALSE);
-    onRadioButton_7Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_13Pressed()
+onRadioButton_200Pressed()
 {
     ui->groupBox_127->setDisabled(TRUE);
     ui->radioButton_117->setChecked(TRUE);
@@ -976,45 +1313,12 @@ onRadioButton_13Pressed()
 
 void
 MainWindow::
-onRadioButton_14Pressed()
+onRadioButton_201Pressed()
 {
     ui->groupBox_127->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_15Pressed()
-{
-    ui->groupBox_15->setEnabled(TRUE);
-    ui->groupBox_127->setEnabled(TRUE);
-    onRadioButton_14Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_16Pressed()
-{
-    ui->radioButton_14->setChecked(TRUE);
-    ui->groupBox_15->setEnabled(FALSE);
-    onRadioButton_13Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_19Pressed()
-{
-    ui->groupBox_21->setEnabled(TRUE);
-    onRadioButton_24Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_20Pressed()
-{
-    ui->radioButton_24->setChecked(TRUE);
-    ui->groupBox_21->setEnabled(FALSE);
-    onRadioButton_23Pressed();
-}
 
 void
 MainWindow::
@@ -1046,22 +1350,7 @@ onRadioButton_26Pressed()
     ui->groupBox_129->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_27Pressed()
-{
-    ui->groupBox_22->setEnabled(TRUE);
-    onRadioButton_26Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_28Pressed()
-{
-    ui->radioButton_26->setChecked(TRUE);
-    ui->groupBox_22->setEnabled(FALSE);
-    onRadioButton_25Pressed();
-}
 
 void
 MainWindow::
@@ -1078,39 +1367,7 @@ onRadioButton_32Pressed()
     ui->groupBox_130->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_33Pressed()
-{
-    ui->groupBox_25->setEnabled(TRUE);
-    onRadioButton_32Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_34Pressed()
-{
-    ui->radioButton_32->setChecked(TRUE);
-    ui->groupBox_25->setEnabled(FALSE);
-    onRadioButton_31Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_37Pressed()
-{
-    ui->groupBox_31->setEnabled(TRUE);
-    onRadioButton_42Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_38Pressed()
-{
-    ui->radioButton_42->setChecked(TRUE);
-    ui->groupBox_31->setEnabled(FALSE);
-    onRadioButton_41Pressed();
-}
 
 void
 MainWindow::
@@ -1129,23 +1386,6 @@ onRadioButton_42Pressed()
 
 void
 MainWindow::
-onRadioButton_45Pressed()
-{
-    ui->groupBox_32->setEnabled(TRUE);
-    onRadioButton_44Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_46Pressed()
-{
-    ui->radioButton_44->setChecked(TRUE);
-    ui->groupBox_32->setDisabled(TRUE);
-    onRadioButton_43Pressed();
-}
-
-void
-MainWindow::
 onRadioButton_43Pressed()
 {
     ui->radioButton_137->setChecked(TRUE);
@@ -1159,22 +1399,7 @@ onRadioButton_44Pressed()
      ui->groupBox_132->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_51Pressed()
-{
-    ui->groupBox_35->setEnabled(TRUE);
-    onRadioButton_50Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_52Pressed()
-{
-    ui->radioButton_50->setChecked(TRUE);
-    ui->groupBox_35->setDisabled(TRUE);
-    onRadioButton_49Pressed();
-}
 
 void
 MainWindow::
@@ -1191,22 +1416,7 @@ onRadioButton_50Pressed()
      ui->groupBox_133->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_55Pressed()
-{
-    ui->groupBox_41->setEnabled(TRUE);
-    onRadioButton_60Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_56Pressed()
-{
-    ui->radioButton_60->setChecked(TRUE);
-    ui->groupBox_41->setDisabled(TRUE);
-    onRadioButton_59Pressed();
-}
 
 void
 MainWindow::
@@ -1238,22 +1448,7 @@ onRadioButton_62Pressed()
     ui->groupBox_135->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_63Pressed()
-{
-    ui->groupBox_42->setEnabled(TRUE);
-    onRadioButton_62Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_64Pressed()
-{
-    ui->radioButton_62->setChecked(TRUE);
-    ui->groupBox_42->setEnabled(FALSE);
-    onRadioButton_61Pressed();
-}
 
 void
 MainWindow::
@@ -1270,39 +1465,7 @@ onRadioButton_68Pressed()
     ui->groupBox_136->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_69Pressed()
-{
-    ui->groupBox_45->setEnabled(TRUE);
-    onRadioButton_68Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_70Pressed()
-{
-    ui->radioButton_68->setChecked(TRUE);
-    ui->groupBox_45->setEnabled(FALSE);
-    onRadioButton_67Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_73Pressed()
-{
-    ui->groupBox_51->setEnabled(TRUE);
-    onRadioButton_78Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_74Pressed()
-{
-    ui->radioButton_78->setChecked(TRUE);
-    ui->groupBox_51->setEnabled(FALSE);
-    onRadioButton_77Pressed();
-}
 
 void
 MainWindow::
@@ -1334,22 +1497,7 @@ onRadioButton_80Pressed()
     ui->groupBox_138->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_81Pressed()
-{
-    ui->groupBox_52->setEnabled(TRUE);
-    onRadioButton_80Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_82Pressed()
-{
-    ui->radioButton_80->setChecked(TRUE);
-    ui->groupBox_52->setEnabled(FALSE);
-    onRadioButton_79Pressed();
-}
 
 void
 MainWindow::
@@ -1366,39 +1514,7 @@ onRadioButton_86Pressed()
     ui->groupBox_139->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_87Pressed()
-{
-    ui->groupBox_55->setEnabled(TRUE);
-    onRadioButton_86Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_88Pressed()
-{
-    ui->radioButton_86->setChecked(TRUE);
-    ui->groupBox_55->setEnabled(FALSE);
-    onRadioButton_85Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_91Pressed()
-{
-    ui->groupBox_61->setEnabled(TRUE);
-    onRadioButton_96Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_92Pressed()
-{
-    ui->radioButton_96->setChecked(TRUE);
-    ui->groupBox_61->setEnabled(FALSE);
-    onRadioButton_95Pressed();
-}
 
 void
 MainWindow::
@@ -1430,22 +1546,7 @@ onRadioButton_98Pressed()
     ui->groupBox_141->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_99Pressed()
-{
-    ui->groupBox_62->setEnabled(TRUE);
-    onRadioButton_98Pressed();
-}
 
-void
-MainWindow::
-onRadioButton_100Pressed()
-{
-    ui->radioButton_98->setChecked(TRUE);
-    ui->groupBox_62->setDisabled(TRUE);
-    onRadioButton_97Pressed();
-}
 
 void
 MainWindow::
@@ -1460,23 +1561,6 @@ MainWindow::
 onRadioButton_104Pressed()
 {
     ui->groupBox_142->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_105Pressed()
-{
-    ui->groupBox_65->setEnabled(TRUE);
-    onRadioButton_104Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_106Pressed()
-{
-    ui->radioButton_104->setChecked(TRUE);
-    ui->groupBox_65->setEnabled(FALSE);
-    onRadioButton_103Pressed();
 }
 
 void
@@ -1509,46 +1593,110 @@ connectLoopDependentData()
     connect(ui->tabWidget_8, SIGNAL(currentChanged(int)), this, SLOT(onLoopTabChanged(int)));
 }
 
+
 void
 MainWindow::
 connectRadioButtons()
 {
+    // L1P1
     connect(ui->radioButton, SIGNAL(pressed()), this, SLOT(onRadioButtonPressed()));
     connect(ui->radioButton_2, SIGNAL(pressed()), this, SLOT(onRadioButton_2Pressed()));
+
     connect(ui->radioButton_3, SIGNAL(pressed()), this, SLOT(onRadioButton_3Pressed()));
     connect(ui->radioButton_4, SIGNAL(pressed()), this, SLOT(onRadioButton_4Pressed()));
-    connect(ui->radioButton_7, SIGNAL(pressed()), this, SLOT(onRadioButton_7Pressed()));
-    connect(ui->radioButton_8, SIGNAL(pressed()), this, SLOT(onRadioButton_8Pressed()));
+    connect(ui->radioButton_194, SIGNAL(pressed()), this, SLOT(onRadioButton_3Pressed()));
+    connect(ui->radioButton_195, SIGNAL(pressed()), this, SLOT(onRadioButton_3Pressed()));
+
+    // L1P2
     connect(ui->radioButton_9, SIGNAL(pressed()), this, SLOT(onRadioButton_9Pressed()));
     connect(ui->radioButton_10, SIGNAL(pressed()), this, SLOT(onRadioButton_10Pressed()));
-    connect(ui->radioButton_13, SIGNAL(pressed()), this, SLOT(onRadioButton_13Pressed()));
-    connect(ui->radioButton_14, SIGNAL(pressed()), this, SLOT(onRadioButton_14Pressed()));
+
+    connect(ui->radioButton_7, SIGNAL(pressed()), this, SLOT(onRadioButton_7Pressed()));
+    connect(ui->radioButton_8, SIGNAL(pressed()), this, SLOT(onRadioButton_8Pressed()));
+    connect(ui->radioButton_196, SIGNAL(pressed()), this, SLOT(onRadioButton_8Pressed()));
+    connect(ui->radioButton_197, SIGNAL(pressed()), this, SLOT(onRadioButton_8Pressed()));
+    
+    // L1P3
     connect(ui->radioButton_15, SIGNAL(pressed()), this, SLOT(onRadioButton_15Pressed()));
     connect(ui->radioButton_16, SIGNAL(pressed()), this, SLOT(onRadioButton_16Pressed()));
+
+    connect(ui->radioButton_200, SIGNAL(pressed()), this, SLOT(onRadioButton_200Pressed()));
+    connect(ui->radioButton_201, SIGNAL(pressed()), this, SLOT(onRadioButton_201Pressed()));
+    connect(ui->radioButton_202, SIGNAL(pressed()), this, SLOT(onRadioButton_201Pressed()));
+    connect(ui->radioButton_203, SIGNAL(pressed()), this, SLOT(onRadioButton_201Pressed()));
+
+    // L2P1
     connect(ui->radioButton_19, SIGNAL(pressed()), this, SLOT(onRadioButton_19Pressed()));
     connect(ui->radioButton_20, SIGNAL(pressed()), this, SLOT(onRadioButton_20Pressed()));
+
     connect(ui->radioButton_23, SIGNAL(pressed()), this, SLOT(onRadioButton_23Pressed()));
     connect(ui->radioButton_24, SIGNAL(pressed()), this, SLOT(onRadioButton_24Pressed()));
-    connect(ui->radioButton_25, SIGNAL(pressed()), this, SLOT(onRadioButton_25Pressed()));
-    connect(ui->radioButton_26, SIGNAL(pressed()), this, SLOT(onRadioButton_26Pressed()));
+    connect(ui->radioButton_204, SIGNAL(pressed()), this, SLOT(onRadioButton_24Pressed()));
+    connect(ui->radioButton_205, SIGNAL(pressed()), this, SLOT(onRadioButton_24Pressed()));
+
+    // L2P2
     connect(ui->radioButton_27, SIGNAL(pressed()), this, SLOT(onRadioButton_27Pressed()));
     connect(ui->radioButton_28, SIGNAL(pressed()), this, SLOT(onRadioButton_28Pressed()));
-    connect(ui->radioButton_31, SIGNAL(pressed()), this, SLOT(onRadioButton_31Pressed()));
-    connect(ui->radioButton_32, SIGNAL(pressed()), this, SLOT(onRadioButton_32Pressed()));
+
+    connect(ui->radioButton_25, SIGNAL(pressed()), this, SLOT(onRadioButton_25Pressed()));
+    connect(ui->radioButton_26, SIGNAL(pressed()), this, SLOT(onRadioButton_26Pressed()));
+    connect(ui->radioButton_206, SIGNAL(pressed()), this, SLOT(onRadioButton_26Pressed()));
+    connect(ui->radioButton_207, SIGNAL(pressed()), this, SLOT(onRadioButton_26Pressed()));
+
+    // L2P3
     connect(ui->radioButton_33, SIGNAL(pressed()), this, SLOT(onRadioButton_33Pressed()));
     connect(ui->radioButton_34, SIGNAL(pressed()), this, SLOT(onRadioButton_34Pressed()));
+
+    connect(ui->radioButton_31, SIGNAL(pressed()), this, SLOT(onRadioButton_31Pressed()));
+    connect(ui->radioButton_32, SIGNAL(pressed()), this, SLOT(onRadioButton_32Pressed()));
+    connect(ui->radioButton_208, SIGNAL(pressed()), this, SLOT(onRadioButton_32Pressed()));
+    connect(ui->radioButton_209, SIGNAL(pressed()), this, SLOT(onRadioButton_32Pressed()));
+
+    // L3P1
     connect(ui->radioButton_37, SIGNAL(pressed()), this, SLOT(onRadioButton_37Pressed()));
     connect(ui->radioButton_38, SIGNAL(pressed()), this, SLOT(onRadioButton_38Pressed()));
+
     connect(ui->radioButton_41, SIGNAL(pressed()), this, SLOT(onRadioButton_41Pressed()));
     connect(ui->radioButton_42, SIGNAL(pressed()), this, SLOT(onRadioButton_42Pressed()));
-    connect(ui->radioButton_43, SIGNAL(pressed()), this, SLOT(onRadioButton_43Pressed()));
-    connect(ui->radioButton_44, SIGNAL(pressed()), this, SLOT(onRadioButton_44Pressed()));
+    connect(ui->radioButton_210, SIGNAL(pressed()), this, SLOT(onRadioButton_42Pressed()));
+    connect(ui->radioButton_211, SIGNAL(pressed()), this, SLOT(onRadioButton_42Pressed()));
+
+    // L3P2
     connect(ui->radioButton_45, SIGNAL(pressed()), this, SLOT(onRadioButton_45Pressed()));
     connect(ui->radioButton_46, SIGNAL(pressed()), this, SLOT(onRadioButton_46Pressed()));
-    connect(ui->radioButton_49, SIGNAL(pressed()), this, SLOT(onRadioButton_49Pressed()));
-    connect(ui->radioButton_50, SIGNAL(pressed()), this, SLOT(onRadioButton_50Pressed()));
+
+    connect(ui->radioButton_43, SIGNAL(pressed()), this, SLOT(onRadioButton_43Pressed()));
+    connect(ui->radioButton_44, SIGNAL(pressed()), this, SLOT(onRadioButton_44Pressed()));
+    connect(ui->radioButton_212, SIGNAL(pressed()), this, SLOT(onRadioButton_44Pressed()));
+    connect(ui->radioButton_213, SIGNAL(pressed()), this, SLOT(onRadioButton_44Pressed()));
+
+    // L3P3
     connect(ui->radioButton_51, SIGNAL(pressed()), this, SLOT(onRadioButton_51Pressed()));
     connect(ui->radioButton_52, SIGNAL(pressed()), this, SLOT(onRadioButton_52Pressed()));
+
+    connect(ui->radioButton_49, SIGNAL(pressed()), this, SLOT(onRadioButton_49Pressed()));
+    connect(ui->radioButton_50, SIGNAL(pressed()), this, SLOT(onRadioButton_50Pressed()));
+    connect(ui->radioButton_214, SIGNAL(pressed()), this, SLOT(onRadioButton_50Pressed()));
+    connect(ui->radioButton_215, SIGNAL(pressed()), this, SLOT(onRadioButton_50Pressed()));
+
+    // L4P1
+
+    // L4P2
+
+    // L4P3
+
+    // L5P1
+
+    // L5P2
+
+    // L5P3
+
+    // L6P1
+
+    // L6P2
+
+    // L6P3
+
     connect(ui->radioButton_55, SIGNAL(pressed()), this, SLOT(onRadioButton_55Pressed()));
     connect(ui->radioButton_56, SIGNAL(pressed()), this, SLOT(onRadioButton_56Pressed()));
     connect(ui->radioButton_59, SIGNAL(pressed()), this, SLOT(onRadioButton_59Pressed()));
@@ -1581,8 +1729,6 @@ connectRadioButtons()
     connect(ui->radioButton_98, SIGNAL(pressed()), this, SLOT(onRadioButton_98Pressed()));
     connect(ui->radioButton_99, SIGNAL(pressed()), this, SLOT(onRadioButton_99Pressed()));
     connect(ui->radioButton_100, SIGNAL(pressed()), this, SLOT(onRadioButton_100Pressed()));
-    connect(ui->radioButton_103, SIGNAL(pressed()), this, SLOT(onRadioButton_103Pressed()));
-    connect(ui->radioButton_104, SIGNAL(pressed()), this, SLOT(onRadioButton_104Pressed()));
     connect(ui->radioButton_105, SIGNAL(pressed()), this, SLOT(onRadioButton_105Pressed()));
     connect(ui->radioButton_106, SIGNAL(pressed()), this, SLOT(onRadioButton_106Pressed()));
 
@@ -4435,3 +4581,200 @@ updateRegisters(const bool isRazor, const int i)
     }
 }
 
+
+void
+MainWindow::
+createLoopFile_L1P1(const int sn)
+{
+    if (ui->radioButton_4->isChecked()) return;             // LOW
+    else if (ui->radioButton_195->isChecked()) return;      // MID 
+    else if (ui->radioButton_194->isChecked()) return;      // FULL 
+    else if (ui->radioButton_3->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L1P2(const int sn)
+{
+    if (ui->radioButton_7->isChecked()) return;             // LOW
+    else if (ui->radioButton_197->isChecked()) return;      // MID 
+    else if (ui->radioButton_196->isChecked()) return;      // FULL 
+    else if (ui->radioButton_8->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L1P3(const int sn)
+{
+    if (ui->radioButton_200->isChecked()) return;             // LOW
+    else if (ui->radioButton_203->isChecked()) return;      // MID 
+    else if (ui->radioButton_202->isChecked()) return;      // FULL 
+    else if (ui->radioButton_201->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L2P1(const int sn)
+{
+    if (ui->radioButton_23->isChecked()) return;             // LOW
+    else if (ui->radioButton_205->isChecked()) return;      // MID 
+    else if (ui->radioButton_204->isChecked()) return;      // FULL 
+    else if (ui->radioButton_24->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L2P2(const int sn)
+{
+    if (ui->radioButton_25->isChecked()) return;             // LOW
+    else if (ui->radioButton_207->isChecked()) return;      // MID 
+    else if (ui->radioButton_206->isChecked()) return;      // FULL 
+    else if (ui->radioButton_26->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L2P3(const int sn)
+{
+    if (ui->radioButton_31->isChecked()) return;             // LOW
+    else if (ui->radioButton_208->isChecked()) return;      // MID 
+    else if (ui->radioButton_209->isChecked()) return;      // FULL 
+    else if (ui->radioButton_32->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L3P1(const int sn)
+{
+    if (ui->radioButton_41->isChecked()) return;             // LOW
+    else if (ui->radioButton_211->isChecked()) return;      // MID 
+    else if (ui->radioButton_210->isChecked()) return;      // FULL 
+    else if (ui->radioButton_42->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L3P2(const int sn)
+{
+    if (ui->radioButton_43->isChecked()) return;             // LOW
+    else if (ui->radioButton_213->isChecked()) return;      // MID 
+    else if (ui->radioButton_212->isChecked()) return;      // FULL 
+    else if (ui->radioButton_44->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L3P3(const int sn)
+{
+    if (ui->radioButton_49->isChecked()) return;             // LOW
+    else if (ui->radioButton_215->isChecked()) return;      // MID 
+    else if (ui->radioButton_214->isChecked()) return;      // FULL 
+    else if (ui->radioButton_50->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L4P1(const int sn)
+{
+    if (ui->radioButton_59->isChecked()) return;             // LOW
+    else if (ui->radioButton_217->isChecked()) return;      // MID 
+    else if (ui->radioButton_216->isChecked()) return;      // FULL 
+    else if (ui->radioButton_60->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L4P2(const int sn)
+{
+    if (ui->radioButton_61->isChecked()) return;             // LOW
+    else if (ui->radioButton_219->isChecked()) return;      // MID 
+    else if (ui->radioButton_218->isChecked()) return;      // FULL 
+    else if (ui->radioButton_62->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L4P3(const int sn)
+{
+    if (ui->radioButton_67->isChecked()) return;             // LOW
+    else if (ui->radioButton_221->isChecked()) return;      // MID 
+    else if (ui->radioButton_220->isChecked()) return;      // FULL 
+    else if (ui->radioButton_68->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L5P1(const int sn)
+{
+    if (ui->radioButton_77->isChecked()) return;             // LOW
+    else if (ui->radioButton_223->isChecked()) return;      // MID 
+    else if (ui->radioButton_222->isChecked()) return;      // FULL 
+    else if (ui->radioButton_78->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L5P2(const int sn)
+{
+    if (ui->radioButton_79->isChecked()) return;             // LOW
+    else if (ui->radioButton_225->isChecked()) return;      // MID 
+    else if (ui->radioButton_224->isChecked()) return;      // FULL 
+    else if (ui->radioButton_80->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L5P3(const int sn)
+{
+    if (ui->radioButton_85->isChecked()) return;             // LOW
+    else if (ui->radioButton_227->isChecked()) return;      // MID 
+    else if (ui->radioButton_226->isChecked()) return;      // FULL 
+    else if (ui->radioButton_86->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L6P1(const int sn)
+{
+    if (ui->radioButton_95->isChecked()) return;             // LOW
+    else if (ui->radioButton_229->isChecked()) return;      // MID 
+    else if (ui->radioButton_228->isChecked()) return;      // FULL 
+    else if (ui->radioButton_96->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L6P2(const int sn)
+{
+    if (ui->radioButton_97->isChecked()) return;             // LOW
+    else if (ui->radioButton_231->isChecked()) return;      // MID 
+    else if (ui->radioButton_230->isChecked()) return;      // FULL 
+    else if (ui->radioButton_98->isChecked()) return;        // HIGH 
+}
+
+
+void
+MainWindow::
+createLoopFile_L6P3(const int sn)
+{
+    if (ui->radioButton_234->isChecked()) return;             // LOW
+    else if (ui->radioButton_237->isChecked()) return;      // MID 
+    else if (ui->radioButton_236->isChecked()) return;      // FULL 
+    else if (ui->radioButton_235->isChecked()) return;        // HIGH 
+}

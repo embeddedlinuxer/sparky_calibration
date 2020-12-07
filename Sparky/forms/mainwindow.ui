@@ -43,7 +43,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -1431,19 +1431,19 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
         <widget class="QRadioButton" name="radioButton_4">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_3">
@@ -1451,15 +1451,41 @@
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_194">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_195">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
          </property>
         </widget>
        </widget>
@@ -1694,7 +1720,10 @@
          <string/>
         </property>
         <property name="text">
-         <string>8742</string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string/>
         </property>
         <property name="clearButtonEnabled">
          <bool>true</bool>
@@ -1731,48 +1760,6 @@
        <attribute name="title">
         <string>Pipe 2</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_11">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_7">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_8">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_13">
         <property name="geometry">
          <rect>
@@ -2114,12 +2101,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_7">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_15">
+       <widget class="QGroupBox" name="groupBox_11">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -2129,38 +2111,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_13">
+        <widget class="QRadioButton" name="radioButton_7">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_14">
+        <widget class="QRadioButton" name="radioButton_8">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_196">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_197">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_16">
         <property name="geometry">
          <rect>
@@ -2502,6 +2515,74 @@
          <string>S T A R T</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox_111">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_200">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_201">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_202">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_203">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -2615,48 +2696,6 @@
          </property>
          <property name="text">
           <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_21">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_23">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_24">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -2911,12 +2950,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_15">
-       <attribute name="title">
-        <string>Pipe 2</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_22">
+       <widget class="QGroupBox" name="groupBox_21">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -2926,38 +2960,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_25">
+        <widget class="QRadioButton" name="radioButton_23">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_26">
+        <widget class="QRadioButton" name="radioButton_24">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_204">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_205">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_15">
+       <attribute name="title">
+        <string>Pipe 2</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_23">
         <property name="geometry">
          <rect>
@@ -3299,12 +3364,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_16">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_25">
+       <widget class="QGroupBox" name="groupBox_22">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -3314,38 +3374,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_31">
+        <widget class="QRadioButton" name="radioButton_25">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_32">
+        <widget class="QRadioButton" name="radioButton_26">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_206">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_207">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_16">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_26">
         <property name="geometry">
          <rect>
@@ -3687,6 +3778,74 @@
          <string>S T A R T</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox_25">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_31">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_32">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_208">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_209">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_28">
@@ -4017,48 +4176,6 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_31">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_41">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_42">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_79">
         <property name="geometry">
          <rect>
@@ -4310,12 +4427,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_18">
-       <attribute name="title">
-        <string>Pipe 2</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_32">
+       <widget class="QGroupBox" name="groupBox_31">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -4325,38 +4437,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_43">
+        <widget class="QRadioButton" name="radioButton_41">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_44">
+        <widget class="QRadioButton" name="radioButton_42">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_210">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_211">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_18">
+       <attribute name="title">
+        <string>Pipe 2</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_33">
         <property name="geometry">
          <rect>
@@ -4698,12 +4841,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_19">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_35">
+       <widget class="QGroupBox" name="groupBox_32">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -4713,38 +4851,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_49">
+        <widget class="QRadioButton" name="radioButton_43">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_50">
+        <widget class="QRadioButton" name="radioButton_44">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_212">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_213">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_19">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_36">
         <property name="geometry">
          <rect>
@@ -5086,6 +5255,74 @@
          <string>S T A R T</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox_35">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_49">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_50">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_214">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_215">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_38">
@@ -5416,48 +5653,6 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_41">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_59">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_60">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_85">
         <property name="geometry">
          <rect>
@@ -5709,12 +5904,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_21">
-       <attribute name="title">
-        <string>Pipe 2</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_42">
+       <widget class="QGroupBox" name="groupBox_41">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -5724,38 +5914,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_61">
+        <widget class="QRadioButton" name="radioButton_59">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_62">
+        <widget class="QRadioButton" name="radioButton_60">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_216">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_217">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_21">
+       <attribute name="title">
+        <string>Pipe 2</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_43">
         <property name="geometry">
          <rect>
@@ -6097,12 +6318,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_22">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_45">
+       <widget class="QGroupBox" name="groupBox_42">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -6112,38 +6328,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_67">
+        <widget class="QRadioButton" name="radioButton_61">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_68">
+        <widget class="QRadioButton" name="radioButton_62">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_218">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_219">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_22">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_46">
         <property name="geometry">
          <rect>
@@ -6485,6 +6732,74 @@
          <string>S T A R T</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox_45">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_67">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_68">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_220">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_221">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_48">
@@ -6815,48 +7130,6 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_51">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_77">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_78">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_91">
         <property name="geometry">
          <rect>
@@ -7108,12 +7381,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_24">
-       <attribute name="title">
-        <string>Pipe 2</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_52">
+       <widget class="QGroupBox" name="groupBox_51">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -7123,38 +7391,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_79">
+        <widget class="QRadioButton" name="radioButton_77">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_80">
+        <widget class="QRadioButton" name="radioButton_78">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_222">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_223">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_24">
+       <attribute name="title">
+        <string>Pipe 2</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_53">
         <property name="geometry">
          <rect>
@@ -7496,12 +7795,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_25">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_55">
+       <widget class="QGroupBox" name="groupBox_52">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -7511,38 +7805,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_85">
+        <widget class="QRadioButton" name="radioButton_79">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_86">
+        <widget class="QRadioButton" name="radioButton_80">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_224">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_225">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_25">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_56">
         <property name="geometry">
          <rect>
@@ -7884,6 +8209,74 @@
          <string>S T A R T</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox_55">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_85">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_86">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_226">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_227">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_58">
@@ -8214,48 +8607,6 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_61">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Type</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_95">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>8</y>
-           <width>91</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>LOWCUT</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_96">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>8</y>
-           <width>161</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_97">
         <property name="geometry">
          <rect>
@@ -8507,12 +8858,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_27">
-       <attribute name="title">
-        <string>Pipe 2</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_62">
+       <widget class="QGroupBox" name="groupBox_61">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -8522,38 +8868,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_97">
+        <widget class="QRadioButton" name="radioButton_95">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_98">
+        <widget class="QRadioButton" name="radioButton_96">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_228">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_229">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_27">
+       <attribute name="title">
+        <string>Pipe 2</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_63">
         <property name="geometry">
          <rect>
@@ -8895,12 +9272,7 @@
          <string>S T A R T</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tab_28">
-       <attribute name="title">
-        <string>Pipe 3</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_65">
+       <widget class="QGroupBox" name="groupBox_62">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -8910,38 +9282,69 @@
          </rect>
         </property>
         <property name="title">
-         <string>Type</string>
+         <string>Cut</string>
         </property>
-        <widget class="QRadioButton" name="radioButton_103">
+        <widget class="QRadioButton" name="radioButton_97">
          <property name="geometry">
           <rect>
-           <x>190</x>
+           <x>230</x>
            <y>8</y>
-           <width>91</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>LOWCUT</string>
+          <string>LOW</string>
          </property>
         </widget>
-        <widget class="QRadioButton" name="radioButton_104">
+        <widget class="QRadioButton" name="radioButton_98">
          <property name="geometry">
           <rect>
            <x>20</x>
            <y>8</y>
-           <width>161</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>HICUT / FULLCUT / MIDCUT</string>
+          <string>HIGH</string>
          </property>
          <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QRadioButton" name="radioButton_230">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_231">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_28">
+       <attribute name="title">
+        <string>Pipe 3</string>
+       </attribute>
        <widget class="QGroupBox" name="groupBox_66">
         <property name="geometry">
          <rect>
@@ -9282,6 +9685,74 @@
         <property name="text">
          <string>S T A R T</string>
         </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_112">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Cut</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_234">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>LOW</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_235">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>8</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HIGH</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_236">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>9</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FULL</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_237">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>10</y>
+           <width>51</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>MID</string>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>

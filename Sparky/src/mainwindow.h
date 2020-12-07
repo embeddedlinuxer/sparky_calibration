@@ -21,6 +21,19 @@
 #define RAZ true
 #define EEA false
 
+/// calibration file names
+#define FILE_LIST               "Filelist.LST"
+#define AMB_TWENTY              "AMB_020.LCT"
+#define TWENTY_FIFTYFIVE        "020_055.LCT"
+#define FIFTYFIVE_THIRTYEIGHT   "055_038.LCI"
+#define CALIBRAT                "CALIBRAT.LCI"
+#define ADJUSTED                "ADJUSTED.LCI"
+#define ROLLOVER                "ROLLOVER.LCR"
+#define HIGH                    "G:\HIGHCUT"
+#define FULL                    "G:\FULLCUT" 
+#define MID                     "G:\MIDCUT"
+#define LOW                     "G:\LOWCUT"
+
 QT_CHARTS_USE_NAMESPACE
 
 class AboutDialog : public QDialog, public Ui::AboutDialog
@@ -34,6 +47,15 @@ public:
     }
 };
 
+typedef struct pipe_object
+{
+    int serialNumber;
+    int loopVolume;
+    float smallPumpInjectionRate;
+    float bigPumpInjectionRate;
+    float calibrationLimit;
+
+} PIPE;
 
 namespace Ui
 {
@@ -49,6 +71,8 @@ public:
     ~MainWindow();
 
     void delay(int);
+
+    void writeLoopFileL1P1(const int);
 
     modbus_t * m_serialModbus;
     modbus_t * m_serialModbus_2;
@@ -110,6 +134,30 @@ public:
     QString sendCalibrationRequest(int, modbus_t *, int, int, int, int, uint8_t *, uint16_t *, bool, bool, QString);
 
 private slots:
+
+    void createLoopFile_L1P1(const int);
+    void createLoopFile_L1P2(const int);
+    void createLoopFile_L1P3(const int);
+
+    void createLoopFile_L2P1(const int);
+    void createLoopFile_L2P2(const int);
+    void createLoopFile_L2P3(const int);
+
+    void createLoopFile_L3P1(const int);
+    void createLoopFile_L3P2(const int);
+    void createLoopFile_L3P3(const int);
+
+    void createLoopFile_L4P1(const int);
+    void createLoopFile_L4P2(const int);
+    void createLoopFile_L4P3(const int);
+
+    void createLoopFile_L5P1(const int);
+    void createLoopFile_L5P2(const int);
+    void createLoopFile_L5P3(const int);
+
+    void createLoopFile_L6P1(const int);
+    void createLoopFile_L6P2(const int);
+    void createLoopFile_L6P3(const int);
 
     void onRtuPortActive(bool);
     void onRtuPortActive_2(bool);
@@ -194,8 +242,8 @@ private slots:
     void onRadioButton_8Pressed();
     void onRadioButton_9Pressed();
     void onRadioButton_10Pressed();
-    void onRadioButton_13Pressed();
-    void onRadioButton_14Pressed();
+    void onRadioButton_200Pressed();
+    void onRadioButton_201Pressed();
     void onRadioButton_15Pressed();
     void onRadioButton_16Pressed();
     void onRadioButton_19Pressed();

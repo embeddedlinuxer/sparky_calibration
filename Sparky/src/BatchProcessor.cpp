@@ -261,7 +261,3 @@ QString BatchProcessor::sendModbusRequest( int slaveID, int func, int addr )
 
 	return "-1 (NO VALID DATA RECEIVED)";
 }
-
-
-
-

@@ -1,0 +1,34 @@
+*V1.1
+*Phase Dynamics Razor Profile
+*
+*Variable Name,Slave,Modbus Address,Variable Type,Scale,r/w,n,Value List
+*
+*Oil Adjust is Floating Point 15
+*
+*
+Serial,,201,int,1,RW,1,8756,
+Oil P0,,39,float,1,RW,1,+9.000000e-01,
+Oil P1,,41,float,1,RW,1,+0.000000e+00,
+Oil T0,,179,float,1,RW,1,+9.4410000e-01,
+Oil T1,,181,float,1,RW,1,-2.370000e-02,
+Oil Low,,43,float,1,RW,1,+2.500000e+02,
+Oil High,,45,float,1,RW,1,+1.000000e+03,
+AO Trim Low,,107,float,1,RW,1,+4.102000e+00,
+AO Trim High,,109,float,1,RW,1,+2.043000e+01,
+AI Trim Low,,169,float,1,RW,1,+9.907866e+00,
+AI Trim High,,171,float,1,RW,1,+4.981092e+01,
+PDI Temp Adj,,781,float,1,RW,1,-8.000000e+00,
+D3,,117,float,1,RW,1,+0.000000e+00,
+D2,,119,float,1,RW,1,+0.000000e+00,
+D1,,121,float,1,RW,1,-2.860000e-02,
+D0,,123,float,1,RW,1,+2.460000e+01,
+Oil Dual Curve Cutoff,,69,float,1,RW,1,+2.000000000e+01
+Number of Oil Temperature Curves,,60001,float,1,RW,1,+5.000000e+00,
+Oil Temperature List,,60003,float,1,RW,10,+2.2300000e+01,+3.800000e+01,+5.970000e+01,+2.2300000e+01,+3.800000e+01,+5.970000e+01,+0.000000e+00,+0.000000e+00,+0.000000e+00,+0.000000e+00,
+Oil Curve 0,,60023,float,1,RW,4,+2.8151919E+04,-3.1196648E+02,+1.1607692E+00,-1.4493998E-03,
+Oil Curve 1,,60031,float,1,RW,4,+2.7419365E+04,-3.0649116E+02,+1.1504683E+00,-1.4493998E-03,
+Oil Curve 2,,60039,float,1,RW,4,+2.6440755E+04,-2.9909995E+02,+1.1364149E+00,-1.4493998E-03,
+Oil Curve 3,,60047,float,1,RW,4,+2.8151919E+04,-3.1196648E+02,+1.1607692E+00,-1.4493998E-03,
+Oil Curve 4,,60055,float,1,RW,4,+2.7419365E+04,-3.0649116E+02,+1.1504683E+00,-1.4493998E-03,
+Oil Curve 5,,60063,float,1,RW,4,+2.6440755E+04,-2.9909995E+02,+1.1364149E+00,-1.4493998E-03,
+
