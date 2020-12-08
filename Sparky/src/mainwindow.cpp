@@ -3601,6 +3601,7 @@ updateChartTitle()
     else if ((ui->tabWidget_2->currentIndex() == 5) && (ui->tabWidget_8->currentIndex() == 2)) chart->setTitle("Pipe 3 at Loop 6");
 }
 
+
 void
 MainWindow::
 connectCalibrationControls()
@@ -3642,20 +3643,36 @@ calibration_1_1()
         return;       
     }
 
+
     const int slave = ui->lineEdit_2->text().toInt();
-    const int addr = ui->startAddr->value()-1;
+/*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
     bool is16Bit = false;
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+    createLoopFile_L1P1(slave);
 
     ui->pushButton_4->setText(tr("P A U S E"));
-    memset( dest, 0, 1024 );
+/*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
 }
+
+
+void
+MainWindow::
+createLoopFile_L1P1(const int sn)
+{
+    if (ui->radioButton_4->isChecked()) return;             // LOW
+    else if (ui->radioButton_195->isChecked()) return;      // MID 
+    else if (ui->radioButton_194->isChecked()) return;      // FULL 
+    else if (ui->radioButton_3->isChecked()) return;        // HIGH 
+}
+
 
 
 void
@@ -4582,15 +4599,7 @@ updateRegisters(const bool isRazor, const int i)
 }
 
 
-void
-MainWindow::
-createLoopFile_L1P1(const int sn)
-{
-    if (ui->radioButton_4->isChecked()) return;             // LOW
-    else if (ui->radioButton_195->isChecked()) return;      // MID 
-    else if (ui->radioButton_194->isChecked()) return;      // FULL 
-    else if (ui->radioButton_3->isChecked()) return;        // HIGH 
-}
+
 
 
 void

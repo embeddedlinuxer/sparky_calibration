@@ -22,6 +22,10 @@
 #define EEA false
 
 /// calibration file names
+#define HIGH                    "G:\HIGHCUT"
+#define FULL                    "G:\FULLCUT" 
+#define MID                     "G:\MIDCUT"
+#define LOW                     "G:\LOWCUT"
 #define FILE_LIST               "Filelist.LST"
 #define AMB_TWENTY              "AMB_020.LCT"
 #define TWENTY_FIFTYFIVE        "020_055.LCT"
@@ -29,10 +33,8 @@
 #define CALIBRAT                "CALIBRAT.LCI"
 #define ADJUSTED                "ADJUSTED.LCI"
 #define ROLLOVER                "ROLLOVER.LCR"
-#define HIGH                    "G:\HIGHCUT"
-#define FULL                    "G:\FULLCUT" 
-#define MID                     "G:\MIDCUT"
-#define LOW                     "G:\LOWCUT"
+
+
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -72,7 +74,6 @@ public:
 
     void delay(int);
 
-    void writeLoopFileL1P1(const int);
 
     modbus_t * m_serialModbus;
     modbus_t * m_serialModbus_2;
