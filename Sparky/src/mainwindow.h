@@ -22,19 +22,43 @@
 #define EEA false
 
 /// calibration file names
-#define HIGH                    "G:\HIGHCUT"
-#define FULL                    "G:\FULLCUT" 
-#define MID                     "G:\MIDCUT"
-#define LOW                     "G:\LOWCUT"
-#define FILE_LIST               "Filelist.LST"
-#define AMB_TWENTY              "AMB_020.LCT"
-#define TWENTY_FIFTYFIVE        "020_055.LCT"
-#define FIFTYFIVE_THIRTYEIGHT   "055_038.LCI"
-#define CALIBRAT                "CALIBRAT.LCI"
-#define ADJUSTED                "ADJUSTED.LCI"
-#define ROLLOVER                "ROLLOVER.LCR"
 
+#define HIGH                        "G:\\HIGHCUT\\HC"
+#define FULL                        "G:\\FULLCUT\\FC" 
+#define MID                         "G:\\MIDCUT\\MC"
+#define LOW                         "G:\\LOWCUT\\LC"
 
+#define FILE_LIST_LC               "Filelist.LST"
+#define AMB_TWENTY_LC              "AMB_020.LCT"
+#define TWENTY_FIFTYFIVE_LC        "020_055.LCT"
+#define FIFTYFIVE_THIRTYEIGHT_LC   "055_038.LCI"
+#define CALIBRAT_LC                "CALIBRAT.LCI"
+#define ADJUSTED_LC                "ADJUSTED.LCI"
+#define ROLLOVER_LC                "ROLLOVER.LCR"
+
+#define FILE_LIST_MC               "Filelist.LST"
+#define AMB_TWENTY_MC              "AMB_020.MCT"
+#define TWENTY_FIFTYFIVE_MC        "020_055.MCT"
+#define FIFTYFIVE_THIRTYEIGHT_MC   "055_038.MCI"
+#define CALIBRAT_MC                "CALIBRAT.MCI"
+#define ADJUSTED_MC                "ADJUSTED.MCI"
+#define ROLLOVER_MC                "ROLLOVER.MCR"
+
+#define FILE_LIST_FC               "Filelist.LST"
+#define AMB_TWENTY_FC              "AMB_020.FCT"
+#define TWENTY_FIFTYFIVE_FC        "020_055.FCT"
+#define FIFTYFIVE_THIRTYEIGHT_FC   "055_038.FCI"
+#define CALIBRAT_FC                "CALIBRAT.FCI"
+#define ADJUSTED_FC                "ADJUSTED.FCI"
+#define ROLLOVER_FC                "ROLLOVER.FCR"
+
+#define FILE_LIST_HC               "Filelist.LST"
+#define AMB_TWENTY_HC              "AMB_020.HCT"
+#define TWENTY_FIFTYFIVE_HC        "020_055.HCT"
+#define FIFTYFIVE_THIRTYEIGHT_HC   "055_038.HCI"
+#define CALIBRAT_HC                "CALIBRAT.HCI"
+#define ADJUSTED_HC                "ADJUSTED.HCI"
+#define ROLLOVER_HC                "ROLLOVER.HCR"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -136,29 +160,7 @@ public:
 
 private slots:
 
-    void createLoopFile_L1P1(const int);
-    void createLoopFile_L1P2(const int);
-    void createLoopFile_L1P3(const int);
-
-    void createLoopFile_L2P1(const int);
-    void createLoopFile_L2P2(const int);
-    void createLoopFile_L2P3(const int);
-
-    void createLoopFile_L3P1(const int);
-    void createLoopFile_L3P2(const int);
-    void createLoopFile_L3P3(const int);
-
-    void createLoopFile_L4P1(const int);
-    void createLoopFile_L4P2(const int);
-    void createLoopFile_L4P3(const int);
-
-    void createLoopFile_L5P1(const int);
-    void createLoopFile_L5P2(const int);
-    void createLoopFile_L5P3(const int);
-
-    void createLoopFile_L6P1(const int);
-    void createLoopFile_L6P2(const int);
-    void createLoopFile_L6P3(const int);
+    void createLoopFiles(const int, const QString, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &);
 
     void onRtuPortActive(bool);
     void onRtuPortActive_2(bool);
@@ -174,24 +176,24 @@ private slots:
     void changeSerialPort_5(int);
     void changeSerialPort_6(int);
 
-    void calibration_1_1();
-    void calibration_1_2();
-    void calibration_1_3();
-    void calibration_2_1();
-    void calibration_2_2();
-    void calibration_2_3();
-    void calibration_3_1();
-    void calibration_3_2();
-    void calibration_3_3();
-    void calibration_4_1();
-    void calibration_4_2();
-    void calibration_4_3();
-    void calibration_5_1();
-    void calibration_5_2();
-    void calibration_5_3();
-    void calibration_6_1();
-    void calibration_6_2();
-    void calibration_6_3();
+    void calibration_L1P1();
+    void calibration_L1P2();
+    void calibration_L1P3();
+    void calibration_L2P1();
+    void calibration_L2P2();
+    void calibration_L2P3();
+    void calibration_L3P1();
+    void calibration_L3P2();
+    void calibration_L3P3();
+    void calibration_L4P1();
+    void calibration_L4P2();
+    void calibration_L4P3();
+    void calibration_L5P1();
+    void calibration_L5P2();
+    void calibration_L5P3();
+    void calibration_L6P1();
+    void calibration_L6P2();
+    void calibration_L6P3();
 
     void initializeToolbarIcons(void);
     void initializeFrequencyGauge();
@@ -243,8 +245,6 @@ private slots:
     void onRadioButton_8Pressed();
     void onRadioButton_9Pressed();
     void onRadioButton_10Pressed();
-    void onRadioButton_200Pressed();
-    void onRadioButton_201Pressed();
     void onRadioButton_15Pressed();
     void onRadioButton_16Pressed();
     void onRadioButton_19Pressed();
@@ -303,10 +303,49 @@ private slots:
     void onRadioButton_98Pressed();
     void onRadioButton_99Pressed();
     void onRadioButton_100Pressed();
-    void onRadioButton_103Pressed();
-    void onRadioButton_104Pressed();
     void onRadioButton_105Pressed();
     void onRadioButton_106Pressed();
+    void onRadioButton_194Pressed();
+    void onRadioButton_195Pressed();
+    void onRadioButton_196Pressed();
+    void onRadioButton_197Pressed();
+    void onRadioButton_200Pressed();
+    void onRadioButton_201Pressed();
+    void onRadioButton_202Pressed();
+    void onRadioButton_203Pressed();
+    void onRadioButton_204Pressed();
+    void onRadioButton_205Pressed();
+    void onRadioButton_206Pressed();
+    void onRadioButton_207Pressed();
+    void onRadioButton_208Pressed();
+    void onRadioButton_209Pressed();
+    void onRadioButton_210Pressed();
+    void onRadioButton_211Pressed();
+    void onRadioButton_212Pressed();
+    void onRadioButton_213Pressed();
+    void onRadioButton_214Pressed();
+    void onRadioButton_215Pressed();
+    void onRadioButton_216Pressed();
+    void onRadioButton_217Pressed();
+    void onRadioButton_218Pressed();
+    void onRadioButton_219Pressed();
+    void onRadioButton_220Pressed();
+    void onRadioButton_221Pressed();
+    void onRadioButton_222Pressed();
+    void onRadioButton_223Pressed();
+    void onRadioButton_224Pressed();
+    void onRadioButton_225Pressed();
+    void onRadioButton_226Pressed();
+    void onRadioButton_227Pressed();
+    void onRadioButton_228Pressed();
+    void onRadioButton_229Pressed();
+    void onRadioButton_230Pressed();
+    void onRadioButton_231Pressed();
+    void onRadioButton_234Pressed();
+    void onRadioButton_235Pressed();
+    void onRadioButton_236Pressed();
+    void onRadioButton_237Pressed();
+
 
     // update graph
     void updateGraph();
@@ -320,7 +359,152 @@ private:
     void keyReleaseEvent(QKeyEvent* event);
 
     Ui::MainWindowClass * ui;
+
+    /// loop files
+    QFile file1_L1P1;
+    QFile file2_L1P1;
+    QFile file3_L1P1;
+    QFile file4_L1P1;
+    QFile file5_L1P1;
+    QFile file6_L1P1;
+    QFile file7_L1P1;
    
+    QFile file1_L1P2;
+    QFile file2_L1P2;
+    QFile file3_L1P2;
+    QFile file4_L1P2;
+    QFile file5_L1P2;
+    QFile file6_L1P2;
+    QFile file7_L1P2;
+
+    QFile file1_L1P3;
+    QFile file2_L1P3;
+    QFile file3_L1P3;
+    QFile file4_L1P3;
+    QFile file5_L1P3;
+    QFile file6_L1P3;
+    QFile file7_L1P3;
+   
+    QFile file1_L2P1;
+    QFile file2_L2P1;
+    QFile file3_L2P1;
+    QFile file4_L2P1;
+    QFile file5_L2P1;
+    QFile file6_L2P1;
+    QFile file7_L2P1;
+
+    QFile file1_L2P2;
+    QFile file2_L2P2;
+    QFile file3_L2P2;
+    QFile file4_L2P2;
+    QFile file5_L2P2;
+    QFile file6_L2P2;
+    QFile file7_L2P2;
+   
+    QFile file1_L2P3;
+    QFile file2_L2P3;
+    QFile file3_L2P3;
+    QFile file4_L2P3;
+    QFile file5_L2P3;
+    QFile file6_L2P3;
+    QFile file7_L2P3;
+
+    QFile file1_L3P1;
+    QFile file2_L3P1;
+    QFile file3_L3P1;
+    QFile file4_L3P1;
+    QFile file5_L3P1;
+    QFile file6_L3P1;
+    QFile file7_L3P1;
+   
+    QFile file1_L3P2;
+    QFile file2_L3P2;
+    QFile file3_L3P2;
+    QFile file4_L3P2;
+    QFile file5_L3P2;
+    QFile file6_L3P2;
+    QFile file7_L3P2;
+
+    QFile file1_L3P3;
+    QFile file2_L3P3;
+    QFile file3_L3P3;
+    QFile file4_L3P3;
+    QFile file5_L3P3;
+    QFile file6_L3P3;
+    QFile file7_L3P3;
+   
+    QFile file1_L4P1;
+    QFile file2_L4P1;
+    QFile file3_L4P1;
+    QFile file4_L4P1;
+    QFile file5_L4P1;
+    QFile file6_L4P1;
+    QFile file7_L4P1;
+
+    QFile file1_L4P2;
+    QFile file2_L4P2;
+    QFile file3_L4P2;
+    QFile file4_L4P2;
+    QFile file5_L4P2;
+    QFile file6_L4P2;
+    QFile file7_L4P2;
+   
+    QFile file1_L4P3;
+    QFile file2_L4P3;
+    QFile file3_L4P3;
+    QFile file4_L4P3;
+    QFile file5_L4P3;
+    QFile file6_L4P3;
+    QFile file7_L4P3;
+
+    QFile file1_L5P1;
+    QFile file2_L5P1;
+    QFile file3_L5P1;
+    QFile file4_L5P1;
+    QFile file5_L5P1;
+    QFile file6_L5P1;
+    QFile file7_L5P1;
+   
+    QFile file1_L5P2;
+    QFile file2_L5P2;
+    QFile file3_L5P2;
+    QFile file4_L5P2;
+    QFile file5_L5P2;
+    QFile file6_L5P2;
+    QFile file7_L5P2;
+
+    QFile file1_L5P3;
+    QFile file2_L5P3;
+    QFile file3_L5P3;
+    QFile file4_L5P3;
+    QFile file5_L5P3;
+    QFile file6_L5P3;
+    QFile file7_L5P3;
+   
+    QFile file1_L6P1;
+    QFile file2_L6P1;
+    QFile file3_L6P1;
+    QFile file4_L6P1;
+    QFile file5_L6P1;
+    QFile file6_L6P1;
+    QFile file7_L6P1;
+ 
+    QFile file1_L6P2;
+    QFile file2_L6P2;
+    QFile file3_L6P2;
+    QFile file4_L6P2;
+    QFile file5_L6P2;
+    QFile file6_L6P2;
+    QFile file7_L6P2;
+
+    QFile file1_L6P3;
+    QFile file2_L6P3;
+    QFile file3_L6P3;
+    QFile file4_L6P3;
+    QFile file5_L6P3;
+    QFile file6_L6P3;
+    QFile file7_L6P3;
+
     modbus_t * m_modbus;
     modbus_t * m_modbus_2;
     modbus_t * m_modbus_3;

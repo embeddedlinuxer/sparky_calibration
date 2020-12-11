@@ -1089,7 +1089,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_8">
      <attribute name="title">
@@ -1373,54 +1373,6 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_7">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_5">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_6">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_6">
         <property name="geometry">
          <rect>
@@ -1459,7 +1411,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_194">
@@ -1473,6 +1425,9 @@
          </property>
          <property name="text">
           <string>FULL</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_195">
@@ -1493,7 +1448,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1561,7 +1516,7 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1604,6 +1559,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_40">
          <property name="geometry">
@@ -1614,13 +1575,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_9">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1663,6 +1630,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_38">
          <property name="geometry">
@@ -1672,6 +1645,12 @@
            <width>81</width>
            <height>20</height>
           </rect>
+         </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </widget>
@@ -1692,7 +1671,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -1733,7 +1712,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -1754,6 +1733,54 @@
         <property name="text">
          <string>S T A R T</string>
         </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_5">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_6">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_6">
@@ -1802,59 +1829,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_14">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_11">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_12">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_69">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1897,6 +1876,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_42">
          <property name="geometry">
@@ -1907,13 +1892,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_70">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -1956,6 +1947,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_44">
          <property name="geometry">
@@ -1966,13 +1963,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_78">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -1998,7 +2001,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2011,7 +2014,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2139,7 +2142,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_196">
@@ -2154,6 +2157,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_197">
          <property name="geometry">
@@ -2166,6 +2172,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_14">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_11">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_12">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -2216,59 +2270,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_17">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_17">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_18">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_71">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2311,6 +2317,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_46">
          <property name="geometry">
@@ -2321,13 +2333,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_72">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2370,6 +2388,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_48">
          <property name="geometry">
@@ -2380,13 +2404,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_80">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -2412,7 +2442,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2425,7 +2455,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2553,7 +2583,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_202">
@@ -2568,6 +2598,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_203">
          <property name="geometry">
@@ -2580,6 +2613,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_17">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_18">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -2651,59 +2732,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_20">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_21">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_22">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_73">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2746,6 +2779,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_50">
          <property name="geometry">
@@ -2756,13 +2795,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_74">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -2805,6 +2850,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_52">
          <property name="geometry">
@@ -2815,13 +2866,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_81">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -2847,7 +2904,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -2860,7 +2917,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -2988,7 +3045,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_204">
@@ -3003,6 +3060,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_205">
          <property name="geometry">
@@ -3015,6 +3075,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_20">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_21">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_22">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -3065,59 +3173,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_24">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_29">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_30">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_75">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3160,6 +3220,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_54">
          <property name="geometry">
@@ -3170,13 +3236,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_76">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3219,6 +3291,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_56">
          <property name="geometry">
@@ -3229,13 +3307,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_82">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -3261,7 +3345,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3274,7 +3358,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3402,7 +3486,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_206">
@@ -3417,6 +3501,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_207">
          <property name="geometry">
@@ -3429,6 +3516,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_24">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_29">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_30">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -3479,59 +3614,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_27">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_35">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_36">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_77">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3574,6 +3661,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_58">
          <property name="geometry">
@@ -3584,13 +3677,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_78">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -3633,6 +3732,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_60">
          <property name="geometry">
@@ -3643,13 +3748,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_83">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -3675,7 +3786,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -3688,7 +3799,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -3816,7 +3927,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_208">
@@ -3831,6 +3942,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_209">
          <property name="geometry">
@@ -3843,6 +3957,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_27">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_35">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_36">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -4080,7 +4242,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_17">
        <attribute name="title">
@@ -4128,59 +4290,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_30">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_39">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_40">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_79">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4223,6 +4337,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_62">
          <property name="geometry">
@@ -4233,13 +4353,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_80">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4282,6 +4408,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_64">
          <property name="geometry">
@@ -4292,13 +4424,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_84">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -4324,7 +4462,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>320</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4337,7 +4475,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4465,7 +4603,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_210">
@@ -4480,6 +4618,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_211">
          <property name="geometry">
@@ -4492,6 +4633,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_30">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_39">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_40">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -4542,59 +4731,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_34">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_47">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_48">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_81">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4637,6 +4778,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_66">
          <property name="geometry">
@@ -4647,13 +4794,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_82">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -4696,6 +4849,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_68">
          <property name="geometry">
@@ -4706,13 +4865,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_85">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -4738,7 +4903,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -4751,7 +4916,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -4879,7 +5044,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_212">
@@ -4894,6 +5059,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_213">
          <property name="geometry">
@@ -4906,6 +5074,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_34">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_47">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_48">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -4956,59 +5172,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_37">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_53">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_54">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_83">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5051,6 +5219,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_70">
          <property name="geometry">
@@ -5061,13 +5235,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_84">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5110,6 +5290,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_72">
          <property name="geometry">
@@ -5120,13 +5306,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_86">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -5152,7 +5344,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5165,7 +5357,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5293,7 +5485,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_214">
@@ -5308,6 +5500,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_215">
          <property name="geometry">
@@ -5320,6 +5515,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_37">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_53">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_54">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -5557,7 +5800,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_20">
        <attribute name="title">
@@ -5605,59 +5848,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_40">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_57">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_58">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_85">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5700,6 +5895,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_74">
          <property name="geometry">
@@ -5710,13 +5911,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_86">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -5759,6 +5966,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_76">
          <property name="geometry">
@@ -5769,13 +5982,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_87">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -5801,7 +6020,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -5814,7 +6033,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -5942,7 +6161,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_216">
@@ -5957,6 +6176,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_217">
          <property name="geometry">
@@ -5969,6 +6191,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_40">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_57">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_58">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -6019,59 +6289,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_44">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_65">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_66">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_87">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6114,6 +6336,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_78">
          <property name="geometry">
@@ -6124,13 +6352,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_88">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6173,6 +6407,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_80">
          <property name="geometry">
@@ -6183,13 +6423,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_88">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -6215,7 +6461,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6228,7 +6474,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6356,7 +6602,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_218">
@@ -6371,6 +6617,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_219">
          <property name="geometry">
@@ -6383,6 +6632,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_44">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_65">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_66">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -6433,59 +6730,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_47">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_71">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_72">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_89">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6528,6 +6777,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_82">
          <property name="geometry">
@@ -6538,13 +6793,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_90">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -6587,6 +6848,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_84">
          <property name="geometry">
@@ -6597,13 +6864,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_89">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -6629,7 +6902,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -6642,7 +6915,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -6770,7 +7043,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_220">
@@ -6785,6 +7058,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_221">
          <property name="geometry">
@@ -6797,6 +7073,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_47">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_71">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_72">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -7082,59 +7406,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_50">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_75">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_76">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_91">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7177,6 +7453,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_86">
          <property name="geometry">
@@ -7187,13 +7469,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_92">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7236,6 +7524,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_88">
          <property name="geometry">
@@ -7246,13 +7540,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_90">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -7278,7 +7578,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7291,7 +7591,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7419,7 +7719,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_222">
@@ -7434,6 +7734,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_223">
          <property name="geometry">
@@ -7446,6 +7749,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_50">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_75">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_76">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -7496,59 +7847,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_54">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_83">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_84">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_93">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7591,6 +7894,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_90">
          <property name="geometry">
@@ -7601,13 +7910,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_94">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -7650,6 +7965,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_92">
          <property name="geometry">
@@ -7660,13 +7981,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_91">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -7692,7 +8019,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -7705,7 +8032,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -7833,7 +8160,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_224">
@@ -7848,6 +8175,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_225">
          <property name="geometry">
@@ -7860,6 +8190,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_54">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_83">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_84">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -7910,59 +8288,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_57">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_89">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_90">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_95">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8005,6 +8335,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_94">
          <property name="geometry">
@@ -8015,13 +8351,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_96">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8064,6 +8406,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_96">
          <property name="geometry">
@@ -8074,13 +8422,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_92">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -8106,7 +8460,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8119,7 +8473,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8247,7 +8601,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_226">
@@ -8262,6 +8616,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_227">
          <property name="geometry">
@@ -8274,6 +8631,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_57">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_89">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_90">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -8511,7 +8916,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_26">
        <attribute name="title">
@@ -8559,59 +8964,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_60">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_93">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_94">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_97">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8654,6 +9011,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_98">
          <property name="geometry">
@@ -8664,13 +9027,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_98">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -8713,6 +9082,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_100">
          <property name="geometry">
@@ -8723,13 +9098,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_93">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -8755,7 +9136,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -8768,7 +9149,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -8896,7 +9277,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_228">
@@ -8911,6 +9292,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_229">
          <property name="geometry">
@@ -8923,6 +9307,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_60">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_93">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_94">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -8973,59 +9405,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_64">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_101">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_102">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_99">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9068,6 +9452,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_102">
          <property name="geometry">
@@ -9078,13 +9468,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_100">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9127,6 +9523,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_104">
          <property name="geometry">
@@ -9137,13 +9539,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_138">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -9169,7 +9577,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9182,7 +9590,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -9310,7 +9718,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_230">
@@ -9325,6 +9733,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_231">
          <property name="geometry">
@@ -9337,6 +9748,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_64">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_101">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_102">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
@@ -9387,59 +9846,11 @@
          </property>
         </widget>
        </widget>
-       <widget class="QGroupBox" name="groupBox_67">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>291</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>2</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>Mode</string>
-        </property>
-        <widget class="QRadioButton" name="radioButton_107">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>14</y>
-           <width>91</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>CALIBRATION</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_108">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>7</y>
-           <width>82</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>SIMULATION</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QGroupBox" name="groupBox_101">
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9482,6 +9893,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_106">
          <property name="geometry">
@@ -9492,13 +9909,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_102">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>200</y>
+          <y>150</y>
           <width>141</width>
           <height>81</height>
          </rect>
@@ -9541,6 +9964,12 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>99</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_108">
          <property name="geometry">
@@ -9551,13 +9980,19 @@
            <height>20</height>
           </rect>
          </property>
+         <property name="text">
+          <string>60</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </widget>
        <widget class="QLabel" name="label_142">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>300</y>
+          <y>250</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -9583,7 +10018,7 @@
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>300</y>
+          <y>250</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -9596,7 +10031,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
+          <y>280</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -9724,7 +10159,7 @@
           <string>HIGH</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_236">
@@ -9739,6 +10174,9 @@
          <property name="text">
           <string>FULL</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
         <widget class="QRadioButton" name="radioButton_237">
          <property name="geometry">
@@ -9751,6 +10189,54 @@
          </property>
          <property name="text">
           <string>MID</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_67">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>2</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Mode</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_107">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>14</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CALIBRATION</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_108">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>7</y>
+           <width>82</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SIMULATION</string>
          </property>
         </widget>
        </widget>
