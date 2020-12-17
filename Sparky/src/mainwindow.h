@@ -15,6 +15,7 @@
 #include "modbus.h"
 #include "qcgaugewidget.h"
 
+#define RELEASE_VERSION             "0.0.7"
 #define RAZ_REG_WATERCUT 
 #define RAZ_REG_WATERCUT 
 #define MAX_PIPE 18
@@ -22,7 +23,6 @@
 #define EEA false
 
 /// calibration file names
-
 #define HIGH                        "G:\\HIGHCUT\\HC"
 #define FULL                        "G:\\FULLCUT\\FC" 
 #define MID                         "G:\\MIDCUT\\MC"
@@ -160,7 +160,7 @@ public:
 
 private slots:
 
-    void createLoopFiles(const int, const QString, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &);
+    void createLoopFiles(const int, const QString, const BOOL, const QString, const QString, const QString, const QString, const QString, const QString, const QString, const QString, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &, QFile &);
 
     void onRtuPortActive(bool);
     void onRtuPortActive_2(bool);
@@ -228,7 +228,6 @@ private slots:
     void onUploadEquation();
     void onDownloadEquation();
     void updateRegisters(const bool, const int);
-    void onProductBtnPressed();
     void onDownloadButtonChecked(bool);
     void saveCsvFile();
     void onEquationTableChecked(bool);
@@ -241,70 +240,224 @@ private slots:
     void onRadioButton_2Pressed();
     void onRadioButton_3Pressed();
     void onRadioButton_4Pressed();
+    void onRadioButton_5Pressed();
+    void onRadioButton_6Pressed();
     void onRadioButton_7Pressed();
     void onRadioButton_8Pressed();
     void onRadioButton_9Pressed();
     void onRadioButton_10Pressed();
-    void onRadioButton_15Pressed();
-    void onRadioButton_16Pressed();
-    void onRadioButton_19Pressed();
-    void onRadioButton_20Pressed();
+    void onRadioButton_11Pressed();
+    void onRadioButton_12Pressed();
+    void onRadioButton_13Pressed();
+    //void onRadioButton_14Pressed();
+    //void onRadioButton_15Pressed();
+    //void onRadioButton_16Pressed();
+    //void onRadioButton_17Pressed();
+    //void onRadioButton_18Pressed();
+    //void onRadioButton_19Pressed();
+    //void onRadioButton_20Pressed();
+    //void onRadioButton_21Pressed();
+    void onRadioButton_22Pressed();
     void onRadioButton_23Pressed();
     void onRadioButton_24Pressed();
-    void onRadioButton_25Pressed();
-    void onRadioButton_26Pressed();
-    void onRadioButton_27Pressed();
-    void onRadioButton_28Pressed();
-    void onRadioButton_31Pressed();
-    void onRadioButton_32Pressed();
-    void onRadioButton_33Pressed();
-    void onRadioButton_34Pressed();
+    //void onRadioButton_25Pressed();
+    //void onRadioButton_26Pressed();
+    //void onRadioButton_27Pressed();
+    //void onRadioButton_28Pressed();
+    //void onRadioButton_29Pressed();
+    //void onRadioButton_30Pressed();
+    //void onRadioButton_31Pressed();
+    //void onRadioButton_32Pressed();
+    //void onRadioButton_33Pressed();
+    //void onRadioButton_34Pressed();
+    //void onRadioButton_35Pressed();
+    //void onRadioButton_36Pressed();
     void onRadioButton_37Pressed();
     void onRadioButton_38Pressed();
+    void onRadioButton_39Pressed();
+    void onRadioButton_40Pressed();
     void onRadioButton_41Pressed();
     void onRadioButton_42Pressed();
     void onRadioButton_43Pressed();
     void onRadioButton_44Pressed();
-    void onRadioButton_45Pressed();
+   /* void onRadioButton_45Pressed();
     void onRadioButton_46Pressed();
+    void onRadioButton_47Pressed();
+    void onRadioButton_48Pressed();
     void onRadioButton_49Pressed();
     void onRadioButton_50Pressed();
     void onRadioButton_51Pressed();
     void onRadioButton_52Pressed();
+    void onRadioButton_53Pressed();
+    void onRadioButton_54Pressed();
     void onRadioButton_55Pressed();
     void onRadioButton_56Pressed();
+    void onRadioButton_57Pressed();
+    void onRadioButton_58Pressed();
     void onRadioButton_59Pressed();
     void onRadioButton_60Pressed();
     void onRadioButton_61Pressed();
     void onRadioButton_62Pressed();
     void onRadioButton_63Pressed();
     void onRadioButton_64Pressed();
+    void onRadioButton_65Pressed();
+    void onRadioButton_66Pressed();
     void onRadioButton_67Pressed();
-    void onRadioButton_68Pressed();
+    void onRadioButton_68Pressed();*/
     void onRadioButton_69Pressed();
     void onRadioButton_70Pressed();
+    void onRadioButton_71Pressed();
+    void onRadioButton_72Pressed();
     void onRadioButton_73Pressed();
     void onRadioButton_74Pressed();
+    void onRadioButton_75Pressed();
+    void onRadioButton_76Pressed();
     void onRadioButton_77Pressed();
     void onRadioButton_78Pressed();
     void onRadioButton_79Pressed();
     void onRadioButton_80Pressed();
     void onRadioButton_81Pressed();
     void onRadioButton_82Pressed();
+    void onRadioButton_83Pressed();
+    void onRadioButton_84Pressed();
     void onRadioButton_85Pressed();
     void onRadioButton_86Pressed();
     void onRadioButton_87Pressed();
     void onRadioButton_88Pressed();
+    void onRadioButton_89Pressed();
+    void onRadioButton_90Pressed();
     void onRadioButton_91Pressed();
     void onRadioButton_92Pressed();
+    void onRadioButton_93Pressed();
+    void onRadioButton_94Pressed();
     void onRadioButton_95Pressed();
     void onRadioButton_96Pressed();
     void onRadioButton_97Pressed();
     void onRadioButton_98Pressed();
     void onRadioButton_99Pressed();
     void onRadioButton_100Pressed();
+    void onRadioButton_101Pressed();
+    void onRadioButton_102Pressed();
+    void onRadioButton_103Pressed();
+    void onRadioButton_104Pressed();
     void onRadioButton_105Pressed();
     void onRadioButton_106Pressed();
+    void onRadioButton_107Pressed();
+    void onRadioButton_108Pressed();
+    void onRadioButton_109Pressed();
+    void onRadioButton_110Pressed();
+    void onRadioButton_111Pressed();
+    void onRadioButton_112Pressed();
+    void onRadioButton_113Pressed();
+    void onRadioButton_114Pressed();
+    void onRadioButton_115Pressed();
+    void onRadioButton_116Pressed();
+    void onRadioButton_117Pressed();
+    void onRadioButton_118Pressed();
+    void onRadioButton_119Pressed();
+    void onRadioButton_120Pressed();
+    void onRadioButton_121Pressed();
+    void onRadioButton_122Pressed();
+    void onRadioButton_123Pressed();
+    void onRadioButton_124Pressed();
+    void onRadioButton_125Pressed();
+    void onRadioButton_126Pressed();
+    void onRadioButton_127Pressed();
+    void onRadioButton_128Pressed();
+    void onRadioButton_129Pressed();
+    void onRadioButton_130Pressed();
+    void onRadioButton_131Pressed();
+    void onRadioButton_132Pressed();
+    void onRadioButton_133Pressed();
+    void onRadioButton_134Pressed();
+    void onRadioButton_135Pressed();
+    void onRadioButton_136Pressed();
+    void onRadioButton_137Pressed();
+    void onRadioButton_138Pressed();
+    void onRadioButton_139Pressed();
+    void onRadioButton_140Pressed();
+    void onRadioButton_141Pressed();
+    void onRadioButton_142Pressed();
+    void onRadioButton_143Pressed();
+    void onRadioButton_144Pressed();
+    void onRadioButton_145Pressed();
+    void onRadioButton_146Pressed();
+    void onRadioButton_147Pressed();
+    void onRadioButton_148Pressed();
+    void onRadioButton_149Pressed();
+    void onRadioButton_150Pressed();
+    void onRadioButton_151Pressed();
+    void onRadioButton_152Pressed();
+    void onRadioButton_153Pressed();
+    void onRadioButton_154Pressed();
+    void onRadioButton_155Pressed();
+    void onRadioButton_156Pressed();
+    void onRadioButton_157Pressed();
+    void onRadioButton_158Pressed();
+    void onRadioButton_159Pressed();
+    void onRadioButton_160Pressed();
+    void onRadioButton_161Pressed();
+    void onRadioButton_162Pressed();
+    void onRadioButton_163Pressed();
+    void onRadioButton_164Pressed();
+    void onRadioButton_165Pressed();
+    void onRadioButton_166Pressed();
+    void onRadioButton_167Pressed();
+    void onRadioButton_168Pressed();
+    void onRadioButton_169Pressed();
+    void onRadioButton_170Pressed();
+    void onRadioButton_171Pressed();
+    void onRadioButton_172Pressed();
+    void onRadioButton_173Pressed();
+    void onRadioButton_174Pressed();
+    void onRadioButton_175Pressed();
+    void onRadioButton_176Pressed();
+    void onRadioButton_177Pressed();
+    void onRadioButton_178Pressed();
+    void onRadioButton_179Pressed();
+    void onRadioButton_180Pressed();
+    void onRadioButton_198Pressed();
+    void onRadioButton_199Pressed();
+    void onRadioButton_232Pressed();
+    void onRadioButton_233Pressed();
+    void onRadioButton_238Pressed();
+    void onRadioButton_239Pressed();
+    void onRadioButton_240Pressed();
+    void onRadioButton_241Pressed();
+    void onRadioButton_242Pressed();
+    void onRadioButton_243Pressed();
+    void onRadioButton_244Pressed();
+    void onRadioButton_245Pressed();
+    void onRadioButton_246Pressed();
+    void onRadioButton_247Pressed();
+    void onRadioButton_248Pressed();
+    void onRadioButton_249Pressed();
+    void onRadioButton_250Pressed();
+    void onRadioButton_251Pressed();
+    void onRadioButton_252Pressed();
+    void onRadioButton_253Pressed();
+    void onRadioButton_254Pressed();
+    void onRadioButton_255Pressed();
+    void onRadioButton_256Pressed();
+    void onRadioButton_257Pressed();
+    void onRadioButton_258Pressed();
+    void onRadioButton_259Pressed();
+    void onRadioButton_260Pressed();
+    void onRadioButton_261Pressed();
+    void onRadioButton_262Pressed();
+    void onRadioButton_263Pressed();
+    void onRadioButton_264Pressed();
+    void onRadioButton_265Pressed();
+    void onRadioButton_266Pressed();
+    void onRadioButton_267Pressed();
+    void onRadioButton_268Pressed();
+    void onRadioButton_269Pressed();
+    void onRadioButton_270Pressed();
+    void onRadioButton_271Pressed();
+    void onRadioButton_272Pressed();
+    void onRadioButton_273Pressed();
+
+
     void onRadioButton_194Pressed();
     void onRadioButton_195Pressed();
     void onRadioButton_196Pressed();
@@ -359,6 +512,12 @@ private:
     void keyReleaseEvent(QKeyEvent* event);
 
     Ui::MainWindowClass * ui;
+
+    /// versioning
+    QString PROJECT_VERSION = RELEASE_VERSION;
+    QString PROJECT         = "Sparky ";
+    QString PHASEDYNAMICS   = " - Phase Dynamics";
+    QString SPARKY          = PROJECT + PROJECT_VERSION + PHASEDYNAMICS;
 
     /// loop files
     QFile file1_L1P1;

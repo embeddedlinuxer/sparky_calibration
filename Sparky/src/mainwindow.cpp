@@ -17,7 +17,6 @@
 #include "ui_mainwindow.h"
 #include "qextserialenumerator.h"
 
-
 #define SLAVE_CALIBRATION   0xFA
 #define FUNC_READ_FLOAT     0x04
 #define FUNC_READ_INT       0x04 
@@ -34,6 +33,7 @@
 #define INT_W               3
 #define COIL_R              4
 #define COIL_W              5
+
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -64,6 +64,9 @@ MainWindow::MainWindow( QWidget * _parent ) :
 {
 	ui->setupUi(this);
 
+    /// versioning
+    setWindowTitle(SPARKY);
+
     updateRegisters(EEA,0); // L1-P1-EEA
     initializeToolbarIcons();
     initializeGauges();
@@ -84,9 +87,8 @@ MainWindow::MainWindow( QWidget * _parent ) :
     ui->statusBar->addWidget( m_statusText, 10 );
     resetStatus();
 
-    // INITIALIZE CONNECTIONS 
+    /// connections 
     connectLoopDependentData();
-    connectRegisters();
     connectRadioButtons();
     connectSerialPort();
     connectActions();
@@ -96,7 +98,7 @@ MainWindow::MainWindow( QWidget * _parent ) :
     connectProfiler();
     connectToolbar();
 
-    // clear connection at start
+    /// clear connection at start
     updateTabIcon(0, false);
 }
 
@@ -902,407 +904,36 @@ MainWindow::
 updateRPGauge()
 {}
 
-
 /// L1P1
 void
 MainWindow::
 onRadioButtonPressed()
 {
-    // analyzer
+    /// analyzer
     ui->groupBox_6->setEnabled(TRUE);
     ui->groupBox_125->setEnabled(TRUE);
+
+    updateRegisters(EEA,0);
 }
 
 void
 MainWindow::
 onRadioButton_2Pressed()
 {
-    // razor
-    ui->radioButton_195->setChecked(TRUE); // midcut
-    ui->radioButton_109->setChecked(TRUE); // 1 oscillator
-    ui->groupBox_6->setEnabled(FALSE);
-    ui->groupBox_125->setEnabled(FALSE);
+    /// razor
+    ui->groupBox_6->setDisabled(TRUE);
+    ui->groupBox_125->setDisabled(TRUE);
+
+    ui->radioButton_5->setChecked(TRUE); // midcut
+    ui->radioButton_7->setChecked(TRUE); // 1 oscillator
+
+    updateRegisters(RAZ,0);
 }
 
-
-/// L1P2
-void
-MainWindow::
-onRadioButton_9Pressed()
-{
-    ui->groupBox_11->setEnabled(TRUE);
-    ui->groupBox_126->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_10Pressed()
-{
-    ui->radioButton_197->setChecked(TRUE);
-    ui->radioButton_113->setChecked(TRUE);
-    ui->groupBox_11->setEnabled(FALSE);
-    ui->groupBox_126->setEnabled(FALSE);
-}
-
-
-/// L1P3
-void
-MainWindow::
-onRadioButton_15Pressed()
-{
-    ui->groupBox_111->setEnabled(TRUE);
-    ui->groupBox_127->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_16Pressed()
-{
-    ui->radioButton_203->setChecked(TRUE);
-    ui->radioButton_117->setChecked(TRUE);
-    ui->groupBox_111->setEnabled(FALSE);
-    ui->groupBox_127->setEnabled(FALSE);
-}
-
-
-/// L2P1
-void
-MainWindow::
-onRadioButton_19Pressed()
-{
-    ui->groupBox_21->setEnabled(TRUE);
-    ui->groupBox_128->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_20Pressed()
-{
-    ui->radioButton_205->setChecked(TRUE);
-    ui->radioButton_121->setChecked(TRUE);
-    ui->groupBox_21->setEnabled(FALSE);
-    ui->groupBox_128->setEnabled(FALSE);
-}
-
-
-/// L2P2
-void
-MainWindow::
-onRadioButton_27Pressed()
-{
-    ui->groupBox_22->setEnabled(TRUE);
-    ui->groupBox_129->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_28Pressed()
-{
-    ui->radioButton_207->setChecked(TRUE);
-    ui->radioButton_125->setChecked(TRUE);
-    ui->groupBox_22->setEnabled(FALSE);
-    ui->groupBox_129->setEnabled(FALSE);
-}
-
-
-/// L2P3
-void
-MainWindow::
-onRadioButton_33Pressed()
-{
-    ui->groupBox_25->setEnabled(TRUE);
-    ui->groupBox_130->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_34Pressed()
-{
-    ui->radioButton_209->setChecked(TRUE);
-    ui->radioButton_129->setChecked(TRUE);
-    ui->groupBox_25->setEnabled(FALSE);
-    ui->groupBox_130->setEnabled(FALSE);
-}
-
-
-/// L3P1
-void
-MainWindow::
-onRadioButton_37Pressed()
-{
-    ui->groupBox_31->setEnabled(TRUE);
-    ui->groupBox_131->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_38Pressed()
-{
-    ui->radioButton_211->setChecked(TRUE);
-    ui->radioButton_133->setChecked(TRUE);
-    ui->groupBox_31->setEnabled(FALSE);
-    ui->groupBox_131->setEnabled(TRUE);
-}
-
-
-/// L3P2
-void
-MainWindow::
-onRadioButton_45Pressed()
-{
-    ui->groupBox_32->setEnabled(TRUE);
-    ui->groupBox_132->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_46Pressed()
-{
-    ui->radioButton_213->setChecked(TRUE);
-    ui->radioButton_137->setChecked(TRUE);
-    ui->groupBox_32->setDisabled(TRUE);
-    ui->groupBox_132->setDisabled(TRUE);
-}
-
-
-/// L3P3
-void
-MainWindow::
-onRadioButton_51Pressed()
-{
-    ui->groupBox_35->setEnabled(TRUE);
-    ui->groupBox_133->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_52Pressed()
-{
-    ui->radioButton_215->setChecked(TRUE);
-    ui->radioButton_141->setChecked(TRUE);
-    ui->groupBox_35->setDisabled(TRUE);
-    ui->groupBox_133->setDisabled(TRUE);
-}
-
-
-/// L4P1
-void
-MainWindow::
-onRadioButton_55Pressed()
-{
-    ui->groupBox_41->setEnabled(TRUE);
-    ui->groupBox_134->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_56Pressed()
-{
-    ui->radioButton_217->setChecked(TRUE);
-    ui->radioButton_145->setChecked(TRUE);
-    ui->groupBox_41->setDisabled(TRUE);
-    ui->groupBox_134->setDisabled(TRUE);
-}
-
-
-/// L4P2
-void
-MainWindow::
-onRadioButton_63Pressed()
-{
-    ui->groupBox_42->setEnabled(TRUE);
-    ui->groupBox_135->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_64Pressed()
-{
-    ui->radioButton_219->setChecked(TRUE);
-    ui->radioButton_149->setChecked(TRUE);
-    ui->groupBox_42->setDisabled(TRUE);
-    ui->groupBox_135->setDisabled(TRUE);
-
-}
-
-
-/// L4P3
-void
-MainWindow::
-onRadioButton_69Pressed()
-{
-    ui->groupBox_45->setEnabled(TRUE);
-    ui->groupBox_136->setEnabled(TRUE);
-    onRadioButton_68Pressed();
-}
-
-void
-MainWindow::
-onRadioButton_70Pressed()
-{
-    ui->radioButton_221->setChecked(TRUE);
-    ui->radioButton_153->setChecked(TRUE);
-    ui->groupBox_45->setEnabled(FALSE);
-    ui->groupBox_136->setEnabled(FALSE);
-}
-
-
-/// L5P1
-void
-MainWindow::
-onRadioButton_73Pressed()
-{
-    ui->groupBox_51->setEnabled(TRUE);
-    ui->groupBox_137->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_74Pressed()
-{
-    ui->radioButton_223->setChecked(TRUE);
-    ui->radioButton_157->setChecked(TRUE);
-    ui->groupBox_51->setEnabled(FALSE);
-    ui->groupBox_137->setEnabled(FALSE);
-}
-
-
-/// L5P2
-void
-MainWindow::
-onRadioButton_81Pressed()
-{
-    ui->groupBox_52->setEnabled(TRUE);
-    ui->groupBox_138->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_82Pressed()
-{
-    ui->radioButton_225->setChecked(TRUE);
-    ui->radioButton_161->setChecked(TRUE);
-    ui->groupBox_52->setEnabled(FALSE);
-    ui->groupBox_138->setEnabled(FALSE);
-}
-
-
-/// L5P3
-void
-MainWindow::
-onRadioButton_87Pressed()
-{
-    ui->groupBox_55->setEnabled(TRUE);
-    ui->groupBox_139->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_88Pressed()
-{
-    ui->radioButton_227->setChecked(TRUE);
-    ui->radioButton_165->setChecked(TRUE);
-    ui->groupBox_55->setEnabled(FALSE);
-    ui->groupBox_139->setEnabled(FALSE);
-}
-
-
-/// L6P1
-void
-MainWindow::
-onRadioButton_91Pressed()
-{
-    ui->groupBox_61->setEnabled(TRUE);
-    ui->groupBox_140->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_92Pressed()
-{
-    ui->radioButton_229->setChecked(TRUE);
-    ui->radioButton_169->setChecked(TRUE);
-    ui->groupBox_61->setEnabled(FALSE);
-    ui->groupBox_140->setEnabled(FALSE);
-}
-
-
-/// L6P2
-void
-MainWindow::
-onRadioButton_99Pressed()
-{
-    ui->groupBox_62->setEnabled(TRUE);
-    ui->groupBox_141->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_100Pressed()
-{
-    ui->radioButton_231->setChecked(TRUE);
-    ui->radioButton_173->setChecked(TRUE);
-    ui->groupBox_62->setDisabled(TRUE);
-    ui->groupBox_141->setDisabled(TRUE);
-}
-
-
-/// L6P3
-void
-MainWindow::
-onRadioButton_105Pressed()
-{
-    ui->groupBox_112->setEnabled(TRUE);
-    ui->groupBox_142->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_106Pressed()
-{
-    ui->radioButton_237->setChecked(TRUE);
-    ui->radioButton_177->setChecked(TRUE);
-    ui->groupBox_112->setEnabled(FALSE);
-    ui->groupBox_142->setEnabled(FALSE);
-}
-
-
-///
-/// CUTS
-///
-
-/// L1P1
 void
 MainWindow::
 onRadioButton_3Pressed()
 {
-    ui->groupBox_125->setEnabled(TRUE);
-
-    /// cut
-    ui->groupBox_9->setEnabled(TRUE);  // water run
-    ui->groupBox_10->setDisabled(TRUE); // oil run
-}
-
-void
-MainWindow::
-onRadioButton_194Pressed()
-{
-    ui->groupBox_125->setEnabled(TRUE);
-
-    /// cut
-    ui->groupBox_9->setEnabled(TRUE);
-    ui->groupBox_10->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_195Pressed()
-{
-    ui->groupBox_125->setEnabled(TRUE);
-
-    /// cut
-    ui->groupBox_9->setDisabled(TRUE);
-    ui->groupBox_10->setEnabled(TRUE);
 
 }
 
@@ -1310,833 +941,1504 @@ void
 MainWindow::
 onRadioButton_4Pressed()
 {
-    ui->groupBox_125->setDisabled(TRUE);
-    ui->radioButton_109->setChecked(TRUE);
 
-    /// cut
-    ui->groupBox_9->setDisabled(TRUE);
-    ui->groupBox_10->setEnabled(TRUE);
-}
-
-
-/// L1P2
-void
-MainWindow::
-onRadioButton_8Pressed()
-{
-    ui->groupBox_126->setEnabled(TRUE);
-
-    /// cut
-    ui->groupBox_70->setEnabled(TRUE);
-    ui->groupBox_69->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_196Pressed()
+onRadioButton_5Pressed()
 {
-    ui->groupBox_126->setDisabled(TRUE);
-    ui->radioButton_113->setChecked(TRUE);
 
-    /// cut
-    ui->groupBox_70->setEnabled(TRUE);
-    ui->groupBox_69->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_197Pressed()
+onRadioButton_6Pressed()
 {
-    ui->groupBox_126->setDisabled(TRUE);
-    ui->radioButton_113->setChecked(TRUE);
 
-    /// cut
-    ui->groupBox_70->setDisabled(TRUE);
-    ui->groupBox_69->setEnabled(TRUE);
 }
 
 void
 MainWindow::
 onRadioButton_7Pressed()
 {
+
+}
+
+void
+MainWindow::
+onRadioButton_8Pressed()
+{
+
+}
+void
+MainWindow::
+onRadioButton_9Pressed()
+{
+
+}
+
+void
+MainWindow::
+onRadioButton_10Pressed()
+{
+
+}
+
+void
+MainWindow::
+onRadioButton_11Pressed()
+{
+
+}
+
+void
+MainWindow::
+onRadioButton_12Pressed()
+{
+
+}
+
+
+/// L1P2
+void
+MainWindow::
+onRadioButton_13Pressed()
+{
+    ui->groupBox_13->setEnabled(TRUE);
+    ui->groupBox_126->setEnabled(TRUE);
+
+    updateRegisters(EEA,1);
+}
+
+void
+MainWindow::
+onRadioButton_22Pressed()
+{
+    ui->radioButton_37->setChecked(TRUE);
+    ui->radioButton_39->setChecked(TRUE);
+
+    ui->groupBox_13->setDisabled(TRUE);
     ui->groupBox_126->setDisabled(TRUE);
-    ui->radioButton_113->setChecked(TRUE);
 
-    /// cut
-    ui->groupBox_70->setDisabled(TRUE);
-    ui->groupBox_69->setEnabled(TRUE);
-}
-
-
-/// L1P3
-void
-MainWindow::
-onRadioButton_201Pressed()
-{
-    ui->groupBox_127->setEnabled(TRUE);
-
-    /// cut
-    ui->groupBox_72->setEnabled(TRUE);
-    ui->groupBox_71->setDisabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_202Pressed()
-{
-    ui->groupBox_127->setDisabled(TRUE);
-    ui->radioButton_117->setChecked(TRUE);
-
-    /// cut
-    ui->groupBox_72->setEnabled(TRUE);
-    ui->groupBox_71->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_203Pressed()
-{
-    ui->groupBox_127->setDisabled(TRUE);
-    ui->radioButton_117->setChecked(TRUE);
-
-    /// cut
-    ui->groupBox_72->setDisabled(TRUE);
-    ui->groupBox_71->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_200Pressed()
-{
-    ui->groupBox_127->setDisabled(TRUE);
-    ui->radioButton_117->setChecked(TRUE);
-
-    /// cut
-    ui->groupBox_72->setDisabled(TRUE);
-    ui->groupBox_71->setEnabled(TRUE);
-}
-
-
-/// L2P1
-void
-MainWindow::
-onRadioButton_24Pressed()
-{
-    ui->groupBox_128->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_74->setEnabled(TRUE);
-    ui->groupBox_73->setDisabled(TRUE);
-}
-
-
-void
-MainWindow::
-onRadioButton_204Pressed()
-{
-    ui->radioButton_121->setChecked(TRUE);
-    ui->groupBox_128->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_74->setEnabled(TRUE);
-    ui->groupBox_73->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_205Pressed()
-{
-    ui->radioButton_121->setChecked(TRUE);
-    ui->groupBox_128->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_74->setDisabled(TRUE);
-    ui->groupBox_73->setEnabled(TRUE);
+    updateRegisters(RAZ,1);
 }
 
 void
 MainWindow::
 onRadioButton_23Pressed()
 {
-    ui->radioButton_121->setChecked(TRUE);
-    ui->groupBox_128->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_74->setDisabled(TRUE);
-    ui->groupBox_73->setEnabled(TRUE);
-}
 
-
-/// L2P2
-void
-MainWindow::
-onRadioButton_26Pressed()
-{
-    ui->groupBox_129->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_76->setEnabled(TRUE);
-    ui->groupBox_75->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_206Pressed()
+onRadioButton_24Pressed()
 {
-    ui->radioButton_125->setChecked(TRUE);
-    ui->groupBox_129->setDisabled(TRUE);
 
-    // cut
-    ui->groupBox_76->setEnabled(TRUE);
-    ui->groupBox_75->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_207Pressed()
+onRadioButton_37Pressed()
 {
-    ui->radioButton_125->setChecked(TRUE);
-    ui->groupBox_129->setDisabled(TRUE);
 
-    // cut
-    ui->groupBox_76->setDisabled(TRUE);
-    ui->groupBox_75->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_25Pressed()
+onRadioButton_38Pressed()
 {
-    ui->radioButton_125->setChecked(TRUE);
-    ui->groupBox_129->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_76->setDisabled(TRUE);
-    ui->groupBox_75->setEnabled(TRUE);
-}
 
-
-/// L2P3
-void
-MainWindow::
-onRadioButton_32Pressed()
-{
-    ui->groupBox_130->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_78->setEnabled(TRUE);
-    ui->groupBox_77->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_208Pressed()
+onRadioButton_39Pressed()
 {
-    ui->radioButton_129->setChecked(TRUE);
-    ui->groupBox_130->setDisabled(TRUE);
- 
-    // cut
-    ui->groupBox_78->setEnabled(TRUE);
-    ui->groupBox_77->setEnabled(TRUE);
+
 }
 
 void
 MainWindow::
-onRadioButton_209Pressed()
+onRadioButton_40Pressed()
 {
-    ui->radioButton_129->setChecked(TRUE);
-    ui->groupBox_130->setDisabled(TRUE);
 
-    // cut
-    ui->groupBox_78->setDisabled(TRUE);
-    ui->groupBox_77->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_31Pressed()
-{
-    ui->radioButton_129->setChecked(TRUE);
-    ui->groupBox_130->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_78->setDisabled(TRUE);
-    ui->groupBox_77->setEnabled(TRUE);
-}
-
-
-/// L3P1
 void
 MainWindow::
 onRadioButton_41Pressed()
 {
-    ui->groupBox_131->setDisabled(TRUE);
 
-    // cut
-    ui->groupBox_80->setEnabled(TRUE);
-    ui->groupBox_79->setDisabled(TRUE);
 }
-
-void
-MainWindow::
-onRadioButton_210Pressed()
-{
-    ui->groupBox_131->setEnabled(TRUE);
-    ui->radioButton_133->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_80->setEnabled(TRUE);
-    ui->groupBox_79->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_211Pressed()
-{
-    ui->groupBox_131->setEnabled(TRUE);
-    ui->radioButton_133->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_80->setDisabled(TRUE);
-    ui->groupBox_79->setEnabled(TRUE);
-}
-
 void
 MainWindow::
 onRadioButton_42Pressed()
 {
-    ui->groupBox_131->setEnabled(TRUE);
-    ui->radioButton_133->setChecked(TRUE);
 
-    // cut
-    ui->groupBox_80->setDisabled(TRUE);
-    ui->groupBox_79->setEnabled(TRUE);
-}
-
-
-/// L3P2
-void
-MainWindow::
-onRadioButton_44Pressed()
-{
-    ui->groupBox_132->setEnabled(TRUE);
-    ui->radioButton_137->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_82->setEnabled(TRUE);
-    ui->groupBox_81->setDisabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_212Pressed()
-{
-    ui->groupBox_132->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_82->setEnabled(TRUE);
-    ui->groupBox_81->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_213Pressed()
-{
-    ui->groupBox_132->setEnabled(TRUE);
-    ui->radioButton_137->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_82->setDisabled(TRUE);
-    ui->groupBox_81->setEnabled(TRUE);
 }
 
 void
 MainWindow::
 onRadioButton_43Pressed()
 {
-    ui->groupBox_132->setDisabled(TRUE);
-    ui->radioButton_137->setChecked(TRUE);
-    
-    // cut
-    ui->groupBox_82->setDisabled(TRUE);
-    ui->groupBox_81->setEnabled(TRUE);
-}
-
-
-/// L3P3
-void
-MainWindow::
-onRadioButton_50Pressed()
-{
-    ui->groupBox_133->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_84->setEnabled(TRUE);
-    ui->groupBox_83->setDisabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_214Pressed()
-{
-    ui->groupBox_133->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_84->setEnabled(TRUE);
-    ui->groupBox_83->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_215Pressed()
-{
-    ui->groupBox_133->setEnabled(TRUE);
-    ui->radioButton_141->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_84->setDisabled(TRUE);
-    ui->groupBox_83->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_49Pressed()
-{
-    ui->groupBox_133->setDisabled(TRUE);
-    ui->radioButton_141->setChecked(TRUE);
-    
-    // cut
-    ui->groupBox_84->setDisabled(TRUE);
-    ui->groupBox_83->setEnabled(TRUE);
-}
-
-/// L4P1
-void
-MainWindow::
-onRadioButton_60Pressed()
-{
-    ui->groupBox_134->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_86->setEnabled(TRUE);
-    ui->groupBox_85->setDisabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_216Pressed()
-{
-    ui->radioButton_145->setChecked(TRUE);
-    ui->groupBox_134->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_86->setEnabled(TRUE);
-    ui->groupBox_85->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_217Pressed()
-{
-    ui->radioButton_145->setChecked(TRUE);
-    ui->groupBox_134->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_86->setDisabled(TRUE);
-    ui->groupBox_85->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_59Pressed()
-{
-    ui->radioButton_145->setChecked(TRUE);
-    ui->groupBox_134->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_86->setDisabled(TRUE);
-    ui->groupBox_85->setEnabled(TRUE);        
-}
-
-
-/// L4P2
-void
-MainWindow::
-onRadioButton_62Pressed()
-{
-    ui->groupBox_135->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_88->setDisabled(TRUE);
-    ui->groupBox_87->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_218Pressed()
-{
-    ui->groupBox_135->setEnabled(TRUE);
-    ui->radioButton_149->setChecked(TRUE);
-    
-    // cut
-    ui->groupBox_88->setEnabled(TRUE);
-    ui->groupBox_87->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_219Pressed()
-{
-    ui->groupBox_135->setEnabled(TRUE);
-    ui->radioButton_149->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_88->setDisabled(TRUE);
-    ui->groupBox_87->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_61Pressed()
-{
-    ui->groupBox_135->setDisabled(TRUE);
-    ui->radioButton_149->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_88->setDisabled(TRUE);
-    ui->groupBox_87->setEnabled(TRUE);   
-}
-
-
-/// L4P3
-void
-MainWindow::
-onRadioButton_68Pressed()
-{
-    ui->groupBox_136->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_90->setEnabled(TRUE);
-    ui->groupBox_89->setDisabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_220Pressed()
-{
-    ui->groupBox_136->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_90->setEnabled(TRUE);
-    ui->groupBox_89->setEnabled(TRUE);
 
 }
 
 void
 MainWindow::
-onRadioButton_221Pressed()
+onRadioButton_44Pressed()
 {
-    ui->groupBox_136->setEnabled(TRUE);
 
-    // cut
-    ui->groupBox_90->setDisabled(TRUE);
-    ui->groupBox_89->setEnabled(TRUE);
+}
+
+
+
+/// L1P3
+void
+MainWindow::
+onRadioButton_69Pressed()
+{
+    ui->groupBox_34->setEnabled(TRUE);
+    ui->groupBox_131->setEnabled(TRUE);
+
+    updateRegisters(EEA,2);
 }
 
 void
 MainWindow::
-onRadioButton_67Pressed()
+onRadioButton_70Pressed()
 {
-    ui->radioButton_153->setChecked(TRUE);
-    ui->groupBox_136->setDisabled(TRUE);
-    
-    // cut
-    ui->groupBox_90->setDisabled(TRUE);
-    ui->groupBox_89->setEnabled(TRUE);
-}
+    ui->radioButton_73->setChecked(TRUE);
+    ui->radioButton_75->setChecked(TRUE);
 
+    ui->groupBox_34->setDisabled(TRUE);
+    ui->groupBox_131->setDisabled(TRUE);
 
-/// L5P1
-void
-MainWindow::
-onRadioButton_78Pressed()
-{
-    ui->groupBox_137->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_92->setEnabled(TRUE);
-    ui->groupBox_91->setDisabled(TRUE);
+    updateRegisters(RAZ,2);
 }
 
 void
 MainWindow::
-onRadioButton_222Pressed()
+onRadioButton_71Pressed()
 {
-    ui->groupBox_137->setEnabled(TRUE);
-    
-    // cut
-    ui->groupBox_92->setEnabled(TRUE);
-    ui->groupBox_91->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_223Pressed()
+onRadioButton_72Pressed()
 {
-    ui->groupBox_137->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_92->setDisabled(TRUE);
-    ui->groupBox_91->setEnabled(TRUE);
 }
+
+void
+MainWindow::
+onRadioButton_73Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_74Pressed()
+{
+}
+
+
+void
+MainWindow::
+onRadioButton_75Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_76Pressed()
+{
+}
+
 
 void
 MainWindow::
 onRadioButton_77Pressed()
 {
-    ui->groupBox_137->setDisabled(TRUE);
-    ui->radioButton_157->setChecked(TRUE);
-
-    // cut
-    ui->groupBox_92->setDisabled(TRUE);
-    ui->groupBox_91->setEnabled(TRUE);
-}
-
-
-/// L5P2
-void
-MainWindow::
-onRadioButton_80Pressed()
-{
-    ui->groupBox_138->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_94->setEnabled(TRUE);
-    ui->groupBox_93->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_224Pressed()
+onRadioButton_78Pressed()
 {
-    ui->groupBox_138->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_94->setEnabled(TRUE);
-    ui->groupBox_93->setEnabled(TRUE);
 }
 
-void
-MainWindow::
-onRadioButton_225Pressed()
-{
-    ui->groupBox_138->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_94->setDisabled(TRUE);
-    ui->groupBox_93->setEnabled(TRUE);
-}
 
 void
 MainWindow::
 onRadioButton_79Pressed()
 {
-    ui->radioButton_161->setChecked(TRUE);
-    ui->groupBox_138->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_94->setDisabled(TRUE);
-    ui->groupBox_93->setEnabled(TRUE);
-}
-
-
-/// L5P3
-void
-MainWindow::
-onRadioButton_86Pressed()
-{
-    ui->groupBox_139->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_96->setEnabled(TRUE);
-    ui->groupBox_95->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_226Pressed()
+onRadioButton_80Pressed()
 {
-    ui->groupBox_139->setEnabled(TRUE);
+}
 
-    // cut
-    ui->groupBox_96->setEnabled(TRUE);
-    ui->groupBox_95->setEnabled(TRUE);
+
+/// L2P1
+void
+MainWindow::
+onRadioButton_81Pressed()
+{
+    ui->groupBox_41->setEnabled(TRUE);
+    ui->groupBox_133->setEnabled(TRUE);
+    updateRegisters(EEA,3);
 }
 
 void
 MainWindow::
-onRadioButton_227Pressed()
+onRadioButton_82Pressed()
 {
-    ui->groupBox_139->setEnabled(TRUE);
+    ui->radioButton_85->setChecked(TRUE);
+    ui->radioButton_87->setChecked(TRUE);
+    ui->groupBox_41->setDisabled(TRUE);
+    ui->groupBox_133->setDisabled(TRUE);
+    updateRegisters(RAZ,3);
+}
 
-    // cut
-    ui->groupBox_96->setDisabled(TRUE);
-    ui->groupBox_95->setEnabled(TRUE);
+void
+MainWindow::
+onRadioButton_83Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_84Pressed()
+{
 }
 
 void
 MainWindow::
 onRadioButton_85Pressed()
 {
-    ui->radioButton_165->setChecked(TRUE);
-    ui->groupBox_139->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_96->setDisabled(TRUE);
-    ui->groupBox_95->setEnabled(TRUE);
-}
-
-
-/// L6P1
-void
-MainWindow::
-onRadioButton_96Pressed()
-{
-    ui->groupBox_140->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_98->setEnabled(TRUE);
-    ui->groupBox_97->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_228Pressed()
+onRadioButton_86Pressed()
 {
-    ui->groupBox_140->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_98->setEnabled(TRUE);
-    ui->groupBox_97->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_229Pressed()
+onRadioButton_87Pressed()
 {
-    ui->groupBox_140->setEnabled(TRUE);
+}
 
-    // cut
-    ui->groupBox_98->setDisabled(TRUE);
-    ui->groupBox_97->setEnabled(TRUE);
+void
+MainWindow::
+onRadioButton_88Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_89Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_90Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_91Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_92Pressed()
+{
+}
+
+
+/// L2P2
+void
+MainWindow::
+onRadioButton_93Pressed()
+{
+    ui->groupBox_47->setEnabled(TRUE);
+    ui->groupBox_137->setEnabled(TRUE);
+
+    updateRegisters(EEA,4);
+}
+
+void
+MainWindow::
+onRadioButton_94Pressed()
+{
+    ui->radioButton_97->setChecked(TRUE);
+    ui->radioButton_99->setChecked(TRUE);
+    ui->groupBox_47->setDisabled(TRUE);
+    ui->groupBox_137->setDisabled(TRUE);
+
+    updateRegisters(RAZ,4);
 }
 
 void
 MainWindow::
 onRadioButton_95Pressed()
 {
-    ui->radioButton_169->setChecked(TRUE);
-    ui->groupBox_140->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_98->setDisabled(TRUE);
-    ui->groupBox_97->setEnabled(TRUE);
-}
-
-
-/// L6P2
-void
-MainWindow::
-onRadioButton_98Pressed()
-{
-    ui->groupBox_141->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_100->setEnabled(TRUE);
-    ui->groupBox_99->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_230Pressed()
+onRadioButton_96Pressed()
 {
-    ui->groupBox_141->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_100->setEnabled(TRUE);
-    ui->groupBox_99->setEnabled(TRUE);
-}
-
-void
-MainWindow::
-onRadioButton_231Pressed()
-{
-    ui->groupBox_141->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_100->setDisabled(TRUE);
-    ui->groupBox_99->setEnabled(TRUE);
 }
 
 void
 MainWindow::
 onRadioButton_97Pressed()
 {
-    ui->radioButton_173->setChecked(TRUE);
-    ui->groupBox_141->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_100->setDisabled(TRUE);
-    ui->groupBox_99->setEnabled(TRUE);
-}
-
-
-/// L6P3
-void
-MainWindow::
-onRadioButton_235Pressed()
-{
-    ui->groupBox_142->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_102->setEnabled(TRUE);
-    ui->groupBox_101->setDisabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_236Pressed()
+onRadioButton_98Pressed()
 {
-    ui->groupBox_142->setEnabled(TRUE);
-
-    // cut
-    ui->groupBox_102->setEnabled(TRUE);
-    ui->groupBox_101->setEnabled(TRUE);
 }
 
 void
 MainWindow::
-onRadioButton_237Pressed()
+onRadioButton_99Pressed()
 {
+}
+
+void
+MainWindow::
+onRadioButton_100Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_101Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_102Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_103Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_104Pressed()
+{
+}
+
+
+/// L2P3
+void
+MainWindow::
+onRadioButton_105Pressed()
+{
+    ui->groupBox_54->setEnabled(TRUE);
+    ui->groupBox_140->setEnabled(TRUE);
+
+    updateRegisters(EEA,5);
+}
+
+void
+MainWindow::
+onRadioButton_106Pressed()
+{
+    ui->radioButton_109->setChecked(TRUE);
+    ui->radioButton_111->setChecked(TRUE);
+    ui->groupBox_54->setDisabled(TRUE);
+    ui->groupBox_140->setDisabled(TRUE);
+    
+    updateRegisters(RAZ,5);
+}
+
+void
+MainWindow::
+onRadioButton_107Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_108Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_109Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_110Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_111Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_112Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_113Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_114Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_115Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_116Pressed()
+{
+}
+
+
+/// L3P1
+void
+MainWindow::
+onRadioButton_117Pressed()
+{
+    ui->groupBox_61->setEnabled(TRUE);
     ui->groupBox_142->setEnabled(TRUE);
 
-    // cut
-    ui->groupBox_102->setDisabled(TRUE);
-    ui->groupBox_101->setEnabled(TRUE);
+    updateRegisters(EEA,6);
+}
+
+void
+MainWindow::
+onRadioButton_118Pressed()
+{
+    ui->radioButton_121->setChecked(TRUE);
+    ui->radioButton_123->setChecked(TRUE);
+    ui->groupBox_61->setDisabled(TRUE);
+    ui->groupBox_142->setDisabled(TRUE);
+
+    updateRegisters(RAZ,6);
+}
+
+void
+MainWindow::
+onRadioButton_119Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_120Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_121Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_122Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_123Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_124Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_125Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_126Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_127Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_128Pressed()
+{
+}
+
+
+/// L3P2
+void
+MainWindow::
+onRadioButton_129Pressed()
+{
+    ui->groupBox_77->setEnabled(TRUE);
+    ui->groupBox_146->setEnabled(TRUE);
+
+    updateRegisters(EEA,7);
+}
+
+void
+MainWindow::
+onRadioButton_130Pressed()
+{
+    ui->radioButton_133->setChecked(TRUE);
+    ui->radioButton_135->setChecked(TRUE);
+    ui->groupBox_77->setDisabled(TRUE);
+    ui->groupBox_146->setDisabled(TRUE);
+
+    updateRegisters(RAZ,7);
+}
+
+void
+MainWindow::
+onRadioButton_131Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_132Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_133Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_134Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_135Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_136Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_137Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_138Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_139Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_140Pressed()
+{
+}
+
+
+/// L3P3
+void
+MainWindow::
+onRadioButton_141Pressed()
+{
+    ui->groupBox_84->setEnabled(TRUE);
+    ui->groupBox_149->setEnabled(TRUE);
+
+    updateRegisters(EEA,8);
+}
+
+void
+MainWindow::
+onRadioButton_142Pressed()
+{
+    ui->radioButton_145->setChecked(TRUE);
+    ui->radioButton_147->setChecked(TRUE);
+    ui->groupBox_84->setDisabled(TRUE);
+    ui->groupBox_149->setDisabled(TRUE);
+
+    updateRegisters(RAZ,8);
+}
+
+void
+MainWindow::
+onRadioButton_143Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_144Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_145Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_146Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_147Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_148Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_149Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_150Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_151Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_152Pressed()
+{
+}
+
+
+/// L4P1
+void
+MainWindow::
+onRadioButton_153Pressed()
+{
+    ui->groupBox_91->setEnabled(TRUE);
+    ui->groupBox_151->setEnabled(TRUE);
+
+    updateRegisters(EEA,9);
+}
+
+void
+MainWindow::
+onRadioButton_154Pressed()
+{
+    ui->radioButton_157->setChecked(TRUE);
+    ui->radioButton_159->setChecked(TRUE);
+    ui->groupBox_91->setDisabled(TRUE);
+    ui->groupBox_151->setDisabled(TRUE);
+
+    updateRegisters(RAZ,9);
+}
+
+void
+MainWindow::
+onRadioButton_155Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_156Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_157Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_158Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_159Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_160Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_161Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_162Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_163Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_164Pressed()
+{
+}
+
+
+/// L4P2
+void
+MainWindow::
+onRadioButton_165Pressed()
+{
+    ui->groupBox_98->setEnabled(TRUE);
+    ui->groupBox_155->setEnabled(TRUE);
+
+    updateRegisters(EEA,10);
+}
+
+void
+MainWindow::
+onRadioButton_166Pressed()
+{
+    ui->radioButton_169->setChecked(TRUE);
+    ui->radioButton_171->setChecked(TRUE);
+    ui->groupBox_98->setDisabled(TRUE);
+    ui->groupBox_155->setDisabled(TRUE);
+
+    updateRegisters(RAZ,10);
+}
+
+void
+MainWindow::
+onRadioButton_167Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_168Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_169Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_170Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_171Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_172Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_173Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_174Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_175Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_176Pressed()
+{
+}
+
+
+/// L4P3
+void
+MainWindow::
+onRadioButton_177Pressed()
+{
+    ui->groupBox_158->setEnabled(TRUE);
+    ui->groupBox_159->setEnabled(TRUE);
+
+    updateRegisters(EEA,11);
+}
+
+void
+MainWindow::
+onRadioButton_178Pressed()
+{
+    ui->radioButton_194->setChecked(TRUE);
+    ui->radioButton_196->setChecked(TRUE);
+    ui->groupBox_158->setDisabled(TRUE);
+    ui->groupBox_159->setDisabled(TRUE);
+
+    updateRegisters(RAZ,11);
+}
+
+void
+MainWindow::
+onRadioButton_179Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_180Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_194Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_195Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_196Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_197Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_198Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_199Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_200Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_201Pressed()
+{
+}
+
+
+/// L5P1
+void
+MainWindow::
+onRadioButton_202Pressed()
+{
+    ui->groupBox_167->setEnabled(TRUE);
+    ui->groupBox_168->setEnabled(TRUE);
+
+    updateRegisters(EEA,12);
+}
+
+void
+MainWindow::
+onRadioButton_203Pressed()
+{
+    ui->radioButton_206->setChecked(TRUE);
+    ui->radioButton_208->setChecked(TRUE);
+    ui->groupBox_167->setDisabled(TRUE);
+    ui->groupBox_168->setDisabled(TRUE);
+
+    updateRegisters(RAZ,12);
+}
+
+void
+MainWindow::
+onRadioButton_204Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_205Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_206Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_207Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_208Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_209Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_210Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_211Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_212Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_213Pressed()
+{
+}
+
+
+/// L5P2
+void
+MainWindow::
+onRadioButton_214Pressed()
+{
+    ui->groupBox_178->setEnabled(TRUE);
+    ui->groupBox_179->setEnabled(TRUE);
+
+    updateRegisters(EEA,13);
+}
+
+void
+MainWindow::
+onRadioButton_215Pressed()
+{
+    ui->radioButton_218->setChecked(TRUE);
+    ui->radioButton_220->setChecked(TRUE);
+    ui->groupBox_178->setDisabled(TRUE);
+    ui->groupBox_179->setDisabled(TRUE);
+
+    updateRegisters(RAZ,13);
+}
+
+void
+MainWindow::
+onRadioButton_216Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_217Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_218Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_219Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_220Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_221Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_222Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_223Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_224Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_225Pressed()
+{
+}
+
+
+/// L5P3
+void
+MainWindow::
+onRadioButton_226Pressed()
+{
+    ui->groupBox_188->setEnabled(TRUE);
+    ui->groupBox_189->setEnabled(TRUE);
+
+    updateRegisters(EEA,14);
+}
+
+void
+MainWindow::
+onRadioButton_227Pressed()
+{
+    ui->radioButton_230->setChecked(TRUE);
+    ui->radioButton_232->setChecked(TRUE);
+    ui->groupBox_188->setDisabled(TRUE);
+    ui->groupBox_189->setDisabled(TRUE);
+
+    updateRegisters(RAZ,14);
+}
+
+void
+MainWindow::
+onRadioButton_228Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_229Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_230Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_231Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_232Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_233Pressed()
+{
 }
 
 void
 MainWindow::
 onRadioButton_234Pressed()
 {
-    ui->radioButton_177->setChecked(TRUE);
-    ui->groupBox_142->setDisabled(TRUE);
-
-    // cut
-    ui->groupBox_102->setDisabled(TRUE);
-    ui->groupBox_101->setEnabled(TRUE);
 }
 
+void
+MainWindow::
+onRadioButton_235Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_236Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_237Pressed()
+{
+}
+
+
+/// L6P1
+void
+MainWindow::
+onRadioButton_238Pressed()
+{
+    ui->groupBox_197->setEnabled(TRUE);
+    ui->groupBox_198->setEnabled(TRUE);
+
+    updateRegisters(EEA,15);
+}
+
+void
+MainWindow::
+onRadioButton_239Pressed()
+{
+    ui->radioButton_242->setChecked(TRUE);
+    ui->radioButton_244->setChecked(TRUE);
+    ui->groupBox_197->setDisabled(TRUE);
+    ui->groupBox_198->setDisabled(TRUE);
+
+    updateRegisters(RAZ,15);
+}
+
+void
+MainWindow::
+onRadioButton_240Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_241Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_242Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_243Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_244Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_245Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_246Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_247Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_248Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_249Pressed()
+{
+}
+
+
+/// L6P2
+void
+MainWindow::
+onRadioButton_250Pressed()
+{
+    ui->groupBox_208->setEnabled(TRUE);
+    ui->groupBox_209->setEnabled(TRUE);
+
+    updateRegisters(EEA,16);
+}
+
+void
+MainWindow::
+onRadioButton_251Pressed()
+{
+    ui->radioButton_254->setChecked(TRUE);
+    ui->radioButton_256->setChecked(TRUE);
+    ui->groupBox_208->setDisabled(TRUE);
+    ui->groupBox_209->setDisabled(TRUE);
+
+    updateRegisters(RAZ,16);
+}
+
+void
+MainWindow::
+onRadioButton_252Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_253Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_254Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_255Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_256Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_257Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_258Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_259Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_260Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_261Pressed()
+{
+}
+
+
+/// L6P3
+void
+MainWindow::
+onRadioButton_262Pressed()
+{
+    ui->groupBox_218->setEnabled(TRUE);
+    ui->groupBox_219->setEnabled(TRUE);
+
+    updateRegisters(EEA,17);
+}
+
+void
+MainWindow::
+onRadioButton_263Pressed()
+{
+    ui->radioButton_266->setChecked(TRUE);
+    ui->radioButton_268->setChecked(TRUE);
+    ui->groupBox_218->setDisabled(TRUE);
+    ui->groupBox_219->setDisabled(TRUE);
+
+    updateRegisters(RAZ,17);
+}
+
+void
+MainWindow::
+onRadioButton_264Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_265Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_266Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_267Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_268Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_269Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_270Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_271Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_272Pressed()
+{
+}
+
+void
+MainWindow::
+onRadioButton_273Pressed()
+{
+}
 
 
 void
@@ -2177,160 +2479,271 @@ connectRadioButtons()
     // L1P1
     connect(ui->radioButton, SIGNAL(pressed()), this, SLOT(onRadioButtonPressed()));
     connect(ui->radioButton_2, SIGNAL(pressed()), this, SLOT(onRadioButton_2Pressed()));
-
     connect(ui->radioButton_3, SIGNAL(pressed()), this, SLOT(onRadioButton_3Pressed()));
     connect(ui->radioButton_4, SIGNAL(pressed()), this, SLOT(onRadioButton_4Pressed()));
-    connect(ui->radioButton_194, SIGNAL(pressed()), this, SLOT(onRadioButton_194Pressed()));
-    connect(ui->radioButton_195, SIGNAL(pressed()), this, SLOT(onRadioButton_195Pressed()));
-
-    // L1P2
-    connect(ui->radioButton_9, SIGNAL(pressed()), this, SLOT(onRadioButton_9Pressed()));
-    connect(ui->radioButton_10, SIGNAL(pressed()), this, SLOT(onRadioButton_10Pressed()));
-
+    connect(ui->radioButton_5, SIGNAL(pressed()), this, SLOT(onRadioButton_5Pressed()));
+    connect(ui->radioButton_6, SIGNAL(pressed()), this, SLOT(onRadioButton_6Pressed()));
     connect(ui->radioButton_7, SIGNAL(pressed()), this, SLOT(onRadioButton_7Pressed()));
     connect(ui->radioButton_8, SIGNAL(pressed()), this, SLOT(onRadioButton_8Pressed()));
-    connect(ui->radioButton_196, SIGNAL(pressed()), this, SLOT(onRadioButton_196Pressed()));
-    connect(ui->radioButton_197, SIGNAL(pressed()), this, SLOT(onRadioButton_197Pressed()));
-    
-    // L1P3
-    connect(ui->radioButton_15, SIGNAL(pressed()), this, SLOT(onRadioButton_15Pressed()));
-    connect(ui->radioButton_16, SIGNAL(pressed()), this, SLOT(onRadioButton_16Pressed()));
+    connect(ui->radioButton_9, SIGNAL(pressed()), this, SLOT(onRadioButton_9Pressed()));
+    connect(ui->radioButton_10, SIGNAL(pressed()), this, SLOT(onRadioButton_10Pressed()));
+    connect(ui->radioButton_11, SIGNAL(pressed()), this, SLOT(onRadioButton_11Pressed()));
+    connect(ui->radioButton_12, SIGNAL(pressed()), this, SLOT(onRadioButton_12Pressed()));
 
-    connect(ui->radioButton_200, SIGNAL(pressed()), this, SLOT(onRadioButton_200Pressed()));
-    connect(ui->radioButton_201, SIGNAL(pressed()), this, SLOT(onRadioButton_201Pressed()));
-    connect(ui->radioButton_202, SIGNAL(pressed()), this, SLOT(onRadioButton_202Pressed()));
-    connect(ui->radioButton_203, SIGNAL(pressed()), this, SLOT(onRadioButton_203Pressed()));
-
-    // L2P1
-    connect(ui->radioButton_19, SIGNAL(pressed()), this, SLOT(onRadioButton_19Pressed()));
-    connect(ui->radioButton_20, SIGNAL(pressed()), this, SLOT(onRadioButton_20Pressed()));
-
+    // L1P2
+    connect(ui->radioButton_13, SIGNAL(pressed()), this, SLOT(onRadioButton_13Pressed()));
+    connect(ui->radioButton_22, SIGNAL(pressed()), this, SLOT(onRadioButton_22Pressed()));
     connect(ui->radioButton_23, SIGNAL(pressed()), this, SLOT(onRadioButton_23Pressed()));
     connect(ui->radioButton_24, SIGNAL(pressed()), this, SLOT(onRadioButton_24Pressed()));
-    connect(ui->radioButton_204, SIGNAL(pressed()), this, SLOT(onRadioButton_204Pressed()));
-    connect(ui->radioButton_205, SIGNAL(pressed()), this, SLOT(onRadioButton_205Pressed()));
-
-    // L2P2
-    connect(ui->radioButton_27, SIGNAL(pressed()), this, SLOT(onRadioButton_27Pressed()));
-    connect(ui->radioButton_28, SIGNAL(pressed()), this, SLOT(onRadioButton_28Pressed()));
-
-    connect(ui->radioButton_25, SIGNAL(pressed()), this, SLOT(onRadioButton_25Pressed()));
-    connect(ui->radioButton_26, SIGNAL(pressed()), this, SLOT(onRadioButton_26Pressed()));
-    connect(ui->radioButton_206, SIGNAL(pressed()), this, SLOT(onRadioButton_206Pressed()));
-    connect(ui->radioButton_207, SIGNAL(pressed()), this, SLOT(onRadioButton_207Pressed()));
-
-    // L2P3
-    connect(ui->radioButton_33, SIGNAL(pressed()), this, SLOT(onRadioButton_33Pressed()));
-    connect(ui->radioButton_34, SIGNAL(pressed()), this, SLOT(onRadioButton_34Pressed()));
-
-    connect(ui->radioButton_31, SIGNAL(pressed()), this, SLOT(onRadioButton_31Pressed()));
-    connect(ui->radioButton_32, SIGNAL(pressed()), this, SLOT(onRadioButton_32Pressed()));
-    connect(ui->radioButton_208, SIGNAL(pressed()), this, SLOT(onRadioButton_208Pressed()));
-    connect(ui->radioButton_209, SIGNAL(pressed()), this, SLOT(onRadioButton_209Pressed()));
-
-    // L3P1
     connect(ui->radioButton_37, SIGNAL(pressed()), this, SLOT(onRadioButton_37Pressed()));
     connect(ui->radioButton_38, SIGNAL(pressed()), this, SLOT(onRadioButton_38Pressed()));
-
+    connect(ui->radioButton_39, SIGNAL(pressed()), this, SLOT(onRadioButton_39Pressed()));
+    connect(ui->radioButton_40, SIGNAL(pressed()), this, SLOT(onRadioButton_40Pressed()));
     connect(ui->radioButton_41, SIGNAL(pressed()), this, SLOT(onRadioButton_41Pressed()));
     connect(ui->radioButton_42, SIGNAL(pressed()), this, SLOT(onRadioButton_42Pressed()));
-    connect(ui->radioButton_210, SIGNAL(pressed()), this, SLOT(onRadioButton_210Pressed()));
-    connect(ui->radioButton_211, SIGNAL(pressed()), this, SLOT(onRadioButton_211Pressed()));
-
-    // L3P2
-    connect(ui->radioButton_45, SIGNAL(pressed()), this, SLOT(onRadioButton_45Pressed()));
-    connect(ui->radioButton_46, SIGNAL(pressed()), this, SLOT(onRadioButton_46Pressed()));
-
     connect(ui->radioButton_43, SIGNAL(pressed()), this, SLOT(onRadioButton_43Pressed()));
     connect(ui->radioButton_44, SIGNAL(pressed()), this, SLOT(onRadioButton_44Pressed()));
-    connect(ui->radioButton_212, SIGNAL(pressed()), this, SLOT(onRadioButton_212Pressed()));
-    connect(ui->radioButton_213, SIGNAL(pressed()), this, SLOT(onRadioButton_213Pressed()));
 
-    // L3P3
-    connect(ui->radioButton_51, SIGNAL(pressed()), this, SLOT(onRadioButton_51Pressed()));
-    connect(ui->radioButton_52, SIGNAL(pressed()), this, SLOT(onRadioButton_52Pressed()));
 
-    connect(ui->radioButton_49, SIGNAL(pressed()), this, SLOT(onRadioButton_49Pressed()));
-    connect(ui->radioButton_50, SIGNAL(pressed()), this, SLOT(onRadioButton_50Pressed()));
-    connect(ui->radioButton_214, SIGNAL(pressed()), this, SLOT(onRadioButton_214Pressed()));
-    connect(ui->radioButton_215, SIGNAL(pressed()), this, SLOT(onRadioButton_215Pressed()));
-
-    // L4P1
-    connect(ui->radioButton_55, SIGNAL(pressed()), this, SLOT(onRadioButton_55Pressed()));
-    connect(ui->radioButton_56, SIGNAL(pressed()), this, SLOT(onRadioButton_56Pressed()));
-
-    connect(ui->radioButton_59, SIGNAL(pressed()), this, SLOT(onRadioButton_59Pressed()));
-    connect(ui->radioButton_60, SIGNAL(pressed()), this, SLOT(onRadioButton_60Pressed()));
-    connect(ui->radioButton_216, SIGNAL(pressed()), this, SLOT(onRadioButton_216Pressed()));
-    connect(ui->radioButton_217, SIGNAL(pressed()), this, SLOT(onRadioButton_217Pressed()));
-
-    // L4P2
-    connect(ui->radioButton_61, SIGNAL(pressed()), this, SLOT(onRadioButton_61Pressed()));
-    connect(ui->radioButton_62, SIGNAL(pressed()), this, SLOT(onRadioButton_62Pressed()));
-
-    connect(ui->radioButton_63, SIGNAL(pressed()), this, SLOT(onRadioButton_63Pressed()));
-    connect(ui->radioButton_64, SIGNAL(pressed()), this, SLOT(onRadioButton_64Pressed()));
-    connect(ui->radioButton_218, SIGNAL(pressed()), this, SLOT(onRadioButton_218Pressed()));
-    connect(ui->radioButton_219, SIGNAL(pressed()), this, SLOT(onRadioButton_219Pressed()));
-
-    // L4P3
-    connect(ui->radioButton_67, SIGNAL(pressed()), this, SLOT(onRadioButton_67Pressed()));
-    connect(ui->radioButton_68, SIGNAL(pressed()), this, SLOT(onRadioButton_68Pressed()));
-
+    // L1P3
     connect(ui->radioButton_69, SIGNAL(pressed()), this, SLOT(onRadioButton_69Pressed()));
     connect(ui->radioButton_70, SIGNAL(pressed()), this, SLOT(onRadioButton_70Pressed()));
-    connect(ui->radioButton_220, SIGNAL(pressed()), this, SLOT(onRadioButton_220Pressed()));
-    connect(ui->radioButton_221, SIGNAL(pressed()), this, SLOT(onRadioButton_221Pressed()));
-
-    // L5P1
+    connect(ui->radioButton_72, SIGNAL(pressed()), this, SLOT(onRadioButton_72Pressed()));
     connect(ui->radioButton_73, SIGNAL(pressed()), this, SLOT(onRadioButton_73Pressed()));
     connect(ui->radioButton_74, SIGNAL(pressed()), this, SLOT(onRadioButton_74Pressed()));
-
+    connect(ui->radioButton_71, SIGNAL(pressed()), this, SLOT(onRadioButton_71Pressed()));
+    connect(ui->radioButton_75, SIGNAL(pressed()), this, SLOT(onRadioButton_75Pressed()));
+    connect(ui->radioButton_76, SIGNAL(pressed()), this, SLOT(onRadioButton_78Pressed()));
     connect(ui->radioButton_77, SIGNAL(pressed()), this, SLOT(onRadioButton_77Pressed()));
     connect(ui->radioButton_78, SIGNAL(pressed()), this, SLOT(onRadioButton_78Pressed()));
-    connect(ui->radioButton_222, SIGNAL(pressed()), this, SLOT(onRadioButton_222Pressed()));
-    connect(ui->radioButton_223, SIGNAL(pressed()), this, SLOT(onRadioButton_223Pressed()));
-
-    // L5P2
     connect(ui->radioButton_79, SIGNAL(pressed()), this, SLOT(onRadioButton_79Pressed()));
     connect(ui->radioButton_80, SIGNAL(pressed()), this, SLOT(onRadioButton_80Pressed()));
 
+
+    // L2P1
     connect(ui->radioButton_81, SIGNAL(pressed()), this, SLOT(onRadioButton_81Pressed()));
     connect(ui->radioButton_82, SIGNAL(pressed()), this, SLOT(onRadioButton_82Pressed()));
-    connect(ui->radioButton_224, SIGNAL(pressed()), this, SLOT(onRadioButton_224Pressed()));
-    connect(ui->radioButton_225, SIGNAL(pressed()), this, SLOT(onRadioButton_225Pressed()));
-
-    // L5P3
+    connect(ui->radioButton_83, SIGNAL(pressed()), this, SLOT(onRadioButton_83Pressed()));
+    connect(ui->radioButton_84, SIGNAL(pressed()), this, SLOT(onRadioButton_84Pressed()));
     connect(ui->radioButton_85, SIGNAL(pressed()), this, SLOT(onRadioButton_85Pressed()));
     connect(ui->radioButton_86, SIGNAL(pressed()), this, SLOT(onRadioButton_86Pressed()));
     connect(ui->radioButton_87, SIGNAL(pressed()), this, SLOT(onRadioButton_87Pressed()));
     connect(ui->radioButton_88, SIGNAL(pressed()), this, SLOT(onRadioButton_88Pressed()));
-    connect(ui->radioButton_226, SIGNAL(pressed()), this, SLOT(onRadioButton_226Pressed()));
-    connect(ui->radioButton_227, SIGNAL(pressed()), this, SLOT(onRadioButton_227Pressed()));
-
-    // L6P1
+    connect(ui->radioButton_89, SIGNAL(pressed()), this, SLOT(onRadioButton_89Pressed()));
+    connect(ui->radioButton_90, SIGNAL(pressed()), this, SLOT(onRadioButton_90Pressed()));
     connect(ui->radioButton_91, SIGNAL(pressed()), this, SLOT(onRadioButton_91Pressed()));
     connect(ui->radioButton_92, SIGNAL(pressed()), this, SLOT(onRadioButton_92Pressed()));
+
+
+    // L2P2
+    connect(ui->radioButton_93, SIGNAL(pressed()), this, SLOT(onRadioButton_93Pressed()));
+    connect(ui->radioButton_94, SIGNAL(pressed()), this, SLOT(onRadioButton_94Pressed()));
     connect(ui->radioButton_95, SIGNAL(pressed()), this, SLOT(onRadioButton_95Pressed()));
     connect(ui->radioButton_96, SIGNAL(pressed()), this, SLOT(onRadioButton_96Pressed()));
-    connect(ui->radioButton_228, SIGNAL(pressed()), this, SLOT(onRadioButton_228Pressed()));
-    connect(ui->radioButton_229, SIGNAL(pressed()), this, SLOT(onRadioButton_229Pressed()));
- 
-    // L6P2
     connect(ui->radioButton_97, SIGNAL(pressed()), this, SLOT(onRadioButton_97Pressed()));
     connect(ui->radioButton_98, SIGNAL(pressed()), this, SLOT(onRadioButton_98Pressed()));
     connect(ui->radioButton_99, SIGNAL(pressed()), this, SLOT(onRadioButton_99Pressed()));
     connect(ui->radioButton_100, SIGNAL(pressed()), this, SLOT(onRadioButton_100Pressed()));
-    connect(ui->radioButton_230, SIGNAL(pressed()), this, SLOT(onRadioButton_230Pressed()));
-    connect(ui->radioButton_231, SIGNAL(pressed()), this, SLOT(onRadioButton_231Pressed()));
+    connect(ui->radioButton_101, SIGNAL(pressed()), this, SLOT(onRadioButton_101Pressed()));
+    connect(ui->radioButton_102, SIGNAL(pressed()), this, SLOT(onRadioButton_102Pressed()));
+    connect(ui->radioButton_103, SIGNAL(pressed()), this, SLOT(onRadioButton_103Pressed()));
+    connect(ui->radioButton_104, SIGNAL(pressed()), this, SLOT(onRadioButton_104Pressed()));
 
-    // L6P3
+  
+    // L2P3
     connect(ui->radioButton_105, SIGNAL(pressed()), this, SLOT(onRadioButton_105Pressed()));
     connect(ui->radioButton_106, SIGNAL(pressed()), this, SLOT(onRadioButton_106Pressed()));
+    connect(ui->radioButton_107, SIGNAL(pressed()), this, SLOT(onRadioButton_107Pressed()));
+    connect(ui->radioButton_108, SIGNAL(pressed()), this, SLOT(onRadioButton_108Pressed()));
+    connect(ui->radioButton_109, SIGNAL(pressed()), this, SLOT(onRadioButton_109Pressed()));
+    connect(ui->radioButton_110, SIGNAL(pressed()), this, SLOT(onRadioButton_110Pressed()));
+    connect(ui->radioButton_111, SIGNAL(pressed()), this, SLOT(onRadioButton_111Pressed()));
+    connect(ui->radioButton_112, SIGNAL(pressed()), this, SLOT(onRadioButton_112Pressed()));
+    connect(ui->radioButton_113, SIGNAL(pressed()), this, SLOT(onRadioButton_113Pressed()));
+    connect(ui->radioButton_114, SIGNAL(pressed()), this, SLOT(onRadioButton_114Pressed()));
+    connect(ui->radioButton_115, SIGNAL(pressed()), this, SLOT(onRadioButton_115Pressed()));
+    connect(ui->radioButton_116, SIGNAL(pressed()), this, SLOT(onRadioButton_116Pressed()));
+
+
+    // L3P1
+    connect(ui->radioButton_117, SIGNAL(pressed()), this, SLOT(onRadioButton_117Pressed()));
+    connect(ui->radioButton_118, SIGNAL(pressed()), this, SLOT(onRadioButton_118Pressed()));
+    connect(ui->radioButton_119, SIGNAL(pressed()), this, SLOT(onRadioButton_119Pressed()));
+    connect(ui->radioButton_120, SIGNAL(pressed()), this, SLOT(onRadioButton_120Pressed()));
+    connect(ui->radioButton_121, SIGNAL(pressed()), this, SLOT(onRadioButton_121Pressed()));
+    connect(ui->radioButton_122, SIGNAL(pressed()), this, SLOT(onRadioButton_122Pressed()));
+    connect(ui->radioButton_123, SIGNAL(pressed()), this, SLOT(onRadioButton_123Pressed()));
+    connect(ui->radioButton_124, SIGNAL(pressed()), this, SLOT(onRadioButton_124Pressed()));
+    connect(ui->radioButton_125, SIGNAL(pressed()), this, SLOT(onRadioButton_125Pressed()));
+    connect(ui->radioButton_126, SIGNAL(pressed()), this, SLOT(onRadioButton_126Pressed()));
+    connect(ui->radioButton_127, SIGNAL(pressed()), this, SLOT(onRadioButton_127Pressed()));
+    connect(ui->radioButton_128, SIGNAL(pressed()), this, SLOT(onRadioButton_128Pressed()));
+
+
+    // L3P2
+    connect(ui->radioButton_129, SIGNAL(pressed()), this, SLOT(onRadioButton_129Pressed()));
+    connect(ui->radioButton_130, SIGNAL(pressed()), this, SLOT(onRadioButton_130Pressed()));
+    connect(ui->radioButton_131, SIGNAL(pressed()), this, SLOT(onRadioButton_131Pressed()));
+    connect(ui->radioButton_132, SIGNAL(pressed()), this, SLOT(onRadioButton_132Pressed()));
+    connect(ui->radioButton_133, SIGNAL(pressed()), this, SLOT(onRadioButton_133Pressed()));
+    connect(ui->radioButton_134, SIGNAL(pressed()), this, SLOT(onRadioButton_134Pressed()));
+    connect(ui->radioButton_135, SIGNAL(pressed()), this, SLOT(onRadioButton_135Pressed()));
+    connect(ui->radioButton_136, SIGNAL(pressed()), this, SLOT(onRadioButton_136Pressed()));
+    connect(ui->radioButton_137, SIGNAL(pressed()), this, SLOT(onRadioButton_137Pressed()));
+    connect(ui->radioButton_138, SIGNAL(pressed()), this, SLOT(onRadioButton_138Pressed()));
+    connect(ui->radioButton_139, SIGNAL(pressed()), this, SLOT(onRadioButton_139Pressed()));
+    connect(ui->radioButton_140, SIGNAL(pressed()), this, SLOT(onRadioButton_140Pressed()));
+
+
+    // L3P3
+    connect(ui->radioButton_141, SIGNAL(pressed()), this, SLOT(onRadioButton_141Pressed()));
+    connect(ui->radioButton_142, SIGNAL(pressed()), this, SLOT(onRadioButton_142Pressed()));
+    connect(ui->radioButton_143, SIGNAL(pressed()), this, SLOT(onRadioButton_143Pressed()));
+    connect(ui->radioButton_144, SIGNAL(pressed()), this, SLOT(onRadioButton_144Pressed()));
+    connect(ui->radioButton_145, SIGNAL(pressed()), this, SLOT(onRadioButton_145Pressed()));
+    connect(ui->radioButton_146, SIGNAL(pressed()), this, SLOT(onRadioButton_146Pressed()));
+    connect(ui->radioButton_147, SIGNAL(pressed()), this, SLOT(onRadioButton_147Pressed()));
+    connect(ui->radioButton_148, SIGNAL(pressed()), this, SLOT(onRadioButton_148Pressed()));
+    connect(ui->radioButton_149, SIGNAL(pressed()), this, SLOT(onRadioButton_149Pressed()));
+    connect(ui->radioButton_150, SIGNAL(pressed()), this, SLOT(onRadioButton_150Pressed()));
+    connect(ui->radioButton_151, SIGNAL(pressed()), this, SLOT(onRadioButton_151Pressed()));
+    connect(ui->radioButton_152, SIGNAL(pressed()), this, SLOT(onRadioButton_152Pressed()));
+
+   
+    // L4P1
+    connect(ui->radioButton_153, SIGNAL(pressed()), this, SLOT(onRadioButton_153Pressed()));
+    connect(ui->radioButton_154, SIGNAL(pressed()), this, SLOT(onRadioButton_154Pressed()));
+    connect(ui->radioButton_155, SIGNAL(pressed()), this, SLOT(onRadioButton_155Pressed()));
+    connect(ui->radioButton_156, SIGNAL(pressed()), this, SLOT(onRadioButton_156Pressed()));
+    connect(ui->radioButton_157, SIGNAL(pressed()), this, SLOT(onRadioButton_157Pressed()));
+    connect(ui->radioButton_158, SIGNAL(pressed()), this, SLOT(onRadioButton_158Pressed()));
+    connect(ui->radioButton_159, SIGNAL(pressed()), this, SLOT(onRadioButton_159Pressed()));
+    connect(ui->radioButton_160, SIGNAL(pressed()), this, SLOT(onRadioButton_160Pressed()));
+    connect(ui->radioButton_161, SIGNAL(pressed()), this, SLOT(onRadioButton_161Pressed()));
+    connect(ui->radioButton_162, SIGNAL(pressed()), this, SLOT(onRadioButton_162Pressed()));
+    connect(ui->radioButton_163, SIGNAL(pressed()), this, SLOT(onRadioButton_163Pressed()));
+    connect(ui->radioButton_164, SIGNAL(pressed()), this, SLOT(onRadioButton_164Pressed()));
+
+
+    // L4P2
+    connect(ui->radioButton_165, SIGNAL(pressed()), this, SLOT(onRadioButton_165Pressed()));
+    connect(ui->radioButton_166, SIGNAL(pressed()), this, SLOT(onRadioButton_166Pressed()));
+    connect(ui->radioButton_167, SIGNAL(pressed()), this, SLOT(onRadioButton_167Pressed()));
+    connect(ui->radioButton_168, SIGNAL(pressed()), this, SLOT(onRadioButton_168Pressed()));
+    connect(ui->radioButton_169, SIGNAL(pressed()), this, SLOT(onRadioButton_169Pressed()));
+    connect(ui->radioButton_170, SIGNAL(pressed()), this, SLOT(onRadioButton_170Pressed()));
+    connect(ui->radioButton_171, SIGNAL(pressed()), this, SLOT(onRadioButton_171Pressed()));
+    connect(ui->radioButton_172, SIGNAL(pressed()), this, SLOT(onRadioButton_172Pressed()));
+    connect(ui->radioButton_173, SIGNAL(pressed()), this, SLOT(onRadioButton_173Pressed()));
+    connect(ui->radioButton_174, SIGNAL(pressed()), this, SLOT(onRadioButton_174Pressed()));
+    connect(ui->radioButton_175, SIGNAL(pressed()), this, SLOT(onRadioButton_175Pressed()));
+    connect(ui->radioButton_176, SIGNAL(pressed()), this, SLOT(onRadioButton_176Pressed()));
+
+
+    // L4P3
+    connect(ui->radioButton_177, SIGNAL(pressed()), this, SLOT(onRadioButton_177Pressed()));
+    connect(ui->radioButton_178, SIGNAL(pressed()), this, SLOT(onRadioButton_178Pressed()));
+    connect(ui->radioButton_179, SIGNAL(pressed()), this, SLOT(onRadioButton_179Pressed()));
+    connect(ui->radioButton_180, SIGNAL(pressed()), this, SLOT(onRadioButton_180Pressed()));
+    connect(ui->radioButton_194, SIGNAL(pressed()), this, SLOT(onRadioButton_194Pressed()));
+    connect(ui->radioButton_195, SIGNAL(pressed()), this, SLOT(onRadioButton_195Pressed()));
+    connect(ui->radioButton_196, SIGNAL(pressed()), this, SLOT(onRadioButton_196Pressed()));
+    connect(ui->radioButton_197, SIGNAL(pressed()), this, SLOT(onRadioButton_197Pressed()));
+    connect(ui->radioButton_198, SIGNAL(pressed()), this, SLOT(onRadioButton_198Pressed()));
+    connect(ui->radioButton_199, SIGNAL(pressed()), this, SLOT(onRadioButton_199Pressed()));
+    connect(ui->radioButton_200, SIGNAL(pressed()), this, SLOT(onRadioButton_200Pressed()));
+    connect(ui->radioButton_201, SIGNAL(pressed()), this, SLOT(onRadioButton_201Pressed()));
+
+
+    // L5P1
+    connect(ui->radioButton_202, SIGNAL(pressed()), this, SLOT(onRadioButton_202Pressed()));
+    connect(ui->radioButton_203, SIGNAL(pressed()), this, SLOT(onRadioButton_203Pressed()));
+    connect(ui->radioButton_204, SIGNAL(pressed()), this, SLOT(onRadioButton_204Pressed()));
+    connect(ui->radioButton_205, SIGNAL(pressed()), this, SLOT(onRadioButton_205Pressed()));
+    connect(ui->radioButton_206, SIGNAL(pressed()), this, SLOT(onRadioButton_206Pressed()));
+    connect(ui->radioButton_207, SIGNAL(pressed()), this, SLOT(onRadioButton_207Pressed()));
+    connect(ui->radioButton_208, SIGNAL(pressed()), this, SLOT(onRadioButton_208Pressed()));
+    connect(ui->radioButton_209, SIGNAL(pressed()), this, SLOT(onRadioButton_209Pressed()));
+    connect(ui->radioButton_210, SIGNAL(pressed()), this, SLOT(onRadioButton_210Pressed()));
+    connect(ui->radioButton_211, SIGNAL(pressed()), this, SLOT(onRadioButton_211Pressed()));
+    connect(ui->radioButton_212, SIGNAL(pressed()), this, SLOT(onRadioButton_212Pressed()));
+    connect(ui->radioButton_213, SIGNAL(pressed()), this, SLOT(onRadioButton_213Pressed()));
+
+
+    // L5P2
+    connect(ui->radioButton_214, SIGNAL(pressed()), this, SLOT(onRadioButton_214Pressed()));
+    connect(ui->radioButton_215, SIGNAL(pressed()), this, SLOT(onRadioButton_215Pressed()));
+    connect(ui->radioButton_217, SIGNAL(pressed()), this, SLOT(onRadioButton_216Pressed()));
+    connect(ui->radioButton_216, SIGNAL(pressed()), this, SLOT(onRadioButton_217Pressed()));
+    connect(ui->radioButton_218, SIGNAL(pressed()), this, SLOT(onRadioButton_218Pressed()));
+    connect(ui->radioButton_219, SIGNAL(pressed()), this, SLOT(onRadioButton_219Pressed()));
+    connect(ui->radioButton_220, SIGNAL(pressed()), this, SLOT(onRadioButton_220Pressed()));
+    connect(ui->radioButton_221, SIGNAL(pressed()), this, SLOT(onRadioButton_221Pressed()));
+    connect(ui->radioButton_222, SIGNAL(pressed()), this, SLOT(onRadioButton_222Pressed()));
+    connect(ui->radioButton_223, SIGNAL(pressed()), this, SLOT(onRadioButton_223Pressed()));
+    connect(ui->radioButton_224, SIGNAL(pressed()), this, SLOT(onRadioButton_224Pressed()));
+    connect(ui->radioButton_225, SIGNAL(pressed()), this, SLOT(onRadioButton_225Pressed()));
+
+
+    // L5P3
+    connect(ui->radioButton_226, SIGNAL(pressed()), this, SLOT(onRadioButton_226Pressed()));
+    connect(ui->radioButton_227, SIGNAL(pressed()), this, SLOT(onRadioButton_227Pressed()));
+    connect(ui->radioButton_228, SIGNAL(pressed()), this, SLOT(onRadioButton_228Pressed()));
+    connect(ui->radioButton_229, SIGNAL(pressed()), this, SLOT(onRadioButton_229Pressed()));
+    connect(ui->radioButton_230, SIGNAL(pressed()), this, SLOT(onRadioButton_230Pressed()));
+    connect(ui->radioButton_231, SIGNAL(pressed()), this, SLOT(onRadioButton_231Pressed()));
+    connect(ui->radioButton_232, SIGNAL(pressed()), this, SLOT(onRadioButton_232Pressed()));
+    connect(ui->radioButton_233, SIGNAL(pressed()), this, SLOT(onRadioButton_233Pressed()));
     connect(ui->radioButton_234, SIGNAL(pressed()), this, SLOT(onRadioButton_234Pressed()));
     connect(ui->radioButton_235, SIGNAL(pressed()), this, SLOT(onRadioButton_235Pressed()));
     connect(ui->radioButton_236, SIGNAL(pressed()), this, SLOT(onRadioButton_236Pressed()));
     connect(ui->radioButton_237, SIGNAL(pressed()), this, SLOT(onRadioButton_237Pressed()));
+
+
+    // L6P1
+    connect(ui->radioButton_238, SIGNAL(pressed()), this, SLOT(onRadioButton_238Pressed()));
+    connect(ui->radioButton_239, SIGNAL(pressed()), this, SLOT(onRadioButton_239Pressed()));
+    connect(ui->radioButton_240, SIGNAL(pressed()), this, SLOT(onRadioButton_240Pressed()));
+    connect(ui->radioButton_241, SIGNAL(pressed()), this, SLOT(onRadioButton_241Pressed()));
+    connect(ui->radioButton_242, SIGNAL(pressed()), this, SLOT(onRadioButton_242Pressed()));
+    connect(ui->radioButton_243, SIGNAL(pressed()), this, SLOT(onRadioButton_243Pressed()));
+    connect(ui->radioButton_244, SIGNAL(pressed()), this, SLOT(onRadioButton_244Pressed()));
+    connect(ui->radioButton_245, SIGNAL(pressed()), this, SLOT(onRadioButton_245Pressed()));
+    connect(ui->radioButton_246, SIGNAL(pressed()), this, SLOT(onRadioButton_246Pressed()));
+    connect(ui->radioButton_247, SIGNAL(pressed()), this, SLOT(onRadioButton_247Pressed()));
+    connect(ui->radioButton_248, SIGNAL(pressed()), this, SLOT(onRadioButton_248Pressed()));
+    connect(ui->radioButton_249, SIGNAL(pressed()), this, SLOT(onRadioButton_249Pressed()));
+
+
+    // L6P2
+    connect(ui->radioButton_250, SIGNAL(pressed()), this, SLOT(onRadioButton_250Pressed()));
+    connect(ui->radioButton_251, SIGNAL(pressed()), this, SLOT(onRadioButton_251Pressed()));
+    connect(ui->radioButton_252, SIGNAL(pressed()), this, SLOT(onRadioButton_252Pressed()));
+    connect(ui->radioButton_253, SIGNAL(pressed()), this, SLOT(onRadioButton_253Pressed()));
+    connect(ui->radioButton_254, SIGNAL(pressed()), this, SLOT(onRadioButton_254Pressed()));
+    connect(ui->radioButton_255, SIGNAL(pressed()), this, SLOT(onRadioButton_255Pressed()));
+    connect(ui->radioButton_256, SIGNAL(pressed()), this, SLOT(onRadioButton_256Pressed()));
+    connect(ui->radioButton_257, SIGNAL(pressed()), this, SLOT(onRadioButton_257Pressed()));
+    connect(ui->radioButton_258, SIGNAL(pressed()), this, SLOT(onRadioButton_258Pressed()));
+    connect(ui->radioButton_259, SIGNAL(pressed()), this, SLOT(onRadioButton_259Pressed()));
+    connect(ui->radioButton_260, SIGNAL(pressed()), this, SLOT(onRadioButton_260Pressed()));
+    connect(ui->radioButton_261, SIGNAL(pressed()), this, SLOT(onRadioButton_261Pressed()));
+
+
+    // L6P3
+    connect(ui->radioButton_262, SIGNAL(pressed()), this, SLOT(onRadioButton_262Pressed()));
+    connect(ui->radioButton_263, SIGNAL(pressed()), this, SLOT(onRadioButton_263Pressed()));
+    connect(ui->radioButton_264, SIGNAL(pressed()), this, SLOT(onRadioButton_264Pressed()));
+    connect(ui->radioButton_265, SIGNAL(pressed()), this, SLOT(onRadioButton_265Pressed()));
+    connect(ui->radioButton_266, SIGNAL(pressed()), this, SLOT(onRadioButton_266Pressed()));
+    connect(ui->radioButton_267, SIGNAL(pressed()), this, SLOT(onRadioButton_267Pressed()));
+    connect(ui->radioButton_268, SIGNAL(pressed()), this, SLOT(onRadioButton_268Pressed()));
+    connect(ui->radioButton_269, SIGNAL(pressed()), this, SLOT(onRadioButton_269Pressed()));
+    connect(ui->radioButton_270, SIGNAL(pressed()), this, SLOT(onRadioButton_270Pressed()));
+    connect(ui->radioButton_271, SIGNAL(pressed()), this, SLOT(onRadioButton_271Pressed()));
+    connect(ui->radioButton_272, SIGNAL(pressed()), this, SLOT(onRadioButton_272Pressed()));
+    connect(ui->radioButton_273, SIGNAL(pressed()), this, SLOT(onRadioButton_273Pressed()));
+
 
     // data type in modbus request groupbox
     connect(ui->radioButton_181, SIGNAL(toggled(bool)), this, SLOT(onFloatButtonPressed(bool)));
@@ -4008,7 +4421,7 @@ clearMonitors()
     ui->busMonTable->setRowCount(0);
 }
 
-
+/*
 void
 MainWindow::
 connectRegisters()
@@ -4027,7 +4440,6 @@ connectRegisters()
     connect(ui->radioButton_100, SIGNAL(pressed()), this,  SLOT(onProductBtnPressed()));
     connect(ui->radioButton_106, SIGNAL(pressed()), this,  SLOT(onProductBtnPressed()));
 }
-
 
 void
 MainWindow::
@@ -4052,7 +4464,7 @@ onProductBtnPressed()
     (ui->radioButton_100->isChecked()) ? updateRegisters(RAZ,16) : updateRegisters(EEA,16);
     (ui->radioButton_106->isChecked()) ? updateRegisters(RAZ,17) : updateRegisters(EEA,17);
 }
-
+*/
 
 void
 MainWindow::
@@ -4068,41 +4480,41 @@ onLoopTabChanged(int index)
         }
         else if (ui->tabWidget_3->currentIndex() == 1)
         {
-            (ui->radioButton_10->isChecked()) ? updateRegisters(RAZ,1) : updateRegisters(EEA,1);
+            (ui->radioButton_22->isChecked()) ? updateRegisters(RAZ,1) : updateRegisters(EEA,1);
         }
         else
         {
-            (ui->radioButton_16->isChecked()) ? updateRegisters(RAZ,2) : updateRegisters(EEA,2);
+            (ui->radioButton_70->isChecked()) ? updateRegisters(RAZ,2) : updateRegisters(EEA,2);
         }
     } 
     else if (index == 1)
     {
         if (ui->tabWidget_4->currentIndex() == 0)
         {
-            (ui->radioButton_20->isChecked()) ? updateRegisters(RAZ,3) : updateRegisters(EEA,3);
+            (ui->radioButton_82->isChecked()) ? updateRegisters(RAZ,3) : updateRegisters(EEA,3);
         }
         else if (ui->tabWidget_4->currentIndex() == 1)
         {
-            (ui->radioButton_28->isChecked()) ? updateRegisters(RAZ,4) : updateRegisters(EEA,4);
+            (ui->radioButton_94->isChecked()) ? updateRegisters(RAZ,4) : updateRegisters(EEA,4);
         }
         else
         {
-            (ui->radioButton_34->isChecked()) ? updateRegisters(RAZ,5) : updateRegisters(EEA,5);
+            (ui->radioButton_106->isChecked()) ? updateRegisters(RAZ,5) : updateRegisters(EEA,5);
         }
     }
     else if (index == 2)
     {
         if (ui->tabWidget_5->currentIndex() == 0)
         {
-            (ui->radioButton_38->isChecked()) ? updateRegisters(RAZ,6) : updateRegisters(EEA,6);
+            (ui->radioButton_118->isChecked()) ? updateRegisters(RAZ,6) : updateRegisters(EEA,6);
         }
         else if (ui->tabWidget_5->currentIndex() == 1)
         {
-            (ui->radioButton_46->isChecked()) ? updateRegisters(RAZ,7) : updateRegisters(EEA,7);
+            (ui->radioButton_130->isChecked()) ? updateRegisters(RAZ,7) : updateRegisters(EEA,7);
         }
         else
         {
-            (ui->radioButton_52->isChecked()) ? updateRegisters(RAZ,8) : updateRegisters(EEA,8);
+            (ui->radioButton_142->isChecked()) ? updateRegisters(RAZ,8) : updateRegisters(EEA,8);
         }
     }
     else if (index == 3)
@@ -4110,15 +4522,15 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_6->currentIndex() == 0)
         {
-            (ui->radioButton_56->isChecked()) ? updateRegisters(RAZ,9) : updateRegisters(EEA,9);
+            (ui->radioButton_154->isChecked()) ? updateRegisters(RAZ,9) : updateRegisters(EEA,9);
         }
         else if (ui->tabWidget_6->currentIndex() == 1)
         {
-            (ui->radioButton_64->isChecked()) ? updateRegisters(RAZ,10) : updateRegisters(EEA,10);
+            (ui->radioButton_166->isChecked()) ? updateRegisters(RAZ,10) : updateRegisters(EEA,10);
         }
         else
         {
-            (ui->radioButton_70->isChecked()) ? updateRegisters(RAZ,11) : updateRegisters(EEA,11);
+            (ui->radioButton_178->isChecked()) ? updateRegisters(RAZ,11) : updateRegisters(EEA,11);
         }
     }
     else if (index == 4)
@@ -4126,15 +4538,15 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_7->currentIndex() == 0)
         {
-            (ui->radioButton_74->isChecked()) ? updateRegisters(RAZ,12) : updateRegisters(EEA,12);
+            (ui->radioButton_203->isChecked()) ? updateRegisters(RAZ,12) : updateRegisters(EEA,12);
         }
         else if (ui->tabWidget_7->currentIndex() == 1)
         {
-            (ui->radioButton_82->isChecked()) ? updateRegisters(RAZ,13) : updateRegisters(EEA,13);
+            (ui->radioButton_215->isChecked()) ? updateRegisters(RAZ,13) : updateRegisters(EEA,13);
         }
         else
         {
-            (ui->radioButton_88->isChecked()) ? updateRegisters(RAZ,14) : updateRegisters(EEA,14);
+            (ui->radioButton_227->isChecked()) ? updateRegisters(RAZ,14) : updateRegisters(EEA,14);
         }
     }
     else
@@ -4142,15 +4554,15 @@ onLoopTabChanged(int index)
 
         if (ui->tabWidget_8->currentIndex() == 0)
         {
-            (ui->radioButton_92->isChecked()) ? updateRegisters(RAZ,15) : updateRegisters(EEA,15);
+            (ui->radioButton_239->isChecked()) ? updateRegisters(RAZ,15) : updateRegisters(EEA,15);
         }
         else if (ui->tabWidget_8->currentIndex() == 1)
         {
-            (ui->radioButton_100->isChecked()) ? updateRegisters(RAZ,16) : updateRegisters(EEA,16);
+            (ui->radioButton_251->isChecked()) ? updateRegisters(RAZ,16) : updateRegisters(EEA,16);
         }
         else
         {
-            (ui->radioButton_106->isChecked()) ? updateRegisters(RAZ,17) : updateRegisters(EEA,17);
+            (ui->radioButton_263->isChecked()) ? updateRegisters(RAZ,17) : updateRegisters(EEA,17);
         }
     }
 
@@ -4207,33 +4619,52 @@ MainWindow::
 connectCalibrationControls()
 {
     connect(ui->pushButton_4, SIGNAL(pressed()), this, SLOT(calibration_L1P1()));
-    connect(ui->pushButton_9, SIGNAL(pressed()), this, SLOT(calibration_L1P2()));
-    connect(ui->pushButton_57, SIGNAL(pressed()), this, SLOT(calibration_L1P3()));
-    connect(ui->pushButton_12, SIGNAL(pressed()), this, SLOT(calibration_L2P1()));
-    connect(ui->pushButton_15, SIGNAL(pressed()), this, SLOT(calibration_L2P2()));
-    connect(ui->pushButton_18, SIGNAL(pressed()), this, SLOT(calibration_L2P3()));
-    connect(ui->pushButton_21, SIGNAL(pressed()), this, SLOT(calibration_L3P1()));
-    connect(ui->pushButton_24, SIGNAL(pressed()), this, SLOT(calibration_L3P2()));
-    connect(ui->pushButton_27, SIGNAL(pressed()), this, SLOT(calibration_L3P3()));
-    connect(ui->pushButton_30, SIGNAL(pressed()), this, SLOT(calibration_L4P1()));
-    connect(ui->pushButton_33, SIGNAL(pressed()), this, SLOT(calibration_L4P2()));
-    connect(ui->pushButton_36, SIGNAL(pressed()), this, SLOT(calibration_L4P3()));
-    connect(ui->pushButton_39, SIGNAL(pressed()), this, SLOT(calibration_L5P1()));
-    connect(ui->pushButton_51, SIGNAL(pressed()), this, SLOT(calibration_L5P2()));
-    connect(ui->pushButton_54, SIGNAL(pressed()), this, SLOT(calibration_L5P3()));
-    connect(ui->pushButton_42, SIGNAL(pressed()), this, SLOT(calibration_L6P1()));
-    connect(ui->pushButton_45, SIGNAL(pressed()), this, SLOT(calibration_L6P2()));
-    connect(ui->pushButton_48, SIGNAL(pressed()), this, SLOT(calibration_L6P3()));
+    connect(ui->pushButton_5, SIGNAL(pressed()), this, SLOT(calibration_L1P2()));
+    connect(ui->pushButton_8, SIGNAL(pressed()), this, SLOT(calibration_L1P3()));
+    connect(ui->pushButton_9, SIGNAL(pressed()), this, SLOT(calibration_L2P1()));
+    connect(ui->pushButton_10, SIGNAL(pressed()), this, SLOT(calibration_L2P2()));
+    connect(ui->pushButton_11, SIGNAL(pressed()), this, SLOT(calibration_L2P3()));
+    connect(ui->pushButton_12, SIGNAL(pressed()), this, SLOT(calibration_L3P1()));
+    connect(ui->pushButton_13, SIGNAL(pressed()), this, SLOT(calibration_L3P2()));
+    connect(ui->pushButton_14, SIGNAL(pressed()), this, SLOT(calibration_L3P3()));
+    connect(ui->pushButton_15, SIGNAL(pressed()), this, SLOT(calibration_L4P1()));
+    connect(ui->pushButton_16, SIGNAL(pressed()), this, SLOT(calibration_L4P2()));
+    connect(ui->pushButton_17, SIGNAL(pressed()), this, SLOT(calibration_L4P3()));
+    connect(ui->pushButton_18, SIGNAL(pressed()), this, SLOT(calibration_L5P1()));
+    connect(ui->pushButton_19, SIGNAL(pressed()), this, SLOT(calibration_L5P2()));
+    connect(ui->pushButton_20, SIGNAL(pressed()), this, SLOT(calibration_L5P3()));
+    connect(ui->pushButton_21, SIGNAL(pressed()), this, SLOT(calibration_L6P1()));
+    connect(ui->pushButton_22, SIGNAL(pressed()), this, SLOT(calibration_L6P2()));
+    connect(ui->pushButton_23, SIGNAL(pressed()), this, SLOT(calibration_L6P3()));
 }
 
 
 void
 MainWindow::
-createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, QFile & file3, QFile & file4, QFile & file5, QFile & file6, QFile & file7)
+createLoopFiles(const int sn, const QString path, const BOOL iseea, const QString max_salt, const QString min_salt, const QString oil_temp, const QString v_olume, const QString max_water_run, const QString min_water_run, const QString max_oil_run, const QString min_oil_run, QFile & file1, QFile & file2, QFile & file3, QFile & file4, QFile & file5, QFile & file6, QFile & file7)
 {
+    QDateTime currentDataTime = QDateTime::currentDateTime();
+
     QDir dir;
-    QString header1("SN"+QString::number(sn)); // SN1894 | HIGHCUT | SPARKY V1.2.3
-    QString header2;
+    QString cutMode;
+
+    if (path == HIGH) cutMode = "HIGHCUT";
+    else if (path == FULL) cutMode = "FULLCUT";
+    else if (path == MID) cutMode = "MIDCUT";
+    else if (path == LOW) cutMode = "LOWCUT";
+    
+    QString startWaterRun = max_water_run;
+    QString stopWaterRun = min_water_run;
+    QString startOilRun = max_oil_run;
+    QString stopOilRun = min_oil_run;
+    QString startSalt = max_salt;
+    QString stopSalt = min_salt;
+    QString oilTemp = oil_temp;
+    QString volume = v_olume;
+
+    QString header0 = "EEA INJECTION FILE";
+    QString header1("SN"+QString::number(sn)+" | "+cutMode +" | "+currentDataTime.toString()+" | "+PROJECT+RELEASE_VERSION); // SN1894 | HIGHCUT | Mon Dec 14 10:21:20 2020 | Sparky 0.0.7
+    QString header2("INJECTION:  "+startWaterRun+" % "+"to "+stopWaterRun+" % "+"Watercut at "+startSalt+" % "+"Salinity\n");
     QString header3("Time From  Water  Osc  Tune Tuning            Incident Reflected                         Analog     User Input  Injection");
     QString header4("Run Start   Cut   Band Type Voltage Frequency  Power     Power   Temperature Pressure    Input        Value       Time     Comment");
     QString header5("========= ======= ==== ==== ======= ========= ======== ========= =========== ======== ============ ============ ========== ============");
@@ -4258,8 +4689,6 @@ createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, 
         file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_HC);
         file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_HC);
         file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_HC);
-
-        header1 += (" | HIGHCUT");
     }
     else if (path == FULL) 
     {
@@ -4270,8 +4699,6 @@ createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, 
         file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_FC);
         file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_FC);
         file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_FC);
-
-        header1 += (" | FULLCUT");
     }
     else if (path == MID) 
     {
@@ -4282,8 +4709,6 @@ createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, 
         file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_MC);
         file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_MC);
         file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_MC);
-
-        header1 += (" | MIDCUT");
     }
     else if (path == LOW) 
     {
@@ -4294,10 +4719,12 @@ createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, 
         file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_LC);
         file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_LC);
         file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_LC);
-
-        header1 += (" | LOWCUT");
     }
     else return; // never reaches here
+
+    /// product
+    if (iseea) header0 = "EEA INJECTION FILE";
+    else header0 = "RAZOR INJECTION FILE";
 
     /// open files
     file1.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -4307,13 +4734,18 @@ createLoopFiles(const int sn, const QString path, QFile & file1, QFile & file2, 
     file5.open(QIODevice::WriteOnly | QIODevice::Text);
     file6.open(QIODevice::WriteOnly | QIODevice::Text);
     file7.open(QIODevice::WriteOnly | QIODevice::Text);
-
+/*
+    QString header0 = "EEA INJECTION FILE";
+    QString header1 = PROJECT+PROJECT_VERSION;
+    QString header2("SN"+QString::number(sn)); // SN1894 | HIGHCUT | Mon Dec 14 10:21:20 2020 
+    QString header3(" | "+currentDataTime.toString());
+*/
     /// write headers
-    stream1 << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
-    stream2 << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
-    stream3 << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
-    stream4 << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
-    stream5 << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream1 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream2 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream3 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream4 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream5 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
                     
     /// close files
     file1.close();
@@ -4331,6 +4763,17 @@ MainWindow::
 calibration_L1P1()
 {
     QString path;
+    BOOL isEEA = true;
+
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
 
     if (m_modbus == NULL) // LOOP 1
     {
@@ -4353,14 +4796,19 @@ calibration_L1P1()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_3->isChecked()) path = HIGH;            // HIGH
-    else if (ui->radioButton_194->isChecked()) path = FULL;     // FULL
-    else if (ui->radioButton_195->isChecked()) path = MID ;     // MID
-    else if (ui->radioButton_4->isChecked()) path = LOW;        // LOW
+    if (ui->radioButton_3->isChecked()) path = HIGH;          // HIGH
+    else if (ui->radioButton_4->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_5->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_6->isChecked()) path = LOW;      // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
     ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
@@ -4375,6 +4823,17 @@ MainWindow::
 calibration_L1P2()
 {
     QString path;
+    BOOL isEEA = true;
+
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
 
     if (m_modbus == NULL) // LOOP 1
     {
@@ -4382,56 +4841,13 @@ calibration_L1P2()
         return;       
     }
 
-    if (ui->lineEdit_3->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_1_Pipe_2 no serial number!") );
-         return;       
-    }
-
-    const int slave = ui->lineEdit_3->text().toInt();
- /*   const int addr = ui->startAddr->value()-1;
-    uint8_t dest[1024];
-    uint16_t * dest16 = (uint16_t *) dest;
-    int ret = -1;
-    bool is16Bit = false;
-    bool writeAccess = false;
-    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT ); */
-
-    /// cut
-    if (ui->radioButton_8->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_196->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_197->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_7->isChecked()) path = LOW;     // LOW
-
-    /// create files
-    createLoopFiles(slave, path, file1_L1P2, file2_L1P2, file3_L1P2, file4_L1P2, file5_L1P2, file6_L1P2, file7_L1P2);
-
-    ui->pushButton_9->setText(tr("P A U S E"));
-/*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/
-}
-
-void
-MainWindow::
-calibration_L1P3()
-{
-    QString path;
-
-    if (m_modbus == NULL) // LOOP 1
-    {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
         return;       
     }
 
-    if (ui->lineEdit_5->text().isEmpty())
-    {
-         setStatusError( tr("Loop_1_Pipe_3 no serial number!") );
-         return;       
-    }
-
-    const int slave = ui->lineEdit_5->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4440,20 +4856,86 @@ calibration_L1P3()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_201->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_202->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_203->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_200->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_23->isChecked()) path = HIGH;          // HIGH
+    else if (ui->radioButton_24->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_37->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_38->isChecked()) path = LOW;      // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L1P3, file2_L1P3, file3_L1P3, file4_L1P3, file5_L1P3, file6_L1P3, file7_L1P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_57->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+*/
+}
+
+
+void
+MainWindow::
+calibration_L1P3()
+{
+    QString path;
+    BOOL isEEA = true;
+
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
+    {
+        setStatusError( tr("Loop_1 not configured!") );
+        return;       
+    }
+
+    if (ui->lineEdit_2->text().isEmpty())
+    {
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
+    }
+
+    const int slave = ui->lineEdit_2->text().toInt();
+/*    const int addr = ui->startAddr->value()-1;
+    uint8_t dest[1024];
+    uint16_t * dest16 = (uint16_t *) dest;
+    int ret = -1;
+    bool is16Bit = false;
+    bool writeAccess = false;
+    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
+    /// cut
+    if (ui->radioButton_72->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_73->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_74->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_78->isChecked()) path = LOW;        // LOW
+
+    /// create files
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+
+    ui->pushButton_4->setText(tr("P A U S E"));
+/*    memset( dest, 0, 1024 );
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4461,20 +4943,31 @@ MainWindow::
 calibration_L2P1()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_2 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_2 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_7->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_2_Pipe_1 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_7->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4483,20 +4976,26 @@ calibration_L2P1()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_24->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_204->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_205->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_23->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_83->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_84->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_85->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_86->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L2P1, file2_L2P1, file3_L2P1, file4_L2P1, file5_L2P1, file6_L2P1, file7_L2P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_57->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_2, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4504,20 +5003,31 @@ MainWindow::
 calibration_L2P2()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_2 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_2 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_9->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_2_Pipe_2 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_9->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4526,20 +5036,26 @@ calibration_L2P2()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_26->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_206->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_207->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_25->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_95->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_96->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_97->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_98->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L2P2, file2_L2P2, file3_L2P2, file4_L2P2, file5_L2P2, file6_L2P2, file7_L2P2);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_15->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_2, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4547,20 +5063,31 @@ MainWindow::
 calibration_L2P3()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_2 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_2 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_11->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_2_Pipe_3 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_11->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4569,20 +5096,26 @@ calibration_L2P3()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_32->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_208->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_209->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_31->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_107->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_108->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_109->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_110->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L2P3, file2_L2P3, file3_L2P3, file4_L2P3, file5_L2P3, file6_L2P3, file7_L2P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_18->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_2, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_2, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4590,20 +5123,31 @@ MainWindow::
 calibration_L3P1()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_3 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_3 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_13->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_3_Pipe_1 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_13->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4612,20 +5156,26 @@ calibration_L3P1()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_42->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_210->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_211->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_41->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_119->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_120->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_121->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_122->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L3P1, file2_L3P1, file3_L3P1, file4_L3P1, file5_L3P1, file6_L3P1, file7_L3P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_21->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_3, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4633,20 +5183,31 @@ MainWindow::
 calibration_L3P2()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_3 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_3 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_15->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_3_Pipe_2 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_15->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4655,40 +5216,58 @@ calibration_L3P2()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_44->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_212->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_213->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_43->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_131->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_132->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_133->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_134->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L3P2, file2_L3P2, file3_L3P2, file4_L3P2, file5_L3P2, file6_L3P2, file7_L3P2);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_24->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_3, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
+
 
 void
 MainWindow::
 calibration_L3P3()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_3 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_3 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_17->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_3_Pipe_3 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_17->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4697,20 +5276,26 @@ calibration_L3P3()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_50->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_214->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_215->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_49->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_143->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_144->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_145->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_146->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L3P3, file2_L3P3, file3_L3P3, file4_L3P3, file5_L3P3, file6_L3P3, file7_L3P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_27->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_3, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_3, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4718,20 +5303,31 @@ MainWindow::
 calibration_L4P1()
 {
     QString path;
-  
-    if (m_modbus_4 == NULL)
+    BOOL isEEA = true;
+
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_4 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_19->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_4_Pipe_1 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_19->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4740,40 +5336,58 @@ calibration_L4P1()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_60->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_216->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_217->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_59->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_155->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_156->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_157->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_158->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L4P1, file2_L4P1, file3_L4P1, file4_L4P1, file5_L4P1, file6_L4P1, file7_L4P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_30->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_4, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
+
 
 void
 MainWindow::
 calibration_L4P2()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_4 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_4 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_21->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_4_Pipe_2 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_21->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4782,20 +5396,26 @@ calibration_L4P2()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_62->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_218->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_219->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_61->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_167->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_168->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_169->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_170->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L4P2, file2_L4P2, file3_L4P2, file4_L4P2, file5_L4P2, file6_L4P2, file7_L4P2);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_33->setText(tr("P A U S E"));
- /*   memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_4, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    ui->pushButton_4->setText(tr("P A U S E"));
+/*    memset( dest, 0, 1024 );
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4803,20 +5423,31 @@ MainWindow::
 calibration_L4P3()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_4 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_4 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_23->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_4_Pipe_3 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_23->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4825,20 +5456,26 @@ calibration_L4P3()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_68->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_220->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_221->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_67->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_179->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_180->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_194->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_195->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L4P3, file2_L4P3, file3_L4P3, file4_L4P3, file5_L4P3, file6_L4P3, file7_L4P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_36->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_4, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_4, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4846,21 +5483,32 @@ MainWindow::
 calibration_L5P1()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_5 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_5 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_25->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_5_Pipe_1 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_25->text().toInt();
- /*   const int addr = ui->startAddr->value()-1;
+    const int slave = ui->lineEdit_2->text().toInt();
+/*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
@@ -4868,20 +5516,26 @@ calibration_L5P1()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_78->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_222->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_223->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_77->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_204->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_205->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_206->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_207->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L1P2, file2_L5P1, file3_L5P1, file4_L5P1, file5_L5P1, file6_L5P1, file7_L5P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_39->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_5, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
 
 
 void
@@ -4889,20 +5543,31 @@ MainWindow::
 calibration_L5P2()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_5 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_5 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_27->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_5_Pipe_2 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_27->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4911,61 +5576,85 @@ calibration_L5P2()
     bool writeAccess = false;
     const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
 */
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
+
     /// cut
-    if (ui->radioButton_80->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_224->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_225->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_79->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_216->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_217->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_218->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_219->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L5P2, file2_L5P2, file3_L5P2, file4_L5P2, file5_L5P2, file6_L5P2, file7_L5P2);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_51->setText(tr("P A U S E"));
- /*   memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_5, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
-*/}
+    ui->pushButton_4->setText(tr("P A U S E"));
+/*    memset( dest, 0, 1024 );
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
+}
+
 
 void
 MainWindow::
 calibration_L5P3()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_5 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_5 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_29->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_5_Pipe_3 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_29->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
     bool is16Bit = false;
     bool writeAccess = false;
-    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT ); */
+    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
 
     /// cut
-    if (ui->radioButton_86->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_226->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_227->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_85->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_228->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_229->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_230->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_231->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L5P3, file2_L5P3, file3_L5P3, file4_L5P3, file5_L5P3, file6_L5P3, file7_L5P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_54->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_5, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_5, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType); */
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
 }
 
 
@@ -4974,41 +5663,58 @@ MainWindow::
 calibration_L6P1()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_6 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_6 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_31->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_6_Pipe_1 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_31->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
     bool is16Bit = false;
     bool writeAccess = false;
-    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT ); */
+    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
 
     /// cut
-    if (ui->radioButton_96->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_228->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_229->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_95->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_240->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_241->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_242->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_243->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L6P1, file2_L6P1, file3_L6P1, file4_L6P1, file5_L6P1, file6_L6P1, file7_L6P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_42->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_6, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType); */
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
 }
 
 
@@ -5017,41 +5723,58 @@ MainWindow::
 calibration_L6P2()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_6 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_6 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_33->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_6_Pipe_2 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_33->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
     bool is16Bit = false;
     bool writeAccess = false;
-    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT ); */
+    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
 
     /// cut
-    if (ui->radioButton_98->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_230->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_231->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_97->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_252->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_253->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_254->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_255->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L6P2, file2_L6P2, file3_L6P2, file4_L6P2, file5_L6P2, file6_L6P2, file7_L6P2);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_45->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_6, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType); */
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
 }
 
 
@@ -5060,41 +5783,58 @@ MainWindow::
 calibration_L6P3()
 {
     QString path;
+    BOOL isEEA = true;
 
-    if (m_modbus_6 == NULL)
+    /// get user inputs
+    QString startSalt = ui->comboBox_31->currentText();
+    QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
+    QString startWaterRun = ui->lineEdit_37->text();
+    QString stopWaterRun = ui->lineEdit_38->text();
+    QString startOilRun = ui->lineEdit_39->text();
+    QString stopOilRun = ui->lineEdit_40->text();
+
+    if (m_modbus == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_6 not configured!") );
+        setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_35->text().isEmpty())
+    if (ui->lineEdit_2->text().isEmpty())
     {
-         setStatusError( tr("Loop_6_Pipe_3 no serial number!") );
-         return;       
+        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        return;       
     }
 
-    const int slave = ui->lineEdit_35->text().toInt();
+    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
     int ret = -1;
     bool is16Bit = false;
     bool writeAccess = false;
-    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT ); */
+    const QString funcType = descriptiveDataTypeName( FUNC_READ_FLOAT );
+*/
+   
+    /// product
+    if (ui->radioButton->isChecked()) isEEA = true;
+    else isEEA = false;
 
     /// cut
-    if (ui->radioButton_235->isChecked()) path = HIGH;    // HIGH
-    else if (ui->radioButton_236->isChecked()) path = FULL;  // FULL
-    else if (ui->radioButton_237->isChecked()) path = MID ;  // MID
-    else if (ui->radioButton_234->isChecked()) path = LOW;     // LOW
+    if (ui->radioButton_264->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_265->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_266->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_267->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, file1_L6P3, file2_L6P3, file3_L6P3, file4_L6P3, file5_L6P3, file6_L6P3, file7_L6P3);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_48->setText(tr("P A U S E"));
+    ui->pushButton_4->setText(tr("P A U S E"));
 /*    memset( dest, 0, 1024 );
-    modbus_set_slave( m_serialModbus_6, slave );
-    sendCalibrationRequest(FLOAT_R, m_serialModbus_6, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType); */
+    modbus_set_slave( m_serialModbus, slave );
+    sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
+*/
 }
 
 
