@@ -4646,7 +4646,9 @@ createLoopFiles(const int sn, const QString path, const BOOL iseea, const QStrin
     QDateTime currentDataTime = QDateTime::currentDateTime();
 
     QDir dir;
+    QString filePath;
     QString cutMode;
+    int fileCounter = 1;
 
     if (path == HIGH) cutMode = "HIGHCUT";
     else if (path == FULL) cutMode = "FULLCUT";
@@ -4657,8 +4659,8 @@ createLoopFiles(const int sn, const QString path, const BOOL iseea, const QStrin
     QString stopWaterRun = min_water_run;
     QString startOilRun = max_oil_run;
     QString stopOilRun = min_oil_run;
-    QString startSalt = max_salt;
-    QString stopSalt = min_salt;
+    QString startSalt = min_salt;
+    QString stopSalt = max_salt;
     QString oilTemp = oil_temp;
     QString volume = v_olume;
 
@@ -4674,57 +4676,75 @@ createLoopFiles(const int sn, const QString path, const BOOL iseea, const QStrin
     QTextStream stream3(&file3);
     QTextStream stream4(&file4);
     QTextStream stream5(&file5);
+    QTextStream stream6(&file6);
+    QTextStream stream7(&file7);
 
     /// We create the directory if needed
-    if (!dir.exists(path+QString::number(sn))) dir.mkpath(path+QString::number(sn));
-    else return;
+    if (!dir.exists(path+QString::number(sn))) 
+    {
+        filePath = path+QString::number(sn);
+        dir.mkpath(filePath);
+    } 
+    else
+    {
+        while (1)
+        {
+            if (!dir.exists(path+QString::number(sn)+"_"+QString::number(fileCounter))) 
+            {
+                filePath = path+QString::number(sn)+"_"+QString::number(fileCounter);
+                dir.mkpath(filePath);
+                break;
+            }
+            else fileCounter++;
+        }
+    }
 
     /// set filenames
     if (path == HIGH) 
     {
-        file1.setFileName(path+QString::number(sn)+"\\"+FILE_LIST_HC);
-        file2.setFileName(path+QString::number(sn)+"\\"+AMB_TWENTY_HC);
-        file3.setFileName(path+QString::number(sn)+"\\"+TWENTY_FIFTYFIVE_HC);
-        file4.setFileName(path+QString::number(sn)+"\\"+FIFTYFIVE_THIRTYEIGHT_HC);
-        file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_HC);
-        file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_HC);
-        file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_HC);
+        file1.setFileName(filePath+"\\"+FILE_LIST_HC);
+        file2.setFileName(filePath+"\\"+AMB_TWENTY_HC);
+        file3.setFileName(filePath+"\\"+TWENTY_FIFTYFIVE_HC);
+        file4.setFileName(filePath+"\\"+FIFTYFIVE_THIRTYEIGHT_HC);
+        file5.setFileName(filePath+"\\"+CALIBRAT_HC);
+        file6.setFileName(filePath+"\\"+ADJUSTED_HC);
+        file7.setFileName(filePath+"\\"+ROLLOVER_HC);
     }
     else if (path == FULL) 
     {
-        file1.setFileName(path+QString::number(sn)+"\\"+FILE_LIST_FC);
-        file2.setFileName(path+QString::number(sn)+"\\"+AMB_TWENTY_FC);
-        file3.setFileName(path+QString::number(sn)+"\\"+TWENTY_FIFTYFIVE_FC);
-        file4.setFileName(path+QString::number(sn)+"\\"+FIFTYFIVE_THIRTYEIGHT_FC);
-        file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_FC);
-        file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_FC);
-        file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_FC);
+        file1.setFileName(filePath+"\\"+FILE_LIST_FC);
+        file2.setFileName(filePath+"\\"+AMB_TWENTY_FC);
+        file3.setFileName(filePath+"\\"+TWENTY_FIFTYFIVE_FC);
+        file4.setFileName(filePath+"\\"+FIFTYFIVE_THIRTYEIGHT_FC);
+        file5.setFileName(filePath+"\\"+CALIBRAT_FC);
+        file6.setFileName(filePath+"\\"+ADJUSTED_FC);
+        file7.setFileName(filePath+"\\"+ROLLOVER_FC);
     }
     else if (path == MID) 
     {
-        file1.setFileName(path+QString::number(sn)+"\\"+FILE_LIST_MC);
-        file2.setFileName(path+QString::number(sn)+"\\"+AMB_TWENTY_MC);
-        file3.setFileName(path+QString::number(sn)+"\\"+TWENTY_FIFTYFIVE_MC);
-        file4.setFileName(path+QString::number(sn)+"\\"+FIFTYFIVE_THIRTYEIGHT_MC);
-        file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_MC);
-        file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_MC);
-        file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_MC);
+        file1.setFileName(filePath+"\\"+FILE_LIST_MC);
+        file2.setFileName(filePath+"\\"+AMB_TWENTY_MC);
+        file3.setFileName(filePath+"\\"+TWENTY_FIFTYFIVE_MC);
+        file4.setFileName(filePath+"\\"+FIFTYFIVE_THIRTYEIGHT_MC);
+        file5.setFileName(filePath+"\\"+CALIBRAT_MC);
+        file6.setFileName(filePath+"\\"+ADJUSTED_MC);
+        file7.setFileName(filePath+"\\"+ROLLOVER_MC);
     }
     else if (path == LOW) 
     {
-        file1.setFileName(path+QString::number(sn)+"\\"+FILE_LIST_LC);
-        file2.setFileName(path+QString::number(sn)+"\\"+AMB_TWENTY_LC);
-        file3.setFileName(path+QString::number(sn)+"\\"+TWENTY_FIFTYFIVE_LC);
-        file4.setFileName(path+QString::number(sn)+"\\"+FIFTYFIVE_THIRTYEIGHT_LC);
-        file5.setFileName(path+QString::number(sn)+"\\"+CALIBRAT_LC);
-        file6.setFileName(path+QString::number(sn)+"\\"+ADJUSTED_LC);
-        file7.setFileName(path+QString::number(sn)+"\\"+ROLLOVER_LC);
+        file1.setFileName(filePath+"\\"+FILE_LIST_LC);
+        file2.setFileName(filePath+"\\"+AMB_TWENTY_LC);
+        file3.setFileName(filePath+"\\"+TWENTY_FIFTYFIVE_LC);
+        file4.setFileName(filePath+"\\"+FIFTYFIVE_THIRTYEIGHT_LC);
+        file5.setFileName(filePath+"\\"+CALIBRAT_LC);
+        file6.setFileName(filePath+"\\"+ADJUSTED_LC);
+        file7.setFileName(filePath+"\\"+ROLLOVER_LC);
     }
     else return; // never reaches here
 
     /// product
-    if (iseea) header0 = "EEA INJECTION FILE";
-    else header0 = "RAZOR INJECTION FILE";
+    if (iseea) header0 = EEA_INJECTION_FILE;
+    else header0 = RAZ_INJECTION_FILE;
 
     /// open files
     file1.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -4734,18 +4754,15 @@ createLoopFiles(const int sn, const QString path, const BOOL iseea, const QStrin
     file5.open(QIODevice::WriteOnly | QIODevice::Text);
     file6.open(QIODevice::WriteOnly | QIODevice::Text);
     file7.open(QIODevice::WriteOnly | QIODevice::Text);
-/*
-    QString header0 = "EEA INJECTION FILE";
-    QString header1 = PROJECT+PROJECT_VERSION;
-    QString header2("SN"+QString::number(sn)); // SN1894 | HIGHCUT | Mon Dec 14 10:21:20 2020 
-    QString header3(" | "+currentDataTime.toString());
-*/
+
     /// write headers
     stream1 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
     stream2 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
     stream3 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
     stream4 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
     stream5 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream6 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
+    stream7 << header0 << '\n' << header1 << '\n' << header2 << '\n' << header3 << '\n' << header4 << '\n' << header5 << '\n';
                     
     /// close files
     file1.close();
@@ -4766,14 +4783,15 @@ calibration_L1P1()
     BOOL isEEA = true;
 
     /// get user inputs
+    int slave = ui->lineEdit_2->text().toInt();
     QString startSalt = ui->comboBox_31->currentText();
     QString stopSalt = ui->comboBox_33->currentText();
+    QString oilTemp = ui->comboBox_32->currentText();
+    QString volume = ui->lineEdit->text();
     QString startWaterRun = ui->lineEdit_37->text();
     QString stopWaterRun = ui->lineEdit_38->text();
     QString startOilRun = ui->lineEdit_39->text();
     QString stopOilRun = ui->lineEdit_40->text();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
 
     if (m_modbus == NULL) // LOOP 1
     {
@@ -4787,7 +4805,6 @@ calibration_L1P1()
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4810,7 +4827,8 @@ calibration_L1P1()
     /// create files
     createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    /// control group box
+    ui->pushButton_4->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -4826,28 +4844,28 @@ calibration_L1P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_7->text().toInt();
+    QString startSalt = ui->comboBox_42->currentText();
+    QString stopSalt = ui->comboBox_41->currentText();
+    QString oilTemp = ui->comboBox_40->currentText();
+    QString volume = ui->lineEdit_8->text();
+    QString startWaterRun = ui->lineEdit_51->text();
+    QString stopWaterRun = ui->lineEdit_52->text();
+    QString startOilRun = ui->lineEdit_49->text();
+    QString stopOilRun = ui->lineEdit_50->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus == NULL)
     {
         setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_7->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_1_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4858,7 +4876,7 @@ calibration_L1P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_13->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -4868,9 +4886,9 @@ calibration_L1P2()
     else if (ui->radioButton_38->isChecked()) path = LOW;      // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P2, file2_L1P2, file3_L1P2, file4_L1P2, file5_L1P2, file6_L1P2, file7_L1P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_5->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -4886,28 +4904,28 @@ calibration_L1P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_13->text().toInt();
+    QString startSalt = ui->comboBox_51->currentText();
+    QString stopSalt = ui->comboBox_50->currentText();
+    QString oilTemp = ui->comboBox_49->currentText();
+    QString volume = ui->lineEdit_14->text();
+    QString startWaterRun = ui->lineEdit_63->text();
+    QString stopWaterRun = ui->lineEdit_64->text();
+    QString startOilRun = ui->lineEdit_61->text();
+    QString stopOilRun = ui->lineEdit_62->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus == NULL)
     {
         setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_13->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_1_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4918,19 +4936,19 @@ calibration_L1P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_69->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
-    if (ui->radioButton_72->isChecked()) path = HIGH;            // HIGH
-    else if (ui->radioButton_73->isChecked()) path = FULL;     // FULL
-    else if (ui->radioButton_74->isChecked()) path = MID ;     // MID
-    else if (ui->radioButton_78->isChecked()) path = LOW;        // LOW
+    if (ui->radioButton_71->isChecked()) path = HIGH;            // HIGH
+    else if (ui->radioButton_72->isChecked()) path = FULL;     // FULL
+    else if (ui->radioButton_73->isChecked()) path = MID ;     // MID
+    else if (ui->radioButton_74->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P3, file2_L1P3, file3_L1P3, file4_L1P3, file5_L1P3, file6_L1P3, file7_L1P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_8->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -4946,28 +4964,28 @@ calibration_L2P1()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_15->text().toInt();
+    QString startSalt = ui->comboBox_53->currentText();
+    QString stopSalt = ui->comboBox_52->currentText();
+    QString oilTemp = ui->comboBox_54->currentText();
+    QString volume = ui->lineEdit_16->text();
+    QString startWaterRun = ui->lineEdit_67->text();
+    QString stopWaterRun = ui->lineEdit_68->text();
+    QString startOilRun = ui->lineEdit_65->text();
+    QString stopOilRun = ui->lineEdit_66->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_2 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_2 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_15->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_2_Pipe_1 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -4978,19 +4996,19 @@ calibration_L2P1()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_81->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
-    if (ui->radioButton_83->isChecked()) path = HIGH;            // HIGH
+    if (ui->radioButton_83->isChecked()) path = HIGH;          // HIGH
     else if (ui->radioButton_84->isChecked()) path = FULL;     // FULL
     else if (ui->radioButton_85->isChecked()) path = MID ;     // MID
-    else if (ui->radioButton_86->isChecked()) path = LOW;        // LOW
+    else if (ui->radioButton_86->isChecked()) path = LOW;      // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L2P1, file2_L2P1, file3_L2P1, file4_L2P1, file5_L2P1, file6_L2P1, file7_L2P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_9->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5006,28 +5024,28 @@ calibration_L2P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_17->text().toInt();
+    QString startSalt = ui->comboBox_57->currentText();
+    QString stopSalt = ui->comboBox_56->currentText();
+    QString oilTemp = ui->comboBox_55->currentText();
+    QString volume = ui->lineEdit_18->text();
+    QString startWaterRun = ui->lineEdit_71->text();
+    QString stopWaterRun = ui->lineEdit_72->text();
+    QString startOilRun = ui->lineEdit_69->text();
+    QString stopOilRun = ui->lineEdit_70->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_2 == NULL) // LOOP2 
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_2 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_17->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_2_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5038,7 +5056,7 @@ calibration_L2P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_93->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5048,9 +5066,9 @@ calibration_L2P2()
     else if (ui->radioButton_98->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L2P2, file2_L2P2, file3_L2P2, file4_L2P2, file5_L2P2, file6_L2P2, file7_L2P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_10->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5066,28 +5084,28 @@ calibration_L2P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_19->text().toInt();
+    QString startSalt = ui->comboBox_60->currentText();
+    QString stopSalt = ui->comboBox_59->currentText();
+    QString oilTemp = ui->comboBox_58->currentText();
+    QString volume = ui->lineEdit_20->text();
+    QString startWaterRun = ui->lineEdit_75->text();
+    QString stopWaterRun = ui->lineEdit_76->text();
+    QString startOilRun = ui->lineEdit_73->text();
+    QString stopOilRun = ui->lineEdit_74->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_2 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_2 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_19->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_2_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5098,7 +5116,7 @@ calibration_L2P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_105->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5108,9 +5126,9 @@ calibration_L2P3()
     else if (ui->radioButton_110->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L2P3, file2_L2P3, file3_L2P3, file4_L2P3, file5_L2P3, file6_L2P3, file7_L2P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_11->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5126,28 +5144,28 @@ calibration_L3P1()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_21->text().toInt();
+    QString startSalt = ui->comboBox_62->currentText();
+    QString stopSalt = ui->comboBox_61->currentText();
+    QString oilTemp = ui->comboBox_63->currentText();
+    QString volume = ui->lineEdit_22->text();
+    QString startWaterRun = ui->lineEdit_79->text();
+    QString stopWaterRun = ui->lineEdit_80->text();
+    QString startOilRun = ui->lineEdit_77->text();
+    QString stopOilRun = ui->lineEdit_78->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_3 == NULL) // LOOP 3
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_3 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_21->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_3_Pipe_1 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5158,7 +5176,7 @@ calibration_L3P1()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_117->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5168,9 +5186,9 @@ calibration_L3P1()
     else if (ui->radioButton_122->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L3P1, file2_L3P1, file3_L3P1, file4_L3P1, file5_L3P1, file6_L3P1, file7_L3P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_12->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5186,28 +5204,28 @@ calibration_L3P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_23->text().toInt();
+    QString startSalt = ui->comboBox_66->currentText();
+    QString stopSalt = ui->comboBox_65->currentText();
+    QString oilTemp = ui->comboBox_64->currentText();
+    QString volume = ui->lineEdit_24->text();
+    QString startWaterRun = ui->lineEdit_83->text();
+    QString stopWaterRun = ui->lineEdit_84->text();
+    QString startOilRun = ui->lineEdit_81->text();
+    QString stopOilRun = ui->lineEdit_82->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_3 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_3 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_23->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_3_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5218,7 +5236,7 @@ calibration_L3P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_129->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5228,9 +5246,9 @@ calibration_L3P2()
     else if (ui->radioButton_134->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L3P2, file2_L3P2, file3_L3P2, file4_L3P2, file5_L3P2, file6_L3P2, file7_L3P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_13->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5246,28 +5264,28 @@ calibration_L3P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_25->text().toInt();
+    QString startSalt = ui->comboBox_69->currentText();
+    QString stopSalt = ui->comboBox_68->currentText();
+    QString oilTemp = ui->comboBox_67->currentText();
+    QString volume = ui->lineEdit_26->text();
+    QString startWaterRun = ui->lineEdit_87->text();
+    QString stopWaterRun = ui->lineEdit_88->text();
+    QString startOilRun = ui->lineEdit_85->text();
+    QString stopOilRun = ui->lineEdit_86->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_3 == NULL)
     {
         setStatusError( tr("Loop_1 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_25->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_3_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5278,7 +5296,7 @@ calibration_L3P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_141->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5288,9 +5306,9 @@ calibration_L3P3()
     else if (ui->radioButton_146->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L3P3, file2_L3P3, file3_L3P3, file4_L3P3, file5_L3P3, file6_L3P3, file7_L3P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_14->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5306,28 +5324,28 @@ calibration_L4P1()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_27->text().toInt();
+    QString startSalt = ui->comboBox_71->currentText();
+    QString stopSalt = ui->comboBox_70->currentText();
+    QString oilTemp = ui->comboBox_72->currentText();
+    QString volume = ui->lineEdit_28->text();
+    QString startWaterRun = ui->lineEdit_91->text();
+    QString stopWaterRun = ui->lineEdit_92->text();
+    QString startOilRun = ui->lineEdit_89->text();
+    QString stopOilRun = ui->lineEdit_90->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_4 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_4 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_27->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_4_Pipe_1 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5338,7 +5356,7 @@ calibration_L4P1()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_153->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5348,9 +5366,9 @@ calibration_L4P1()
     else if (ui->radioButton_158->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L4P1, file2_L4P1, file3_L4P1, file4_L4P1, file5_L4P1, file6_L4P1, file7_L4P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_15->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5366,28 +5384,28 @@ calibration_L4P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_29->text().toInt();
+    QString startSalt = ui->comboBox_75->currentText();
+    QString stopSalt = ui->comboBox_74->currentText();
+    QString oilTemp = ui->comboBox_73->currentText();
+    QString volume = ui->lineEdit_30->text();
+    QString startWaterRun = ui->lineEdit_95->text();
+    QString stopWaterRun = ui->lineEdit_96->text();
+    QString startOilRun = ui->lineEdit_93->text();
+    QString stopOilRun = ui->lineEdit_94->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_4 == NULL) // LOOP4 
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_4 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_29->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_4_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5398,7 +5416,7 @@ calibration_L4P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_165->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5408,9 +5426,9 @@ calibration_L4P2()
     else if (ui->radioButton_170->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L4P2, file2_L4P2, file3_L4P2, file4_L4P2, file5_L4P2, file6_L4P2, file7_L4P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_16->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5426,28 +5444,28 @@ calibration_L4P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_31->text().toInt();
+    QString startSalt = ui->comboBox_78->currentText();
+    QString stopSalt = ui->comboBox_77->currentText();
+    QString oilTemp = ui->comboBox_76->currentText();
+    QString volume = ui->lineEdit_32->text();
+    QString startWaterRun = ui->lineEdit_99->text();
+    QString stopWaterRun = ui->lineEdit_100->text();
+    QString startOilRun = ui->lineEdit_97->text();
+    QString stopOilRun = ui->lineEdit_98->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_4 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_4 not configured!") );
         return;       
     }
 
     if (ui->lineEdit_2->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_4_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5458,7 +5476,7 @@ calibration_L4P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_177->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5468,9 +5486,9 @@ calibration_L4P3()
     else if (ui->radioButton_195->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L4P3, file2_L4P3, file3_L4P3, file4_L4P3, file5_L4P3, file6_L4P3, file7_L4P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_17->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5486,28 +5504,28 @@ calibration_L5P1()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_33->text().toInt();
+    QString startSalt = ui->comboBox_80->currentText();
+    QString stopSalt = ui->comboBox_79->currentText();
+    QString oilTemp = ui->comboBox_81->currentText();
+    QString volume = ui->lineEdit_34->text();
+    QString startWaterRun = ui->lineEdit_103->text();
+    QString stopWaterRun = ui->lineEdit_104->text();
+    QString startOilRun = ui->lineEdit_101->text();
+    QString stopOilRun = ui->lineEdit_102->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_5 == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_5 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_33->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_5_Pipe_1 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5518,7 +5536,7 @@ calibration_L5P1()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_202->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5528,9 +5546,9 @@ calibration_L5P1()
     else if (ui->radioButton_207->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L5P1, file2_L5P1, file3_L5P1, file4_L5P1, file5_L5P1, file6_L5P1, file7_L5P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_18->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5546,28 +5564,28 @@ calibration_L5P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_35->text().toInt();
+    QString startSalt = ui->comboBox_84->currentText();
+    QString stopSalt = ui->comboBox_83->currentText();
+    QString oilTemp = ui->comboBox_82->currentText();
+    QString volume = ui->lineEdit_36->text();
+    QString startWaterRun = ui->lineEdit_107->text();
+    QString stopWaterRun = ui->lineEdit_108->text();
+    QString startOilRun = ui->lineEdit_105->text();
+    QString stopOilRun = ui->lineEdit_106->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_5 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_5 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_35->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_5_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5578,7 +5596,7 @@ calibration_L5P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_214->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5588,9 +5606,9 @@ calibration_L5P2()
     else if (ui->radioButton_219->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L5P2, file2_L5P2, file3_L5P2, file4_L5P2, file5_L5P2, file6_L5P2, file7_L5P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_19->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5606,28 +5624,28 @@ calibration_L5P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_110->text().toInt();
+    QString startSalt = ui->comboBox_87->currentText();
+    QString stopSalt = ui->comboBox_86->currentText();
+    QString oilTemp = ui->comboBox_85->currentText();
+    QString volume = ui->lineEdit_114->text();
+    QString startWaterRun = ui->lineEdit_115->text();
+    QString stopWaterRun = ui->lineEdit_116->text();
+    QString startOilRun = ui->lineEdit_112->text();
+    QString stopOilRun = ui->lineEdit_113->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_5 == NULL) // LOOP 1
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_5 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_110->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_5_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5638,7 +5656,7 @@ calibration_L5P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_226->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5648,9 +5666,9 @@ calibration_L5P3()
     else if (ui->radioButton_231->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L5P3, file2_L5P3, file3_L5P3, file4_L5P3, file5_L5P3, file6_L5P3, file7_L5P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_20->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5666,28 +5684,28 @@ calibration_L6P1()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_121->text().toInt();
+    QString startSalt = ui->comboBox_89->currentText();
+    QString stopSalt = ui->comboBox_88->currentText();
+    QString oilTemp = ui->comboBox_90->currentText();
+    QString volume = ui->lineEdit_122->text();
+    QString startWaterRun = ui->lineEdit_119->text();
+    QString stopWaterRun = ui->lineEdit_120->text();
+    QString startOilRun = ui->lineEdit_117->text();
+    QString stopOilRun = ui->lineEdit_118->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_6 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_6 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_121->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_6_Pipe_1 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5698,7 +5716,7 @@ calibration_L6P1()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_238->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5708,9 +5726,9 @@ calibration_L6P1()
     else if (ui->radioButton_243->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L6P1, file2_L6P1, file3_L6P1, file4_L6P1, file5_L6P1, file6_L6P1, file7_L6P1);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_21->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5726,28 +5744,28 @@ calibration_L6P2()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_123->text().toInt();
+    QString startSalt = ui->comboBox_93->currentText();
+    QString stopSalt = ui->comboBox_92->currentText();
+    QString oilTemp = ui->comboBox_91->currentText();
+    QString volume = ui->lineEdit_126->text();
+    QString startWaterRun = ui->lineEdit_127->text();
+    QString stopWaterRun = ui->lineEdit_128->text();
+    QString startOilRun = ui->lineEdit_124->text();
+    QString stopOilRun = ui->lineEdit_125->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_6 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_6 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_123->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_6_Pipe_2 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5758,7 +5776,7 @@ calibration_L6P2()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_250->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5768,9 +5786,9 @@ calibration_L6P2()
     else if (ui->radioButton_255->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L6P2, file2_L6P2, file3_L6P2, file4_L6P2, file5_L6P2, file6_L6P2, file7_L6P2);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_22->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);
@@ -5786,28 +5804,28 @@ calibration_L6P3()
     BOOL isEEA = true;
 
     /// get user inputs
-    QString startSalt = ui->comboBox_31->currentText();
-    QString stopSalt = ui->comboBox_33->currentText();
-    QString oilTemp = ui->comboBox_32->currentText();
-    QString volume = ui->lineEdit->text();
-    QString startWaterRun = ui->lineEdit_37->text();
-    QString stopWaterRun = ui->lineEdit_38->text();
-    QString startOilRun = ui->lineEdit_39->text();
-    QString stopOilRun = ui->lineEdit_40->text();
+    int slave = ui->lineEdit_129->text().toInt();
+    QString startSalt = ui->comboBox_96->currentText();
+    QString stopSalt = ui->comboBox_95->currentText();
+    QString oilTemp = ui->comboBox_94->currentText();
+    QString volume = ui->lineEdit_132->text();
+    QString startWaterRun = ui->lineEdit_133->text();
+    QString stopWaterRun = ui->lineEdit_134->text();
+    QString startOilRun = ui->lineEdit_130->text();
+    QString stopOilRun = ui->lineEdit_131->text();
 
-    if (m_modbus == NULL) // LOOP 1
+    if (m_modbus_6 == NULL)
     {
-        setStatusError( tr("Loop_1 not configured!") );
+        setStatusError( tr("Loop_6 not configured!") );
         return;       
     }
 
-    if (ui->lineEdit_2->text().isEmpty())
+    if (ui->lineEdit_129->text().isEmpty())
     {
-        setStatusError( tr("Loop_1_Pipe_1 no serial number!") );
+        setStatusError( tr("Loop_6_Pipe_3 no serial number!") );
         return;       
     }
 
-    const int slave = ui->lineEdit_2->text().toInt();
 /*    const int addr = ui->startAddr->value()-1;
     uint8_t dest[1024];
     uint16_t * dest16 = (uint16_t *) dest;
@@ -5818,7 +5836,7 @@ calibration_L6P3()
 */
    
     /// product
-    if (ui->radioButton->isChecked()) isEEA = true;
+    if (ui->radioButton_262->isChecked()) isEEA = true;
     else isEEA = false;
 
     /// cut
@@ -5828,9 +5846,9 @@ calibration_L6P3()
     else if (ui->radioButton_267->isChecked()) path = LOW;        // LOW
 
     /// create files
-    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L1P1, file2_L1P1, file3_L1P1, file4_L1P1, file5_L1P1, file6_L1P1, file7_L1P1);
+    createLoopFiles(slave, path, isEEA, startSalt, stopSalt, oilTemp, volume, startWaterRun, stopWaterRun, startOilRun, stopOilRun, file1_L6P3, file2_L6P3, file3_L6P3, file4_L6P3, file5_L6P3, file6_L6P3, file7_L6P3);
 
-    ui->pushButton_4->setText(tr("P A U S E"));
+    ui->pushButton_23->setText(tr("S T O P"));
 /*    memset( dest, 0, 1024 );
     modbus_set_slave( m_serialModbus, slave );
     sendCalibrationRequest(FLOAT_R, m_serialModbus, FUNC_READ_FLOAT, addr, BYTE_READ_FLOAT, ret, dest, dest16, is16Bit, writeAccess, funcType);

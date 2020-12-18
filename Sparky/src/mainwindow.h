@@ -22,6 +22,9 @@
 #define RAZ true
 #define EEA false
 
+#define EEA_INJECTION_FILE          "EEA INJECTION FILE"
+#define RAZ_INJECTION_FILE          "RAZOR INJECTION FILE"
+
 /// calibration file names
 #define HIGH                        "G:\\HIGHCUT\\HC"
 #define FULL                        "G:\\FULLCUT\\FC" 
